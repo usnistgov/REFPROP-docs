@@ -118,6 +118,7 @@ The following reference can be used to cite the REFPROP program in publications:
 Lemmon, E.W., Huber, M.L., McLinden, M.O.&nbsp; NIST Standard Reference Database 23:&nbsp; Reference Fluid Thermodynamic and Transport Properties-REFPROP, Version 9.1, National Institute of Standards and Technology, Standard Reference Data Program, Gaithersburg, 2013.
 
 Or in BibTeX form:
+{% raw %}
 ```text
 @Misc{LEMMON-RP91,
   Title                    = {{NIST Standard Reference Database 23: Reference Fluid Thermodynamic and Transport Properties-REFPROP, Version 9.1, National Institute of Standards and Technology}},
@@ -127,6 +128,7 @@ Or in BibTeX form:
   Url                      = {https://www.nist.gov/srd/refprop}
 }
 ```
+{% endraw %}
 
 Additionally, users should cite the reference for either the equation of state
 or the transport equations used in their work, for example, if you used
