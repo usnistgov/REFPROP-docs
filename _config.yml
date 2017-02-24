@@ -4,4 +4,3 @@ description: "Documentation for NIST REFPROP"
 
 baseurl: "/REFPROP-docs"
 rooturl: ""
-theme: minima
