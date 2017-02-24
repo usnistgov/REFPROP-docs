@@ -2,6 +2,6 @@
 title: "REFPROP"
 description: "Documentation for NIST REFPROP"
 
-baseurl: "/"
+baseurl: "/REFPROP-docs"
 rooturl: ""
 #theme: jekyll-theme-slate
