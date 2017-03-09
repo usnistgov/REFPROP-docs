@@ -85,8 +85,8 @@ component COMDLG32.OCX or one of its dependencies not correctly registered:
 
 check to see if you have a firewall or antivirus software that can be turned off.&nbsp; Deactivating these will often allow successful installs, especially on Vista machines.&nbsp; If this fails or is not an option, then >download the corresponding file from the link below and save it in your ``Windows\System32`` directory on 32 bit machines or to your ``Windows\SysWOW64`` directory on 64 bit machines. 
 
-- <a href="http://trc.nist.gov/refprop/FAQ/mshflxgd.ocx">MSHFLXGD.OCX</a>
-- <a href="http://trc.nist.gov/refprop/FAQ/COMDLG32.OCX">COMDLG32.OCX</a>
+- [MSHFLXGD.OCX](http://trc.nist.gov/refprop/FAQ/mshflxgd.ocx)
+- [COMDLG32.OCX](http://trc.nist.gov/refprop/FAQ/COMDLG32.OCX)
 
 In some cases where you are not allowed to be the administrator on a machine, this message will appear because it cannot access the System32 directory. Try placing the file in your Windows directory to get the program to work.
 
@@ -252,14 +252,14 @@ In the Refprop 9.1 program, the natural gas equation of state has been expanded 
 Equations of state are now available for these fluids. The fluid files are located below and should be placed in your ``Refprop\Fluids`` directory. The fluid files included in version 9.0
 incorrectly used the NBP reference state.
 
-- [R1234YF.FLD](R1234YF.FLD) (uploaded June 6, 2012 with updated transport equations)
-- [R1234ZEE.FLD](R1234ZEE.FLD) (uploaded June 6, 2012 with new CAS number and updated transport equations. This is for R1234ze(E)). **NOTE** The file name for R1234ze(E) has been renamed as R1234zeE.FLD to avoid confusion with R1234ze(Z). You should delete your old R1234ze.FLD file when downloading this version. The contents of the fluid file have not changed.
-- [R1234ZEZ.FLD](R1234ZEZ.FLD) (uploaded January 12, 2015 with transport equations. This is for R1234ze(Z)).
-- [R1233ZDE.FLD](R1233ZDE.FLD) (uploaded November 9, 2015)
+- [R1234YF.FLD](http://trc.nist.gov/refprop/FAQ/R1234YF.FLD) (uploaded June 6, 2012 with updated transport equations)
+- [R1234ZEE.FLD](http://trc.nist.gov/refprop/FAQ/R1234ZEE.FLD) (uploaded June 6, 2012 with new CAS number and updated transport equations. This is for R1234ze(E)). **NOTE** The file name for R1234ze(E) has been renamed as R1234zeE.FLD to avoid confusion with R1234ze(Z). You should delete your old R1234ze.FLD file when downloading this version. The contents of the fluid file have not changed.
+- [R1234ZEZ.FLD](http://trc.nist.gov/refprop/FAQ/R1234ZEZ.FLD) (uploaded January 12, 2015 with transport equations. This is for R1234ze(Z)).
+- [R1233ZDE.FLD](http://trc.nist.gov/refprop/FAQ/R1233ZDE.FLD) (uploaded November 9, 2015)
 
 New refrigerant predefined mixture files are available, such as that for R-448A. To add these to Refprop, unzip the file below in your ``Refprop\Mixtures`` directory:
 
-- [NEWMIX.ZIP](NEWMIX.ZIP) (uploaded October 24, 2016 with 10 new mixtures. For mixtures with R1234ze(E), you will need to download the renamed file above for this fluid.)
+- [NEWMIX.ZIP](http://trc.nist.gov/refprop/FAQ/NEWMIX.ZIP) (uploaded October 24, 2016 with 10 new mixtures. For mixtures with R1234ze(E), you will need to download the renamed file above for this fluid.)
 
 «On November 10, 2015, we released a new mixture file (HMX.BNC) that now contains mixing parameters for every binary of the fluids R-32, R-125, R-134a, R-1234yf, and R-1234ze(E). With these, mixtures such as R-448A that contain all five of these no longer use the predictive methods to get the interaction parameters. If you would like this file, please contact us. 
 
@@ -275,15 +275,18 @@ The REFPROP program does not know the location of the solid-liquid interface&nbs
 ## Transport Properties for Nitrogen, Oxygen, Argon, and Air.
 The transport properties for nitrogen, argon, and oxygen in version 7.0 did not include the thermal conductivity enhancement for the critical region and did not represent the experimental data as well as possible.&nbsp; The transport equations for these fluids have been redone and now represent the data to within their experimental uncertainties.&nbsp; The publication below documents the new equations and shows all of the comparisons to data.
 
-- [N2-Ar-O2 Transport equations documentation](NAO.PDF)
+- [N2-Ar-O2 Transport equations documentation](http://trc.nist.gov/refprop/FAQ/NAO.PDF)
 
 ## Transport Properties for Pseudo-pure Fluids; Adding Pure Fluids to a Mixture Setup.
 The ability to load both a mixture and a pure fluid not associated with the mixture is now possible. For example, a natural gas mixture of methane, ethane, and propane could be loaded, along with R134a, which is not part of the mixture. By calling SETNC and PUREFLD, properties for either the mixture or the pure fluid can be made without ever calling SETUP more than once at the beginning. This is also useful for calculating transport properties when the pseudo-pure fluid equation of state is in use (for R-404A, R-407C, R-410A, and R-507A). Since transport properties are not available in the PPF files, the full mixture has to be loaded as well. The example program below gives all the details.
 
-- [PPF-EX.FOR](PPF-EX.FOR)
+- [PPF-EX.FOR](http://trc.nist.gov/refprop/FAQ/PPF-EX.FOR)
 
 ## Required Fluids for Distribution. 
 There are several fluid files that Refprop accesses in order to run properly.&nbsp; These are ``NITROGEN.FLD``, ``PROPANE.FLD``, ``R134A.FLD``, and ``C12.FLD`` (dodecane).&nbsp; These fluids are used as reference fluids in extended corresponding states methods employed in Refprop to predict transport properties for some instances.&nbsp; These fluids (and the hmx.bnc file) should be distributed in addition to those required in a particular application if the Refprop routines have been incorporated into a software package. Note that a licensing agreement must be purchased before distributing your software to others.
 
 
-Last modified: February 23, 2017.
+Last modified: March 9, 2017.
+
+[Go to the source of this file](https://github.com/usnistgov/REFPROP-docs/blob/nist-pages/index.md)
+
