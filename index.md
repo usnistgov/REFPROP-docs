@@ -85,8 +85,8 @@ component COMDLG32.OCX or one of its dependencies not correctly registered:
 
 check to see if you have a firewall or antivirus software that can be turned off.&nbsp; Deactivating these will often allow successful installs, especially on Vista machines.&nbsp; If this fails or is not an option, then >download the corresponding file from the link below and save it in your ``Windows\System32`` directory on 32 bit machines or to your ``Windows\SysWOW64`` directory on 64 bit machines. 
 
-- <a href="mshflxgd.ocx">MSHFLXGD.OCX</a>
-- <a href="COMDLG32.OCX">COMDLG32.OCX</a>
+- <a href="https://trc.nist.gov/refprop/FAQ/mshflxgd.ocx">MSHFLXGD.OCX</a>
+- <a href="https://trc.nist.gov/refprop/FAQ/COMDLG32.OCX">COMDLG32.OCX</a>
 
 In some cases where you are not allowed to be the administrator on a machine, this message will appear because it cannot access the System32 directory. Try placing the file in your Windows directory to get the program to work.
 
@@ -110,7 +110,7 @@ If an error message occurs referencing the file REFPROP.MSI, try the following: 
 ## REFPROP is a Program, not a Database Containing Measurements
 The REFPROP "database" is actually a program and does not contain any experimental information, aside from the critical and triple points of the pure fluids. The program uses equations for the thermodynamic and transport properties to calculate the state points of the fluid or mixture. These equations are the most accurate equations available worldwide. A link to one of these equations for R-125 is given below. Their high accuracy is obtained through many coefficients in the equations, and thus the calculation speed will be slower than other equations such as the Peng-Robinson cubic equations. The equations are generally valid over the entire vapor and liquid regions of the fluid, including supercritical states; the upper temperature limit is usually near the point of decomposition of the fluid, and the upper pressure (or density) limit is defined by the melting line of the substance.
 
-- [Equation of State for HFC-125](R125.PDF)
+- [Equation of State for HFC-125](https://trc.nist.gov/refprop/FAQ/R125.PDF)
 
 ## Referencing the REFPROP Program in Publications.
 The following reference can be used to cite the REFPROP program in publications:
@@ -156,7 +156,7 @@ Version 9.1 is now the current release. Several problems in version 9.0 (listed 
 The most recent help file from Refprop is available below. You should download it to your
 machine before launching it, otherwise the help file will appear blank.
 
-- [REFPROP.CHM](REFPROP.CHM)
+- [REFPROP.CHM](https://trc.nist.gov/refprop/FAQ/REFPROP.CHM)
 
 # Using the Program
 
@@ -193,11 +193,11 @@ Dealing with saturation or 2-phase states in Refprop can be a bit confusing when
 
 As an example, consider the methane/ethane system with a molar composition of 50% methane and 50% ethane. For mixtures in the 2-phase (or at saturation), it is always best to turn on the composition columns (under Properties/Mixtures/Composition). For saturation states, bring up a saturation table [under Calculate/Saturation Points (at equilibrium)]. The table shows two entries for each property. It is very important to place the known property under the correct column. For example, the input property for bubble points (liquid state) should be placed under the “Liquid” column; dew points (vapor state) should be placed under the “Vapor” column. An example picture is given below. On the first line, 150 K was entered under the liquid column. This calculated a liquid bubble point pressure of 0.552 MPa. The liquid phase mole fractions show the input composition of 0.5/0.5. The vapor phase mole fractions show that the first bit of vapor will have a composition of 0.987/0.013. In the second row, 150 K was entered in the vapor column, producing a dew point pressure of 0.019 MPa. The vapor mole fractions show the input composition of 0.5/0.5. The first drop of liquid to form will have a mole fraction of 0.0074/0.9926.
 
-<img src="http://www.boulder.nist.gov/div838/theory/refprop/Frequently_asked_questions_files/image002.jpg">
+<img src="https://trc.nist.gov/refprop/FAQ/image002.jpg">
 
 For 2-phase states, turn on the option labeled “Bulk, liquid, and vapor properties” under Options/Properties. Then bring up a table under Calculate/Specified State Points. The information obtained above shows that pressures for 2-phase state points at 150 K will lie between 0.019 and 0.552 MPa. Enter 150 K in the temperature column and 0.3 MPa in the pressure column. The program will then calculate the 2-phase point. The output shows that the overall composition of the mixture is still 0.5/0.5. The composition of the fluid in the liquid phase will be 0.246/0.754 and that of the vapor phase will be 0.972/0.028. This is shown in the picture below.
 
-<img src="http://www.boulder.nist.gov/div838/theory/refprop/Frequently_asked_questions_files/image006.jpg">
+<img src="https://trc.nist.gov/refprop/FAQ/image006.jpg">
 
 The Excel sample spreadsheet included in the Refprop directory shows an example for the mixture R410A (between rows 70 and 98).
 
@@ -206,7 +206,7 @@ The Excel sample spreadsheet included in the Refprop directory shows an example 
 ## Changing Fluids and Calling SETUP Multiple Times
 Calling SETUP (or SETUPdll) many many times can result in a memory loss error and in a substantial increase of computation speed. In many situations, it is better to load all of the fluids at the start of the program, calling SETUP only once. You can then switch between fluids through the use of calls to SETNC and PUREFLD. The example below shows how this can be done for a mixture combined with several pure fluids. If two different mixtures are required, load all fluids and set the composition to 0 for those fluids not involved in a particular application. This could easily be done by using two different arrays for the composition.
 
-- <a href="EX-MULTI.FOR">EX-MULTI.FOR</a>
+- [EX-MULTI.FOR](https://trc.nist.gov/refprop/FAQ/EX-MULTI.FOR)
 
 ## Calculation of the Critical Point and Saturation States in the Critical Region
 The calculation of saturation states requires complex algorithms and significant processor time. Version 9.1 introduced the subroutine SATSPLN, which can be called directly after the call to SETUP, and generates spline curves that represent the various properties that are required as initial guesses to the saturation algorithms in order to increase convergence and speed. This new subroutine, however, can take several seconds to implement, and should only be done once at the very beginning. If the composition of the fluid changes significantly, and if you notice problems with convergence, you may need to call it again with the new composition. Although the routine gives estimates only for saturation states, single phase calculations will also be much faster since a call to the saturation routine is required to determine the phase of the input state. The routine is called like this:
