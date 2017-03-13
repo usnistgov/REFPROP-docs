@@ -2,6 +2,15 @@
 layout: default
 title: Home
 ---
+
+# Version 10.0!
+
+Version 10.0 of REFPROP will be coming out sometime this summer.  We currently do not have a firm date for its release, but will continue to update the new FAQ site from time to time with new information as it becomes available.  Please [see below](#updates-to-version-10) for information about REFPROP version 10.0
+
+We need heavy users of the REFPROP program to help us beta test the new source code.  This includes those that make weekly use of the graphical interface, the Excel/Refprop link, and so forth.  Most important would be those that distribute the Refprop code with their own application, and especially those that either access the Fortran code directly, or rely on the error codes coming from the GUI.  The Fortran code has undergone heavy reconstruction and there have been a significant number of changes.  The main calls to the routines are still the same, but the underlying code is quite different.  In such situations, it is imperative that you try the new code before version 10 is released.
+
+Please contact [Eric Lemmon}(mailto:Eric.Lemmon@nist.gov) if you would be willing to beta test the next release.  For general questions on the release of version 10, visit this page from time to time for details of what has changed and other interesting information.  Please limit your contact with us with simple questions about the release as this uses precious time needed to make the update available.
+
 # Answers to Frequently Asked Questions
 
 The following information gives answers to some of the most frequently asked questions concerning [the REFPROP program](https://www.nist.gov/srd/nist23.cfm). _To download any of the files listed below, right-click on the file and select **Save Target As...** and then add the file to your Refprop or other appropriate directory._ Sections with new information added during the last several months are identified with a «. For questions not answered here, please see [the user's guide](http://www.nist.gov/srd/upload/REFPROP9.PDF).
@@ -14,8 +23,9 @@ The following information gives answers to some of the most frequently asked que
 2. [Installation Problems](#installation-problems)
 3. [REFPROP is a Program, not a Database Containing Measurements](#refprop-is-a-program-not-a-database-containing-measurements)
 4. [Referencing the REFPROP Program in Publications](#referencing-the-refprop-program-in-publications)
-5. [Updates to Version 9.1](#updates-to-version-91)
-6. [Help File](#help-file)
+5. [Updates to Version 10.0](#updates-to-version-10)
+6. [Updates to Version 9.1](#updates-to-version-91)
+7. [Help File](#help-file)
 
 **Using the Program**
 
@@ -137,6 +147,36 @@ of state under the Options/Fluid Information option in Refprop and you should
 cite the reference given under that option, like this:
 
 Span, R. and Wagner, W., J. Phys. Chem. Ref. Data, 25(6):1509-1596, 1996.
+
+## Updates to Version 10.0
+
+Enhancements have been made to most areas of the NIST REFPROP program, including the graphical interface, the Excel spreadsheet, the Fortran files (i.e., core property routines), the sample programs in C++, MATLAB, VB, etc., and additional fluids. Some of the more important improvements are listed below:
+
+* Increased calculation speed.
+* Implemented mixture model of Gernert for selected mixtures with water, including water+CO2 and moist air.
+* New shared library (DLL) for the Mac; this allows use of REFPROP with MATLAB on OSX
+* New reference equations of state for ammonia, helium, heavy water, nitrogen, and oxygen.
+* The addition of the following fluids:  1-propanol, isopropanol, 1-butanol, 1-hexanol, chlorine, dichloroethane, ethylene glycol, ethylene oxide, hexadecane, docosane, R30, R40, R1233zd(E), R1243zf, R1336mzz(Z), and vinyl chloride.
+* The equations of state have been revised for cyclopentane, D4, heptane, hexane, hydrogen chloride, hydrogen sulfide, isopentane, MDM, MM, octane, pentane, R161, R245fa, R32, RE347mcc (HFE-7000), sulfur dioxide, and xenon.
+* New mixture models with improved accuracy for ammonia/water and ethylene glycol/water.
+* Mixture parameters were fitted (or refitted) for the following binary mixtures:  R1234yf with R32, R125, R134a, and R1234ze(E), R1234ze(E) with R125 and R134a, and CO2/R1216
+* New estimation scheme for selected families of binary mixtures (n-alkane + n-alkane mixtures, mixtures with CO2) to obtain estimated interaction parameters for mixtures that have not been fitted.
+* Henry's constant estimation scheme to obtain better starting values for VLE of mixtures.
+* All of the Fortran code was highly optimized, with the addition of many new comments to explain the workings of the code.
+* Additional code to identify type III mixtures for use in phase determination.
+* Addition of updated AGA-8 equations of state to conform with the 2017 release of that publication.
+* Transport equations have been added or modified for acetone, benzene, 1-butene, carbon dioxide, carbonyl sulfide, cis-butene, cyclohexane, cyclopentane, cyclopentane, D4, D5, D6, dichloroethane, diethyl ether, dimethyl carbonate, docosane, ethylene, ethylene oxide, heptane, hydrogen chloride, isobutene, isohexane, isooctane, isopentane, m-xylene, MD2M, MD3M, MD4M, MDM, MM, neon, neopentane, Novec-649, o-xylene, p-xylene, pentane, propylene, R114, R161, R1233zd(E), R1234yf, R1234ze(Z), R1243zf, R245fa, RE143a, RE347mcc, R40, trans-butene, toluene, undecane, and vinyl chloride.
+* A bug in the transport properties for mixtures with either hydrogen or helium was fixed.
+* All surface tension equations for the pure fluids have been updated.
+* New surface tension model for mixtures with much lower uncertainty.
+* New code to calculate heat of formation and the mass flux for a Venturi nozzle.
+* New function to allow users to call Refprop with the exact same command for any input/output properties, rather than having to learn the inputs/outputs for TPFLSH, THERM, etc. 
+
+### Breaking changes
+
+In general the high-level interface exposed through the DLL is 100% backwards compatible with version 9.1.1.  Some non-backwards-compatible changes were necessary:
+
+* The errorcodes from the functions exposed through the DLL were modified.  If you have been interrogating the error codes from the high-level routines, you may need to reconsider how you handle errors.
 
 ## Updates to Version 9.1
 Version 9.1 is now the current release. Several problems in version 9.0 (listed below) were found after its release, and these have all been corrected in 9.1. There are also a few issues with 9.1. If these affect you, please let us know and we will send you the update.
