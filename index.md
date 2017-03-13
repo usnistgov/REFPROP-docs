@@ -5,11 +5,11 @@ title: Home
 
 # Version 10.0!
 
-Version 10.0 of REFPROP will be coming out sometime this summer.  We currently do not have a firm date for its release, but will continue to update the new FAQ site from time to time with new information as it becomes available.  Please [see below](#updates-to-version-10) for information about REFPROP version 10.0
+Version 10.0 of REFPROP will be coming out sometime this summer.  We currently do not have a firm date for its release, but will continue to update the new FAQ site from time to time with new information as it becomes available.  Please [see below](#updates-to-version-100) for information about REFPROP version 10.0
 
 We need heavy users of the REFPROP program to help us beta test the new source code.  This includes those that make weekly use of the graphical interface, the Excel/Refprop link, and so forth.  Most important would be those that distribute the Refprop code with their own application, and especially those that either access the Fortran code directly, or rely on the error codes coming from the GUI.  The Fortran code has undergone heavy reconstruction and there have been a significant number of changes.  The main calls to the routines are still the same, but the underlying code is quite different.  In such situations, it is imperative that you try the new code before version 10 is released.
 
-Please contact [Eric Lemmon}(mailto:Eric.Lemmon@nist.gov) if you would be willing to beta test the next release.  For general questions on the release of version 10, visit this page from time to time for details of what has changed and other interesting information.  Please limit your contact with us with simple questions about the release as this uses precious time needed to make the update available.
+Please contact [Eric Lemmon](mailto:Eric.Lemmon@nist.gov) if you would be willing to beta test the next release.  For general questions on the release of version 10, visit this page from time to time for details of what has changed and other interesting information.  Please limit your contact with us with simple questions about the release as this uses precious time needed to make the update available.
 
 # Answers to Frequently Asked Questions
 
@@ -23,7 +23,7 @@ The following information gives answers to some of the most frequently asked que
 2. [Installation Problems](#installation-problems)
 3. [REFPROP is a Program, not a Database Containing Measurements](#refprop-is-a-program-not-a-database-containing-measurements)
 4. [Referencing the REFPROP Program in Publications](#referencing-the-refprop-program-in-publications)
-5. [Updates to Version 10.0](#updates-to-version-10)
+5. [Updates to Version 10.0](#updates-to-version-100)
 6. [Updates to Version 9.1](#updates-to-version-91)
 7. [Help File](#help-file)
 
