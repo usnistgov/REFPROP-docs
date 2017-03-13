@@ -72,7 +72,7 @@ Furthermore, when you do report problems with the use of REFPROP, here is inform
 - What exactly did you do to cause the problem you see?
 - What error message do you get? (The comment "it doesn't work" doesn't help us help you). Screenshots of the failure are very helpful.
 
-Please send questions to Eric Lemmon: <a href="mailto:eric.lemmon@NIST.gov">eric.lemmon@nist.gov</a>
+Please send questions to [Eric Lemmon](mailto:Eric.Lemmon@nist.gov)
 
 If you send a question and do not receive a response within several days, it is quite likely that your email did not make it or that my email was removed by your system administrators as spam or junk mail.  I try to respond to all emails within two days, so please write/call again if you do not receive a response.)
 
