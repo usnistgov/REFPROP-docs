@@ -118,6 +118,25 @@ def deconstruct_function_info(contents):
             # These lines all have '--' in them for sure
             arg, desc = line_decomment(lines[i]).strip().split('--')
             args[arg.strip().lower()] = desc
+        # Get flags, if found
+        for j in range(len(seps)-1):
+            istart,iend = seps[j]+1,seps[j+1]
+            otherlines = lines[istart:iend]
+            if otherlines and iend > istart:
+                if len(otherlines) == 1 and not line_decomment(otherlines[0]):
+                    continue
+                else:
+                    flag, desc = line_decomment(lines[i]).strip().split('--')
+                    info = {}
+                    for line in otherlines:
+                        cleaned = line_decomment(line).strip()
+                        if ' - ' not in cleaned:
+                            print('BAD!!!: ', cleaned)
+                        else:
+                            k,v = cleaned.split(' - ',1)
+                            info[k.strip()] = v.strip()
+                    flags[flag.strip()] = info
+                    # print('OOOOOOOOOOOOOOOOO', lines[istart-1], '||', otherlines, info)
         return args, flags
 
     # Find the line that contains "Input" and "Output"
@@ -131,9 +150,9 @@ def deconstruct_function_info(contents):
     info.out_args = {}
     if iInputs is not None and iOutput is not None:
         info.doc_block = '\n'.join([' '*4+line_decomment(line) for line in contents[1:iInputs]])
-        info.in_args, in_flags = deconstruct_parameters(contents[iInputs+1:iOutput])
-        info.out_args, out_flags = deconstruct_parameters(contents[iOutput+1::])
-    print(info.in_args)
+        info.in_args, info.in_flags = deconstruct_parameters(contents[iInputs+1:iOutput])
+        info.out_args, info.out_flags = deconstruct_parameters(contents[iOutput+1::])
+    # print(info.in_args)
     return info
 
 def parse_manual_contents(contents, function_dict, dll_functions):
@@ -233,8 +252,8 @@ if __name__=='__main__':
     with open('for_docs.rst','w') as fp:
        fp.write(rst)
 
-    import subprocess
-    subprocess.call('make html', cwd='sphinx', shell = True, stdout = sys.stdout, stderr = sys.stderr)
-    subprocess.call('make latex', cwd='sphinx', shell = True, stdout = sys.stdout, stderr = sys.stderr)
-    for i in range(3):
-        subprocess.call('pdflatex REFPROP.tex', cwd='sphinx/_build/latex', shell = True, stdout = sys.stdout, stderr = sys.stderr)
+    # import subprocess
+    # subprocess.call('make html', cwd='sphinx', shell = True, stdout = sys.stdout, stderr = sys.stderr)
+    # subprocess.call('make latex', cwd='sphinx', shell = True, stdout = sys.stdout, stderr = sys.stderr)
+    # for i in range(3):
+    #     subprocess.call('pdflatex REFPROP.tex', cwd='sphinx/_build/latex', shell = True, stdout = sys.stdout, stderr = sys.stderr)
