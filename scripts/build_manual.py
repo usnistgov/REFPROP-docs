@@ -109,11 +109,18 @@ def deconstruct_function_info(contents):
             return line[2::].strip()
         else:
             return line.strip()
+    def deconstruct_parameters(lines):
+        # Find the lines that have '--' in them, and add another at the end
+        seps = [iline for iline, line in enumerate(lines) if '--' in line] + [len(lines)]
+        args, flags = {}, {}
+        # Get all the arguments
+        for i in seps[0:-1]:
+            # These lines all have '--' in them for sure
+            arg, desc = line_decomment(lines[i]).strip().split('--')
+            args[arg.strip().lower()] = desc
+        return args, flags
 
-    # Determine how many lines correspond to the string information about the function
-    # Things that end this block are: *written*
-
-    # Find the line that contains Input and written lines
+    # Find the line that contains "Input" and "Output"
     iInputs = line_containing(contents, 'Input')
     iOutput = line_containing(contents, 'Output')
 
@@ -124,14 +131,8 @@ def deconstruct_function_info(contents):
     info.out_args = {}
     if iInputs is not None and iOutput is not None:
         info.doc_block = '\n'.join([' '*4+line_decomment(line) for line in contents[1:iInputs]])
-        for line in contents[iInputs+1:iOutput]:
-            if '--' in line:
-                arg, desc = line_decomment(line).strip().split('--')
-                info.in_args[arg.strip().lower()] = desc
-        for line in contents[iOutput+1::]:
-            if '--' in line:
-                arg, desc = line_decomment(line).strip().split('--')
-                info.out_args[arg.strip().lower()] = desc
+        info.in_args, in_flags = deconstruct_parameters(contents[iInputs+1:iOutput])
+        info.out_args, out_flags = deconstruct_parameters(contents[iOutput+1::])
     print(info.in_args)
     return info
 
