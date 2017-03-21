@@ -114,29 +114,34 @@ def deconstruct_function_info(contents):
         seps = [iline for iline, line in enumerate(lines) if '--' in line] + [len(lines)]
         args, flags = {}, {}
         # Get all the arguments
-        for i in seps[0:-1]:
-            # These lines all have '--' in them for sure
-            arg, desc = line_decomment(lines[i]).strip().split('--')
-            args[arg.strip().lower()] = desc
-        # Get flags, if found
         for j in range(len(seps)-1):
-            istart,iend = seps[j]+1,seps[j+1]
-            otherlines = lines[istart:iend]
-            if otherlines and iend > istart:
-                if len(otherlines) == 1 and not line_decomment(otherlines[0]):
-                    continue
-                else:
-                    flag, desc = line_decomment(lines[i]).strip().split('--')
-                    info = {}
-                    for line in otherlines:
-                        cleaned = line_decomment(line).strip()
-                        if ' - ' not in cleaned:
-                            print('BAD!!!: ', cleaned)
-                        else:
-                            k,v = cleaned.split(' - ',1)
-                            info[k.strip()] = v.strip()
-                    flags[flag.strip()] = info
-                    # print('OOOOOOOOOOOOOOOOO', lines[istart-1], '||', otherlines, info)
+            istart,iend = seps[j],seps[j+1]
+            # Get the argument based on the first line
+            arg, desc = line_decomment(lines[istart]).strip().split('--')
+            # If the line ends with ':', then the stuff that follows is a list, otherwise, the following lines are glommed together
+            if line_decomment(lines[istart]).strip().endswith(':'):
+                otherlines = lines[istart+1:iend]
+                if otherlines and iend > istart+1:
+                    if len(otherlines) == 1 and not line_decomment(otherlines[0]):
+                        # Empty line, don't do anything
+                        continue
+                    else:
+                        info = {}
+                        for line in otherlines:
+                            cleaned = line_decomment(line).strip()
+                            if ' - ' not in cleaned:
+                                print('BAD!!!: ', cleaned)
+                            else:
+                                k,v = cleaned.split(' - ',1)
+                                info[k.strip()] = v.strip()
+                        flags[arg.strip()] = info
+            else:
+                # Keep on glomming the rest in, with spaces between lines
+                otherlines = lines[istart+1:iend]
+                desc += ' '+ ' '.join([line_decomment(l).strip() for l in otherlines])
+
+            args[arg.strip().lower()] = desc
+            # print('OOOOOOOOOOOOOOOOO', lines[istart-1], '||', otherlines, info)
         return args, flags
 
     # Find the line that contains "Input" and "Output"
@@ -146,8 +151,8 @@ def deconstruct_function_info(contents):
     class struct(object): pass
     info = struct()
     info.doc_block = '\n\n'+ ' '*4+'XXXXXXXXXXXXXXXXXXXX  CANNOT GET DOCS\n\n'
-    info.in_args = {}
-    info.out_args = {}
+    info.in_args,info.in_flags = {},{}
+    info.out_args,info.out_flags = {},{}
     if iInputs is not None and iOutput is not None:
         info.doc_block = '\n'.join([' '*4+line_decomment(line) for line in contents[1:iInputs]])
         info.in_args, info.in_flags = deconstruct_parameters(contents[iInputs+1:iOutput])
@@ -191,22 +196,44 @@ def parse_manual_contents(contents, function_dict, dll_functions):
             for arg in args:
                 # arg is (name, type, length) or (name, type)
                 docs = None
+                inout = ''
                 if arg[0] in info.in_args:
-                    docs = '[INPUT] ' + info.in_args[arg[0]]
+                    inout = ' [in]'
+                    docs = info.in_args[arg[0]]
                 if arg[0] in info.out_args:
-                    docs = '[OUTPUT] ' + info.out_args[arg[0]]
+                    inout = ' [out]'
+                    docs = info.out_args[arg[0]]
                 if docs is None: 
                     docs = 'XXXXXXXXXX'
+                size = ''
                 if len(arg) == 3 and arg[2] > 0:
-                    args_string += ' '*4 + ':p ' + arg[1].strip('*') + arg[0] + '(' + str(arg[2]) + '): '+docs+'\n'
-                else:
-                    args_string += ' '*4 + ':p ' + arg[1].strip('*') + arg[0] + ': '+docs+'\n'
+                    size = '(' + str(arg[2]) + ')'
+                
+                args_string += ' '*4 + ':p {type:s} {name:s}{size:s}{inout:s}: {docs:s}\n'.format(name = arg[0].strip(), type = arg[1].strip('*').strip(), size =size, inout = inout, docs= docs)
+
             if dll_functions:
                 for arg in function_dict[func+'dll']['string_arguments']:
                     args_string += ' '*4 + ':p int ' + arg[0] + ': length of variable ``' + arg[0].replace('_length','') + '`` (default: '+str(arg[1])+')\n'
         else:
             print('Cannot find function arguments for:', func+'dll')
             continue
+
+        flags_string = ''
+        if info.in_flags or info.out_flags:
+            flags_string = ' '*4 + ':Flags: \n\n'
+            #if info.out_flags: raise ValueError('IMPOSSIBLE:'+str(info.out_flags))
+            def spit_out_flags(flags):
+                s = ''
+                for flag,data in six.iteritems(flags):
+                    s += ' '*8 + '``' + flag + '`` flags\n\n'
+                    for k,v in six.iteritems(data):
+                        s += ' '*8 + ':' + k + ': ' + v + '\n'
+                    s += '\n'
+                return s
+
+            flags_string += spit_out_flags(info.in_flags)
+            flags_string += spit_out_flags(info.out_flags)
+
 
         # This is the definition of the function prototype
         theargs = ', '.join([a[0] for a in function_dict[func+'dll']['argument_list']])
@@ -216,13 +243,13 @@ def parse_manual_contents(contents, function_dict, dll_functions):
         sout += '.. f:subroutine:: {func:s} ({args:s})\n\n'.format(func=func+'dll', args = theargs)
 
         # The block of documentation
-        sout += info.doc_block
+        sout += info.doc_block.replace('*','\*')
 
-        # The list of 
+        # The list of arguments to the function
+        sout += '\n' + args_string + '\n'
 
-        sout += '\n'
-        sout += args_string
-        sout += '\n\n'
+        # The list of flags to the function
+        sout += '\n' + flags_string + '\n'
         
     return sout
 
@@ -252,8 +279,8 @@ if __name__=='__main__':
     with open('for_docs.rst','w') as fp:
        fp.write(rst)
 
-    # import subprocess
-    # subprocess.call('make html', cwd='sphinx', shell = True, stdout = sys.stdout, stderr = sys.stderr)
-    # subprocess.call('make latex', cwd='sphinx', shell = True, stdout = sys.stdout, stderr = sys.stderr)
-    # for i in range(3):
-    #     subprocess.call('pdflatex REFPROP.tex', cwd='sphinx/_build/latex', shell = True, stdout = sys.stdout, stderr = sys.stderr)
+    import subprocess
+    subprocess.call('make html', cwd='sphinx', shell = True, stdout = sys.stdout, stderr = sys.stderr)
+    subprocess.call('make latex', cwd='sphinx', shell = True, stdout = sys.stdout, stderr = sys.stderr)
+    for i in range(3):
+        subprocess.call('pdflatex REFPROP.tex', cwd='sphinx/_build/latex', shell = True, stdout = sys.stdout, stderr = sys.stderr)
