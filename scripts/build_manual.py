@@ -97,6 +97,13 @@ def generate_manual_content(FOR_path, JSON_ofname = None):
 
 def deconstruct_function_info(contents):
 
+    def line_startswith(s, search):
+        o = None
+        for iline, line in enumerate(s):
+            if line_decomment(line).startswith(search):
+                return iline
+        return o
+
     def line_containing(s, search):
         o = None
         for iline, line in enumerate(s):
@@ -117,10 +124,15 @@ def deconstruct_function_info(contents):
         for j in range(len(seps)-1):
             istart,iend = seps[j],seps[j+1]
             # Get the argument based on the first line
-            arg, desc = line_decomment(lines[istart]).strip().split('--')
-            # If the line ends with ':', then the stuff that follows is a list, otherwise, the following lines are glommed together
-            if line_decomment(lines[istart]).strip().endswith(':'):
-                otherlines = lines[istart+1:iend]
+            try:
+                arg, desc = line_decomment(lines[istart]).strip().split('--')
+                if ':' in desc:
+                    desc = desc.split(':')[0]
+            except ValueError as VE:
+                print(line_decomment(lines[istart]).strip())
+            # If the line has a ': in it, then the stuff that follows is a list of flags, otherwise, the following lines are glommed together
+            if ':' in line_decomment(lines[istart]).strip():
+                otherlines = [lines[istart].split(':')[1]] + lines[istart+1:iend]
                 if otherlines and iend > istart+1:
                     if len(otherlines) == 1 and not line_decomment(otherlines[0]):
                         # Empty line, don't do anything
@@ -145,8 +157,8 @@ def deconstruct_function_info(contents):
         return args, flags
 
     # Find the line that contains "Input" and "Output"
-    iInputs = line_containing(contents, 'Input')
-    iOutput = line_containing(contents, 'Output')
+    iInputs = line_startswith(contents, 'Input')
+    iOutput = line_startswith(contents, 'Output')
 
     class struct(object): pass
     info = struct()
