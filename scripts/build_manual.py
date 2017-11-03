@@ -5,7 +5,7 @@ By Ian Bell, NIST, 2016-
 """
 
 from __future__ import print_function
-from cStringIO import StringIO
+from io import StringIO
 import glob, os, json, six, sys
 
 name_remapping = {'CCRIT':'CSTAR',
@@ -152,7 +152,7 @@ def deconstruct_function_info(contents):
                 otherlines = lines[istart+1:iend]
                 desc += ' '+ ' '.join([line_decomment(l).strip() for l in otherlines])
 
-            args[arg.strip().lower()] = desc
+            args[arg.strip()] = desc
             # print('OOOOOOOOOOOOOOOOO', lines[istart-1], '||', otherlines, info)
         return args, flags
 
@@ -218,7 +218,7 @@ def parse_manual_contents(contents, function_dict, dll_functions):
                 if docs is None: 
                     docs = 'XXXXXXXXXX'
                 size = ''
-                if len(arg) == 3 and arg[2] > 0:
+                if len(arg) == 3 and int(arg[2]) > 0:
                     size = '(' + str(arg[2]) + ')'
                 
                 args_string += ' '*4 + ':p {type:s} {name:s}{size:s}{inout:s}: {docs:s}\n'.format(name = arg[0].strip(), type = arg[1].strip('*').strip(), size =size, inout = inout, docs= docs)
@@ -266,7 +266,7 @@ def parse_manual_contents(contents, function_dict, dll_functions):
     return sout
 
 if __name__=='__main__':
-    FOR_path = 'R:\\914FILES'
+    FOR_path = 'R:\\FORTRAN'
 
     # Use the script in REFPROP-headers repo to generate a dictionary of function parameter data
     # from the functions defined in the PASS_FTN.FOR file
