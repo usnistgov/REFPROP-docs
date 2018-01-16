@@ -146,13 +146,13 @@ def deconstruct_function_info(contents):
                             else:
                                 k,v = cleaned.split(' - ',1)
                                 info[k.strip()] = v.strip()
-                        flags[arg.strip()] = info
+                        flags[arg.strip().lower()] = info
             else:
                 # Keep on glomming the rest in, with spaces between lines
                 otherlines = lines[istart+1:iend]
                 desc += ' '+ ' '.join([line_decomment(l).strip() for l in otherlines])
 
-            args[arg.strip()] = desc
+            args[arg.strip().lower()] = desc
             # print('OOOOOOOOOOOOOOOOO', lines[istart-1], '||', otherlines, info)
         return args, flags
 
