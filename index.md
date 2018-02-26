@@ -5,7 +5,7 @@ title: Home
 
 # Version 10.0!
 
-Version 10.0 of REFPROP will be coming out in December 2017.  We currently do not have a firm date for its release, but will continue to update the new FAQ site from time to time with new information as it becomes available.  Please [see below](#updates-to-version-100) for information about REFPROP version 10.0
+Version 10.0 of REFPROP will be coming out in late March 2018.  We currently do not have a firm date for its release, but will continue to update the new FAQ site from time to time with new information as it becomes available.  Please [see below](#updates-to-version-100) for information about REFPROP version 10.0
 
 We need heavy users of the REFPROP program to help us beta test the new source code.  This includes those that make weekly use of the graphical interface, the Excel/Refprop link, and so forth.  Most important would be those that distribute the Refprop code with their own application, and especially those that either access the Fortran code directly, or rely on the error codes coming from the GUI.  The Fortran code has undergone heavy reconstruction and there have been a significant number of changes.  The main calls to the routines are still the same, but the underlying code is quite different.  In such situations, it is imperative that you try the new code before version 10 is released.
 
