@@ -244,7 +244,7 @@ The Excel sample spreadsheet included in the Refprop directory shows an example 
 # Programming
 
 ## Changing Fluids and Calling SETUP Multiple Times
-Calling SETUP (or SETUPdll) many many times can result in a memory loss error and in a substantial increase of computation speed. In many situations, it is better to load all of the fluids at the start of the program, calling SETUP only once. You can then switch between fluids through the use of calls to SETNC and PUREFLD. The example below shows how this can be done for a mixture combined with several pure fluids. If two different mixtures are required, load all fluids and set the composition to 0 for those fluids not involved in a particular application. This could easily be done by using two different arrays for the composition.
+Calling SETUP (or SETUPdll) many many times can result in a memory loss error and in a substantial decrease of computation speed. In many situations, it is better to load all of the fluids at the start of the program, calling SETUP only once. You can then switch between fluids through the use of calls to SETNC and PUREFLD. The example below shows how this can be done for a mixture combined with several pure fluids. If two different mixtures are required, load all fluids and set the composition to 0 for those fluids not involved in a particular application. This could easily be done by using two different arrays for the composition.
 
 - [EX-MULTI.FOR](http://trc.nist.gov/refprop/FAQ/EX-MULTI.FOR)
 
