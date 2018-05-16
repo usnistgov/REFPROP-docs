@@ -157,8 +157,8 @@ Function Documentation
     :p int iFlag [in]: Not yet used. 
     :p double T [in]: Temperature [K] 
     :p double D [in]: Density [mol/L] 
-    :p double z(20): XXXXXXXXXX
-    :p double Output(200): XXXXXXXXXX
+    :p double z(20) [in]: Overall composition (array of mole fractions) 
+    :p double Output(200) [out]: Values of the calculated properties. 
     :p int ierr [out]: Error flag
     :p char herr [out]: Error string (character*255) 
     :p int herr_length: length of variable ``herr`` (default: 255)
@@ -623,7 +623,7 @@ Function Documentation
     * iErrPrnt= 1 -   Error string written to screen only if ierr is positive
     * iErrPrnt=3,-3 - Same as 1 and -1, but program also pauses
     
-    :p int ierr [out]: Error number from the last call to ERRNUM  Output:
+    :p int ierr [in]: Error number from the last call to ERRNUM 
     :p char herr [out]: Associated error string (character*255) 
     :p int herr_length: length of variable ``herr`` (default: 255)
 

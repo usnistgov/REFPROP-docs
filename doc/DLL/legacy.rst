@@ -2566,10 +2566,10 @@ Function Documentation
     :p double P [out]: Pressure [kPa] 
     :p double z(20) [in]: Overall composition (array of mole fractions) 
     :p double vf [in]: Vapor fraction (0>=vf>=1; the input value of density can be in either state and does not affect the outputs in Dx, Dy, x, and y)
-    :p double b [out]: Input value, either entropy [J/mol-K] or density [mol/L] 
-    :p int ipv [out]: Pressure or volume based algorithm
-    :p int ityp [out]: Input values
-    :p int isp [out]: Use values from Splines as initial guesses if set to 1  Outputs: (initial guesses must be sent in all variables (unless isp=1))
+    :p double b [in]: Input value, either entropy [J/mol-K] or density [mol/L] 
+    :p int ipv [in]: Pressure or volume based algorithm
+    :p int ityp [in]: Input values
+    :p int isp [in]: Use values from Splines as initial guesses if set to 1 
     :p double Dx [out]: Density of x phase [mol/L] 
     :p double Dy [out]: Density of y phase [mol/L] 
     :p double x(20) [out]: Composition of the x array (array of mole fractions) 
@@ -2585,7 +2585,8 @@ Function Documentation
 
         :vf=0,ityp=0,1: Dew phase inputs, state in equilibrium returned in Dy and y
         :vf=1,ityp=0,1: Liquid phase inputs, state in equilibrium returned in Dx and x
-        :vf=0,ityp=6: Inputs are returned in Dx and the x array
+        :vf=0,ityp=6: Inputs are returned in Dx and the x array Outputs are returned in Dy and the y array
+        :vf=1,ityp=6: Inputs are returned in Dy and the y array Outputs are returned in Dx and the x array
 
         ``ipv`` flags
 
