@@ -43,6 +43,30 @@ FLSH_args = {
     'DMAX': 'Upper bound on density [mol/L]'
 }
 
+High_Level_Header = """
+
+.. _high_level_api:
+
+**************
+High-Level API
+**************
+
+"""
+
+Legacy_Header = """
+
+**********
+Legacy API
+**********
+
+.. warning::
+
+    The functions in this legacy application program interface (API) have all been deprecated and will be removed in some future release.  Please use the :ref:`high_level_api`:
+
+"""
+
+High_level_functions = ['REFPROPdll','REFPROP1dll','REFPROP2dll','ALLPROPSdll','ALLPROPS0dll','ALLPROPS1dll','ABFLSHdll','GETENUMdll','ERRMSGdll','SETFLUIDSdll','SETMIXTUREdll','SETPATHdll','FLAGSdll']
+
 def generate_manual_content(FOR_path, JSON_ofname = None):
     """
     Generate a dictionary mapping from function name to documentation
@@ -234,31 +258,7 @@ def deconstruct_function_info(contents):
     # print(info.in_args)
     return info
 
-head = r"""
 
-REFPROP's DLL (shared library)
-==============================
-
-Depending on your platform, you either end up with REFPROP.DLL or REFPRP64.dll 
-
-List of High-Level API
-----------------------
-
-- :f:func:`REFPROPdll`
-- :f:func:`REFPROP1dll`
-- :f:func:`ALLPROP1dll`
-- :f:func:`ALLPROPSdll`
-- :f:func:`ALLPRP200dll`
-- :f:func:`ABFLSHdll`
-- :f:func:`GETENUMdll`
-- :f:func:`ERRMSGdll`
-- :f:func:`PHASEdll`
-- :f:func:`SETFLUIDSdll`
-- :f:func:`SETMIXTUREdll`
-- :f:func:`SETPATHdll`
-- :f:func:`FLAGSdll`
-
-"""
 def parse_manual_contents(contents, function_dict, dll_functions):
     """
     Write the RST data needed by the sphinx-fortran package
@@ -273,7 +273,9 @@ def parse_manual_contents(contents, function_dict, dll_functions):
     # 
     missing = [chop_dll(func) for func in has_dll if chop_dll(func) not in contents]
 
-    sout = head
+    sout_high, sout_legacy = '', ''
+    funcs_legacy = 'Function Listing\n----------------\n\n'
+    funcs_high = 'Function Listing\n----------------\n\n'
     for func in sorted(has_dll):
 
         # Get remapped name, or the same dll-stripped name back again otherwise
@@ -369,6 +371,7 @@ def parse_manual_contents(contents, function_dict, dll_functions):
             flags_string += spit_out_flags(info.out_flags)
 
 
+        sout = ''
         # This is the definition of the function prototype
         theargs = ', '.join([a[0] for a in function_dict[func+'dll']['argument_list']])
         # Add on the arguments at the end with the string lengths if you are documenting the DLL
@@ -384,8 +387,18 @@ def parse_manual_contents(contents, function_dict, dll_functions):
 
         # The list of flags to the function
         sout += '\n' + flags_string + '\n'
-        
-    return sout
+
+        if func+'dll' in High_level_functions:
+            sout_high += sout
+            funcs_high += '- :f:func:`' + func+'dll' + '`\n'
+        else:
+            sout_legacy += sout
+            funcs_legacy += '- :f:func:`' + func+'dll' + '`\n'
+
+    funcs_high += '\n\nFunction Documentation\n----------------------\n'
+    funcs_legacy += '\n\nFunction Documentation\n----------------------\n'
+
+    return High_Level_Header + funcs_high + sout_high, Legacy_Header + funcs_legacy + sout_legacy
 
 if __name__=='__main__':
     # This path is hardcoded, change as needed
@@ -411,17 +424,15 @@ if __name__=='__main__':
 
     # Generate the RST string
     # -----------------------
-    rst = parse_manual_contents(objects, function_dict, True)
+    rst_high, rst_legacy = parse_manual_contents(objects, function_dict, True)
     
-    # Write RST to file
-    # -----------------
+    # Write RST bits to file
+    # ----------------------
     docs_path = os.path.join('sphinx') 
-    rst_file = os.path.join(docs_path, 'index.rst') 
-    if not os.path.exists(docs_path):
-        os.makedirs(docs_path)
-    with open(rst_file, 'w') as fp:
-        fp.write('\n\n\n**************************\n REFPROP DLL documentation\n**************************\n\n\n')
-        fp.write(rst)
+    for fname, rst in [('high_level.rst',rst_high),('legacy.rst',rst_legacy)]:
+        rst_file = os.path.join(docs_path, fname)
+        with open(rst_file, 'w') as fp:
+            fp.write(rst)
 
     import subprocess
     for i in range(3):
