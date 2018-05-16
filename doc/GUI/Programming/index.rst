@@ -4,30 +4,11 @@
 DLLs
 ****
 
-**DLLs**
+Information about the functions exposed in the DLL can be found here: :ref:`DLLdocs`
 
-Several examples are included that show how to access the routines within the REFPROP.DLL file. These examples are explained in the following sections:
+More information about REFPROP can be found on github, in particular in the following repositories:
 
-:ref:`Excel spreadsheet <excel_spreadsheets>` 
-:ref:`Visual Basic sample program <sample_visual_basic_code>` 
-:ref:`C++ sample program <sample_c_code>` 
-:ref:`Connecting with MatLab <sample_matlab_code>` 
-:ref:`Connecting with LabVIEW <samplelabviewcode>` 
-
-In addition, users can link directly to the Fortran source code, thus avoiding the use of the dll.
-
-:ref:`Fortran sample program <sample_fortran_code>` 
-
-
-
-
-.. toctree::
-   :maxdepth: 2
-
-   excel_spreadsheets
-   progamming_with_delphi
-   samplelabviewcode
-   sample_c_code
-   sample_fortran_code
-   sample_matlab_code
-   sample_visual_basic_code
+* `Build the DLL yourself <https://github.com/usnistgov/REFPROP-cmake>`_ : For users that need to compile the DLL (shared library) themselves, a `CMake <https://cmake.org/>`_ build system is available
+* `Load multiple copies of the DLL in memory <https://github.com/usnistgov/REFPROP-manager>`_ : You can load multiple copies of the REFPROP dll into memory with the code at https://github.com/usnistgov/REFPROP-manager
+* `Call the REFPROP library (wrappers) <https://github.com/usnistgov/REFPROP-wrappers>`_ : Want to call REFPROP from Python, Excel, C#, Labview, etc.? There are wrappers available at https://github.com/usnistgov/REFPROP-wrappers
+* `Test the REFPROP library <https://github.com/usnistgov/REFPROP-tests>`_ : There are C++-based tests of the REFPROP DLL available at https://github.com/usnistgov/REFPROP-tests .  They run on all major platforms
