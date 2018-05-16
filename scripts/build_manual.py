@@ -163,11 +163,16 @@ def deconstruct_function_info(contents):
         else:
             return line.strip()
 
-    def line_startswith(s, search):
+    def line_startswith(s, search, EOL = None):
         o = None
         for iline, line in enumerate(s):
-            if line_decomment(line).lstrip().startswith(search):
-                return iline
+            decomm = line_decomment(line).lstrip()
+            if EOL is not None:
+                if decomm.startswith(search) and decomm.strip().endswith(EOL):
+                    return iline
+            else:
+                if decomm.startswith(search):
+                    return iline
         return o
 
     def line_containing(s, search):
@@ -228,10 +233,10 @@ def deconstruct_function_info(contents):
         return args, flags
 
     # Find the line that contains "Input" and "Output"
-    iInputs = line_startswith(contents, 'Input') or line_startswith(contents, 'Inputs')
-    iOutput = line_startswith(contents, 'Output') or line_startswith(contents, 'Outputs')
+    iInputs = line_startswith(contents, 'Input', EOL=':') or line_startswith(contents, 'Inputs', EOL=':')
+    iOutput = line_startswith(contents, 'Output', EOL=':') or line_startswith(contents, 'Outputs', EOL=':')
 
-    # print(iInputs, iOutput)
+    print(iInputs, iOutput)
 
     class struct(object): pass
     info = struct()
@@ -418,8 +423,8 @@ if __name__=='__main__':
     # ----------------------------------------------------------------
     objects = generate_manual_content(FOR_path, JSON_ofname = 'joined.json')
 
-    # print(objects['SETAGA'])
-    # print(deconstruct_function_info(objects['SETAGA'].split('\n')).__dict__)
+    # print(objects['ALLPROPS0'])
+    # print(deconstruct_function_info(objects['ALLPROPS0'].split('\n')).__dict__)
     # sys.exit()
 
     # Generate the RST string
