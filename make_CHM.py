@@ -1,6 +1,11 @@
-import subprocess, sys
+import subprocess, sys, os, shutil
 
 cmns = dict(shell = True, stdout = sys.stdout, stderr = sys.stderr, universal_newlines=True)
+
+# Delete the previous build files
+path = os.path.join('doc','_build')
+if os.path.exists(path): 
+    shutil.rmtree(path)
 
 # Build the HTML Help
 subprocess.check_call('make htmlhelp', cwd = 'doc', **cmns)
