@@ -10,4 +10,3 @@ REFPROP Graphical User Interface
    General Information/index.rst
    Menu Commands/index.rst
    Programming/index.rst
-   Windows/index.rst
