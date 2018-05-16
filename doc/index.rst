@@ -4,7 +4,7 @@
 Welcome to REFPROP's Documentation
 **********************************
 
-.. image:: _static/refprop.png
+.. image:: _static/REFPROP.png
 
 REFPROP is an acronym for REFerence fluid PROPerties. This program, developed by the National Institute of Standards and Technology (NIST), calculates the thermodynamic and transport properties of industrially important fluids and their mixtures. These properties can be displayed in :ref:`tables <isopropertytables>`  and :ref:`plots <plotwindow>`  through the graphical user interface; they are also accessible through spreadsheets or user-written applications accessing the :ref:`REFPROP dll <dll_s>` .
 
