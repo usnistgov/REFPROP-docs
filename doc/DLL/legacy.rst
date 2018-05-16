@@ -128,6 +128,7 @@ Function Listing
 - :f:func:`SETUPdll`
 - :f:func:`SPLNROOTdll`
 - :f:func:`SPLNVALdll`
+- :f:func:`STNdll`
 - :f:func:`SUBLPdll`
 - :f:func:`SUBLTdll`
 - :f:func:`SURFTdll`
@@ -1446,11 +1447,7 @@ Function Documentation
 .. f:subroutine:: LIMITKdll (htyp, icomp, T, D, P, Tmin, Tmax, Dmax, Pmax, ierr, herr, htyp_length, herr_length)
 
     
-    Returns limits of a property model (read in from the *.fld files) for
-    a mixture component and checks the inputs against those limits.
-    
-    This routine simply calls the LIMITX routine with an z array where
-    all entries are set to zero except that for icomp.
+    This function is deprecated.  Use subroutine LIMITX instead.
     
     :p char htyp: XXXXXXXXXX
     :p int icomp: XXXXXXXXXX
@@ -3067,6 +3064,7 @@ Function Documentation
         :'FEQ': Helmholtz energy model
         :'BWR': Pure fluid modified Benedict-Webb-Rubin (MBWR)
         :'ECS': Extended corresponding states (all fluids)
+        :'PRT': Peng-Robinson (PRT model from fluid file)
         :'VS1': The 'composite' model for R134a, R152a, NH3, etc.
         :'VS2': Younglove-Ely model for hydrocarbons
         :'VS4': Generalized friction theory of Quinones-Cisneros and Deiters
@@ -3261,6 +3259,39 @@ Function Documentation
         :nc+5: Entropy
 
 
+.. f:subroutine:: STNdll (T, Dl, Dv, x, y, sigma, ierr, herr, herr_length)
+
+    
+    Compute surface tension with appropriate core model. For mixtures, this
+    routine requires that the saturation densities and vapor compositions
+    be sent as inputs.  If these are not available, call SURFT.
+    
+    The critical temperature used is that of the current equation of state.
+    This may differ slightly from that used in the original correlation of the
+    surface tension; this change is necessary to give proper behavior of surface
+    tension near the critical point and to avoid possible numerical crashes.
+    
+    :p double T [in]: Temperature [K] 
+    :p double Dl [in]: Molar density of liquid phase [mol/L] 
+    :p double Dv [in]: Molar density of vapor phase [mol/L] 
+    :p double x(20) [in]: Composition of liquid phase (array of mole fractions) 
+    :p double y(20) [in]: Composition of vapor phase (array of mole fractions) 
+    :p double sigma [out]: Surface tension [N/m] 
+    :p int ierr [out]: Error flag
+    :p char herr [out]: Error string (character*255) 
+    :p int herr_length: length of variable ``herr`` (default: 255)
+
+
+    :Flags: 
+
+        ``ierr`` flags
+
+        :0: Successful
+        :1: T > Tcrit
+        :502: Unknown model
+        :151: Failed to converge
+
+
 .. f:subroutine:: SUBLPdll (P, z, T, ierr, herr, herr_length)
 
     
@@ -3333,14 +3364,8 @@ Function Documentation
 .. f:subroutine:: SURTENdll (T, Dl, Dv, x, y, sigma, ierr, herr, herr_length)
 
     
-    Compute surface tension as a function of T.  The routine assumes that
-    SATT has already been called and the saturation densities are known.
-    If this is not the case, then call SURFT instead.
-    
-    With version 10 of Refprop, this routine is not necessary anymore,
-    and STN can be called instead if desired.  The only difference is
-    that this routines checks to see if the densities are not zero,
-    and calls SATT if so.
+    With version 10 of Refprop, this routine should no longer be used,
+    and STN or SURFT should be used instead.
     
     (See subroutine STN for the description of all variables.)
     

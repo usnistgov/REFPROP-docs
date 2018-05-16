@@ -114,8 +114,8 @@ Function Documentation
     :p double Cv [out]: Isochoric (constant D) heat capacity [J/mol-K or kJ/kg-K] 
     :p double Cp [out]: Isobaric (constant P) heat capacity [J/mol-K or kJ/kg-K] 
     :p double w [out]: Speed of sound [m/s] 
-    :p int ierr: XXXXXXXXXX
-    :p char herr: XXXXXXXXXX
+    :p int ierr [out]: Error flag
+    :p char herr [out]: Error string (character*255) 
     :p int ab_length: length of variable ``ab`` (default: 2)
     :p int herr_length: length of variable ``herr`` (default: 255)
 
@@ -660,12 +660,19 @@ Function Documentation
         |                     |                                                                                                     |
         |                     | This flag is never reset.                                                                           |
         +---------------------+-----------------------------------------------------------------------------------------------------+
-        | ``Flip Cp0``        | * 1 - Change the ideal gas equation to Cp0                                                          |
-        |                     | * 2 - Change the ideal gas equation to PH0                                                          |
+        | ``Cp0Ph0``          | * 1 - Change the ideal gas equation to Cp0.                                                         |
+        |                     | * 2 - Change the ideal gas equation to PH0.                                                         |
         |                     |                                                                                                     |
-        | or ``Flip``         | The default is set by the value in the fluid file.  A call is made to SETREF after the switch       |
-        |                     | to reset the reference states for energy, enthalpy, and entropy.                                    |
+        |                     | The default is set by the value in the fluid file.                                                  |
         |                     | Calling SETUP resets the equation to its default state as given in the fluid file.                  |
+        +---------------------+-----------------------------------------------------------------------------------------------------+
+        | ``PX0``             | * 0 - Use the fluid file as is for the ideal gas equation (default).                                |
+        |                     | * 1 - Use the PX0 (or PH0 when no PX0 is available) for all calculations and turn off the call      |
+        |                     |       to SETREF.  For mixtures, the reference state of "each pure component" will be used.          |
+        |                     |                                                                                                     |
+        |                     | This flag is never reset.  When setting up the fluids through a call to the REFPROP subroutine,     |
+        |                     | the SETREF flag described below will override this flag if turned on.                               |
+        |                     | Warning:  Don't use the Cp0Ph0 flag to attempt to switch back to Cp0 (h and s will be wrong)        |
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``Skip SETREF``     | * 0 - Call the SETREF routine to setup the reference state (default).                               |
         |                     | * 1 - Skip the call to SETREF.  However, this means energy, enthalpy, and entropy will not be       |
@@ -763,7 +770,7 @@ Function Documentation
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``Calorie``         | * 0 - Use a calorie to joule conversion value of 4.184 cal/J (default).                             |
         |                     | * 1 - Use the IT value of 4.1868 cal/J.                                                             |
-        |  or ``Cal``         |                                                                                                     |
+        | or ``Cal``          |                                                                                                     |
         |                     | This option is never reset.                                                                         |
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``Debug``           | * 0 - Turn off all debugging.                                                                       |
@@ -1333,7 +1340,7 @@ Function Documentation
         call SETFLUIDS ('AIR.PPF',ierr)  (load the air mixture, but read from the pseudo-pure file; properties will be slightly different from the *.mix file since they are different models)
         call SETFLUIDS ('methane * ethane * propane * butane',ierr)
     
-    :p char hFld [in]: String containing the fluid file names 
+    :p char hFld [in]: String of any character length containing the fluid file names 
     :p int ierr [out]: Error flag
     :p int hFld_length: length of variable ``hFld`` (default: 10000)
 
