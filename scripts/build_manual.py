@@ -6,11 +6,42 @@ By Ian Bell, NIST, 2016-
 
 from __future__ import print_function
 from io import StringIO
-import glob, os, json, six, sys
+import glob, os, json, six, sys, textwrap
 
 name_remapping = {'CCRIT':'CSTAR',
                   'SATPEST':'SATEST',
                   'SATTEST':'SATEST'}
+
+fallback_arguments = {'GERG04dll': 'GERG08', 'THERM2dll': ['THERMdll','THERM3dll','AG','DERVPVTdll']}
+
+FLSH_funcs = [k+'FLSHdll' for k in ['DE','DH','DS','ES','HS','PD','PE','PH','PQ','PS','TD','TE','TH','TP','TQ','TS','DQ']]
+FLSH_funcs += [k+'FL1dll' for k in ['DE','DH','DS','ES','HS','PD','PE','PH','PQ','PS','TD','TE','TH','TP','TQ','TS','DQ']]
+FLSH_funcs += [k+'FL2dll' for k in ['DE','DH','DS','ES','HS','PD','PE','PH','PQ','PS','TD','TE','TH','TP','TQ','TS','DQ']]
+FLSH_funcs += ['ENTHALdll','ENTROdll','CVCPdll']
+
+FLSH_other_input_args = ['Z','DMIN','DMAX']
+FLSH_args = {
+    'P': 'Pressure [kPa]',
+    'Q': 'Vapor quality [mol/mol]',
+    'T': 'Temperature [K]',
+    'E': 'Internal energy [J/mol]',
+    'H': 'Enthalpy [J/mol]',
+    'S': 'Entropy [J/mol-K]',
+    'D': 'Density [mol/K]',
+    'DL': 'Molar density of the liquid phase [mol/L]',
+    'DV': 'Molar density of the vapor phase [mol/L]',
+    'CV': 'Isochoric heat capacity [J/mol-K]',
+    'CP': 'Isobaric heat capacity [J/mol-K]',
+    'W': 'Speed of sound [m/s]',
+    'HJT': 'Isenthalpic Joule-Thomson coefficient [K/kPa]',
+    'HERR': 'Error string (character*255)',
+    'IERR': 'Error code (no error if ierr==0)',
+    'Z': 'Bulk Composition (array of mole fractions)',
+    'X': 'Composition of the liquid phase (array of mole fractions)',
+    'Y': 'Composition of the vapor phase (array of mole fractions)',
+    'DMIN': 'Lower bound on density [mol/L]',
+    'DMAX': 'Upper bound on density [mol/L]'
+}
 
 def generate_manual_content(FOR_path, JSON_ofname = None):
     """
@@ -79,9 +110,13 @@ def generate_manual_content(FOR_path, JSON_ofname = None):
 
             objname = lines[i].split('(')[0].replace('subroutine ','').replace('function ','').strip()
             objlines = []
-            for j in range(100):
+            for j in range(10000):
                 if i+j == len(lines): break
-                if "ritten by" in lines[i+j] or ' include ' in lines[i+j] or lines[i+j] == ' ':
+                if "ritten by" in lines[i+j] or 'original version' in lines[i+j]:
+                    break
+                elif ' include \'' in lines[i+j] and not lines[i+j].strip().startswith('c '):
+                    break
+                elif lines[i+j] == ' ':
                     break
                 else:
                     objlines.append(lines[i+j])
@@ -97,10 +132,17 @@ def generate_manual_content(FOR_path, JSON_ofname = None):
 
 def deconstruct_function_info(contents):
 
+    def line_decomment(line):
+        if line == 'c': return ''
+        if line.startswith('c '):
+            return line[1::]
+        else:
+            return line.strip()
+
     def line_startswith(s, search):
         o = None
         for iline, line in enumerate(s):
-            if line_decomment(line).startswith(search):
+            if line_decomment(line).lstrip().startswith(search):
                 return iline
         return o
 
@@ -110,12 +152,8 @@ def deconstruct_function_info(contents):
             if search in line:
                 return iline
         return o
-    def line_decomment(line):
-        if line == 'c': return ''
-        if line.startswith('c '):
-            return line[2::].strip()
-        else:
-            return line.strip()
+
+
     def deconstruct_parameters(lines):
         # Find the lines that have '--' in them, and add another at the end
         seps = [iline for iline, line in enumerate(lines) if '--' in line] + [len(lines)]
@@ -130,22 +168,31 @@ def deconstruct_function_info(contents):
                     desc = desc.split(':')[0]
             except ValueError as VE:
                 print(line_decomment(lines[istart]).strip())
+
             # If the line has a ': in it, then the stuff that follows is a list of flags, otherwise, the following lines are glommed together
             if ':' in line_decomment(lines[istart]).strip():
                 otherlines = [lines[istart].split(':')[1]] + lines[istart+1:iend]
                 if otherlines and iend > istart+1:
-                    if len(otherlines) == 1 and not line_decomment(otherlines[0]):
+                    if len(otherlines) == 1 and not line_decomment(otherlines[0]).strip():
                         # Empty line, don't do anything
                         continue
                     else:
+                        lastkey = None
                         info = {}
                         for line in otherlines:
                             cleaned = line_decomment(line).strip()
                             if ' - ' not in cleaned:
-                                print('BAD!!!: ', cleaned)
+                                # if lastkey is None:
+                                #     print(lines, info, line)
+                                print(lastkey, info, cleaned)
+                                if cleaned:
+                                    info[lastkey] += ' ' + cleaned
+                                # else:
+                                #     print('BAD!!!: ', cleaned, '<--', line)
                             else:
                                 k,v = cleaned.split(' - ',1)
                                 info[k.strip()] = v.strip()
+                                lastkey = k.strip()
                         flags[arg.strip().lower()] = info
             else:
                 # Keep on glomming the rest in, with spaces between lines
@@ -157,21 +204,61 @@ def deconstruct_function_info(contents):
         return args, flags
 
     # Find the line that contains "Input" and "Output"
-    iInputs = line_startswith(contents, 'Input')
-    iOutput = line_startswith(contents, 'Output')
+    iInputs = line_startswith(contents, 'Input') or line_startswith(contents, 'Inputs')
+    iOutput = line_startswith(contents, 'Output') or line_startswith(contents, 'Outputs')
+
+    # print(iInputs, iOutput)
 
     class struct(object): pass
     info = struct()
     info.doc_block = '\n\n'+ ' '*4+'XXXXXXXXXXXXXXXXXXXX  CANNOT GET DOCS\n\n'
-    info.in_args,info.in_flags = {},{}
-    info.out_args,info.out_flags = {},{}
-    if iInputs is not None and iOutput is not None:
-        info.doc_block = '\n'.join([' '*4+line_decomment(line) for line in contents[1:iInputs]])
-        info.in_args, info.in_flags = deconstruct_parameters(contents[iInputs+1:iOutput])
-        info.out_args, info.out_flags = deconstruct_parameters(contents[iOutput+1::])
+    info.in_args, info.in_flags = {},{}
+    info.out_args, info.out_flags = {},{}
+    def indent(lines, n):
+        return '\n'.join([' '*n + l for l in lines])
+    
+    if iInputs is None and iOutput is None:
+        info.doc_block = indent(textwrap.dedent('\n'.join([line_decomment(line) for line in contents[1::]])).split('\n'), 4)
+
+    if iInputs is not None or iOutput is not None:
+        iMax = iInputs if iInputs is not None else iOutput
+        info.doc_block = indent(textwrap.dedent('\n'.join([line_decomment(line) for line in contents[1:iMax]])).split('\n'), 4)
+
+        if iInputs is not None:
+            if iOutput is not None:
+                info.in_args, info.in_flags = deconstruct_parameters(contents[iInputs+1:iOutput])
+            else:
+                info.in_args, info.in_flags = deconstruct_parameters(contents[iInputs+1::])
+        if iOutput is not None:
+            info.out_args, info.out_flags = deconstruct_parameters(contents[iOutput+1::])
     # print(info.in_args)
     return info
 
+head = r"""
+
+REFPROP's DLL (shared library)
+==============================
+
+Depending on your platform, you either end up with REFPROP.DLL or REFPRP64.dll 
+
+List of High-Level API
+----------------------
+
+- :f:func:`REFPROPdll`
+- :f:func:`REFPROP1dll`
+- :f:func:`ALLPROP1dll`
+- :f:func:`ALLPROPSdll`
+- :f:func:`ALLPRP200dll`
+- :f:func:`ABFLSHdll`
+- :f:func:`GETENUMdll`
+- :f:func:`ERRMSGdll`
+- :f:func:`PHASEdll`
+- :f:func:`SETFLUIDSdll`
+- :f:func:`SETMIXTUREdll`
+- :f:func:`SETPATHdll`
+- :f:func:`FLAGSdll`
+
+"""
 def parse_manual_contents(contents, function_dict, dll_functions):
     """
     Write the RST data needed by the sphinx-fortran package
@@ -186,7 +273,7 @@ def parse_manual_contents(contents, function_dict, dll_functions):
     # 
     missing = [chop_dll(func) for func in has_dll if chop_dll(func) not in contents]
 
-    sout = ''
+    sout = head
     for func in sorted(has_dll):
 
         # Get remapped name, or the same dll-stripped name back again otherwise
@@ -201,6 +288,7 @@ def parse_manual_contents(contents, function_dict, dll_functions):
             continue
 
         info = deconstruct_function_info(contents[func].split('\n'))
+        print(func, info.__dict__)
 
         args_string = ''
         if func+'dll' in function_dict:
@@ -209,17 +297,51 @@ def parse_manual_contents(contents, function_dict, dll_functions):
                 # arg is (name, type, length) or (name, type)
                 docs = None
                 inout = ''
-                if arg[0] in info.in_args:
+                argname = arg[0].lower()
+                if argname in info.in_args:
                     inout = ' [in]'
-                    docs = info.in_args[arg[0]]
-                if arg[0] in info.out_args:
+                    docs = info.in_args[argname]
+                if argname in info.out_args:
                     inout = ' [out]'
-                    docs = info.out_args[arg[0]]
+                    docs = info.out_args[argname]
                 if docs is None: 
-                    docs = 'XXXXXXXXXX'
+                    badx = 'XXXXXXXXXX'
+                    docs = badx
+                    if func+'dll' in fallback_arguments:
+                        # Get docs from fallback(s)
+                        fb_names = fallback_arguments[func+'dll']
+                        if not isinstance(fb_names, list):
+                            fb_names = [fb_names]
+
+                        for fb_name in fb_names:
+                            fallinfo = deconstruct_function_info(contents[fb_name].split('\n'))
+
+                            if argname in fallinfo.in_args:
+                                inout = ' [in]'
+                                docs = fallinfo.in_args[argname]
+                            if argname in fallinfo.out_args:
+                                inout = ' [out]'
+                                docs = fallinfo.out_args[argname]
+
+                            if docs != badx:
+                                break
+
+                            # print(func, argname, docs, fallinfo.in_args)
+
+                    elif func+'dll' in FLSH_funcs:
+                        if argname.upper() in FLSH_args:
+                            docs = FLSH_args[argname.upper()]
+                            if argname.upper() in func[0:2] or argname.upper() in FLSH_other_input_args:
+                                inout = ' [in]'
+                            else:
+                                inout = ' [out]'
+
+                        # print(func, argname, docs, fallinfo.in_args)
+                    
                 size = ''
                 if len(arg) == 3 and int(arg[2]) > 0:
                     size = '(' + str(arg[2]) + ')'
+                # print(argname)
                 
                 args_string += ' '*4 + ':p {type:s} {name:s}{size:s}{inout:s}: {docs:s}\n'.format(name = arg[0].strip(), type = arg[1].strip('*').strip(), size =size, inout = inout, docs= docs)
 
@@ -255,7 +377,7 @@ def parse_manual_contents(contents, function_dict, dll_functions):
         sout += '.. f:subroutine:: {func:s} ({args:s})\n\n'.format(func=func+'dll', args = theargs)
 
         # The block of documentation
-        sout += info.doc_block.replace('*','\*')
+        sout += info.doc_block#.replace('*','\*')
 
         # The list of arguments to the function
         sout += '\n' + args_string + '\n'
@@ -266,7 +388,8 @@ def parse_manual_contents(contents, function_dict, dll_functions):
     return sout
 
 if __name__=='__main__':
-    FOR_path = 'R:\\FORTRAN'
+    # This path is hardcoded, change as needed
+    FOR_path = 'FORTRAN'
 
     # Use the script in REFPROP-headers repo to generate a dictionary of function parameter data
     # from the functions defined in the PASS_FTN.FOR file
@@ -275,12 +398,16 @@ if __name__=='__main__':
     import generate_header
     generate_header.generate_interface_file(os.path.join(FOR_path,'PASS_FTN.FOR'), 'REFPROP.pyf')
     function_dict = generate_header.generate_function_dict('REFPROP.pyf')
-    # Write to file for debugging if needed:
-    # with open('functions.json','w') as fp: fp.write(json.dumps(function_dict, indent =2))
+    # Write to file for debugging if desired/needed:
+    with open('functions.json','w') as fp: fp.write(json.dumps(function_dict, indent =2))
 
     # Parse the .FOR files and extract docs; write to joined.json file
     # ----------------------------------------------------------------
     objects = generate_manual_content(FOR_path, JSON_ofname = 'joined.json')
+
+    # print(objects['SETAGA'])
+    # print(deconstruct_function_info(objects['SETAGA'].split('\n')).__dict__)
+    # sys.exit()
 
     # Generate the RST string
     # -----------------------
@@ -288,11 +415,26 @@ if __name__=='__main__':
     
     # Write RST to file
     # -----------------
-    with open('for_docs.rst','w') as fp:
-       fp.write(rst)
+    docs_path = os.path.join('sphinx') 
+    rst_file = os.path.join(docs_path, 'index.rst') 
+    if not os.path.exists(docs_path):
+        os.makedirs(docs_path)
+    with open(rst_file, 'w') as fp:
+        fp.write('\n\n\n**************************\n REFPROP DLL documentation\n**************************\n\n\n')
+        fp.write(rst)
 
     import subprocess
-    subprocess.call('make html', cwd='sphinx', shell = True, stdout = sys.stdout, stderr = sys.stderr)
-    subprocess.call('make latex', cwd='sphinx', shell = True, stdout = sys.stdout, stderr = sys.stderr)
+    for i in range(3):
+        try:
+            subprocess.check_call('activate py36 && make html', cwd='sphinx', shell = True, stdout = sys.stdout, stderr = sys.stderr)
+            break
+        except:
+            continue
+    for i in range(3):
+        try:
+            subprocess.call('activate py36 && make latex', cwd='sphinx', shell = True, stdout = sys.stdout, stderr = sys.stderr)
+            break
+        except:
+            continue
     for i in range(3):
         subprocess.call('pdflatex REFPROP.tex', cwd='sphinx/_build/latex', shell = True, stdout = sys.stdout, stderr = sys.stderr)
