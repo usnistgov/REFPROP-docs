@@ -21,6 +21,6 @@ Whether the independent properties are read from a file or entered manually, as 
 
 The composition of the mixture can be entered on a line, but this must be done BEFORE the input property is entered. This can allow you to vary the composition and view the effect while holding temperature or pressure constant. The composition fields can be moved permanently to the beginning of the table by selecting the :ref:`property order <propertyorder>`  to make it easier to enter the values.
 
-The position and format of any column can be changed, if desired, by right-clicking on the :ref:`column header <formatcolumnposition>` .
+The position and format of any column can be changed, if desired, by right-clicking on the :ref:`column header <formatcolumnposition>`.
 
 

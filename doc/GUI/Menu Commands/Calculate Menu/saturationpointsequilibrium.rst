@@ -25,6 +25,6 @@ For mixtures, the composition of the mixture can be entered on a line, but this 
 
 When entering temperatures or pressures, it is important that the value is placed in the appropriate column. Placing the temperature in the 'Liquid phase temperature' column will calculate a bubble point with its corresponding vapor state at some equilibrium condition. Entering the temperature in the 'Vapor phase temperature' column will calculate a dew point with its equilibrium liquid condition. These two lines will be completely different, and can be confusing if the compositions are not displayed.
 
-The position and format of any column can be changed, if desired, by right-clicking on the :ref:`column header <formatcolumnposition>` .
+The position and format of any column can be changed, if desired, by right-clicking on the :ref:`column header <formatcolumnposition>`.
 
 

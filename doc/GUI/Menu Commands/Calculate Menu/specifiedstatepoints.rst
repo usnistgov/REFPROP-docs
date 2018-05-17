@@ -23,8 +23,8 @@ Saturation or melting-line states can be calculated by adding the letters 'l', '
 
 For state points that are double valued (see the :ref:`Cautions <cautions>`  menu for more information), the character '&lt;' or '&gt;' can be added to the number (before or after) to find the lower or upper root, respectively. These same characters can also be used to find metastable fluid states for temperature and pressure inputs. For example, the saturation pressure for nitrogen at 100 K is 0.778 MPa. Inputs of 100 K and 0.777 MPa will return a vapor state, but inputs of '100' for temperature and '0.777&gt;' for pressure will return a metastable liquid state.
 
-For mixtures, the composition of the mixture can be entered on a line, but this must be done BEFORE the two valid state points are entered. For convenience, the Specified State Points (varying composition) command can be chosen. This command places the composition fields at the beginning of the table (and activates them if they were not selected in the :ref:`properties <properties>`  menu). The composition fields can be moved permanently by selecting the :ref:`property order <propertyorder>` .
+For mixtures, the composition of the mixture can be entered on a line, but this must be done BEFORE the two valid state points are entered. For convenience, the Specified State Points (varying composition) command can be chosen. This command places the composition fields at the beginning of the table (and activates them if they were not selected in the :ref:`properties <properties>`  menu). The composition fields can be moved permanently by selecting the :ref:`property order <propertyorder>`.
 
-The position and format of any column can be changed, if desired, by right-clicking on the :ref:`column header <formatcolumnposition>` .
+The position and format of any column can be changed, if desired, by right-clicking on the :ref:`column header <formatcolumnposition>`.
 
 

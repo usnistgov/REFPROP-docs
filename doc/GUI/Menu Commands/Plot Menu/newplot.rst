@@ -16,6 +16,6 @@ The 'Format' option specifies that the numbers on the axis will be printed in ei
 
 Data from multiple tables can be plotted simultaneously by selecting multiple items in the 'Plot data from' list and pressing 'OK'. You must be careful that the selected items all contain the same columns. Plotting isoproperty tables and saturation tables together must be done in two steps (once with New Plot, then with Overlay Plot).
 
-Pressing the Save As Default button will add the current settings to the Defaults.Prf file. Subsequent uses of the program will then start with these defaults. The settings can also be saved by choosing :ref:`Save Current Options <savecurrentoptions>` .
+Pressing the Save As Default button will add the current settings to the Defaults.Prf file. Subsequent uses of the program will then start with these defaults. The settings can also be saved by choosing :ref:`Save Current Options <savecurrentoptions>`.
 
 

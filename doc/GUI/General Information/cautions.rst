@@ -8,7 +8,7 @@ Cautions
 
 Users of the REFPROP program should be aware of several potential pitfalls:
 
-If you experience large differences in your expected values of enthalpy or entropy as compared to those calculated by the program, see information on :ref:`reference states <reference>` .
+If you experience large differences in your expected values of enthalpy or entropy as compared to those calculated by the program, see information on :ref:`reference states <reference>`.
 
 Changing the units in the Options/Units menu does not change the units on the tables already created, but only for new tables and plots.
 

@@ -14,7 +14,7 @@ The 'Prompt before deleting row' option asks for confirmation (after either pres
 
 The 'Ignore all error messages' option will cause all error and warning messages to be ignored that occur during property calculations. While this option may relieve you of having to clear each error message, it may cause confusion when properties are not returned after entering inputs out of range or when the program does not converge. The 'Ignore all warning messages' option will cause all warning messages to be ignored, but will still display the serious error messages.
 
-The 'Copy table headers to clipboard with table data' option can be used to select whether or not the headers at the top of each table are included when :ref:`copying to the clipboard <copytabledata>` .
+The 'Copy table headers to clipboard with table data' option can be used to select whether or not the headers at the top of each table are included when :ref:`copying to the clipboard <copytabledata>`.
 
 When the 'Show saturation boundaries in tables' option is selected, a blank line will appear between the single and two-phase state points and the boundary between the liquid and vapor phases.
 
@@ -28,7 +28,7 @@ The 'Flip usage of commas and periods in numbers' allows the use of a comma as a
 
 The 'Add Notes button to graphs' option will add a small command button in the upper left corner of each plot that allows the user to add notes to a particular graph. These notes will be printed out under the plot when File/Print is selected. If this option is deselected, the notes that correspond to each plot will not be lost, but will not be accessible.
 
-The option to 'add a comment column to tables' will add one or more extra columns (up to 10) in each table that can be used to enter comments or user data. The values in these fields will be ignored, but numerical values can be plotted in the same manner as calculated properties. Adding text in each field can aid in labeling each state point, and the size of the comment field can be enlarged as explained in :ref:`Tables <tables>` .
+The option to 'add a comment column to tables' will add one or more extra columns (up to 10) in each table that can be used to enter comments or user data. The values in these fields will be ignored, but numerical values can be plotted in the same manner as calculated properties. Adding text in each field can aid in labeling each state point, and the size of the comment field can be enlarged as explained in :ref:`Tables <tables>`.
 
 The 'Show options used for analyzing Equations of State' will add the rectilinear diameter to all plots, additional plot items, and the 'Show 2-phase' option for plotting metastable states for pure fluids.
 
