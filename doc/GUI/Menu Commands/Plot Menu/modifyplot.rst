@@ -4,9 +4,6 @@
 Modify Plot
 ***********
 
-**Modify Plot**
-
-
 Many of the attributes of a plot can be changed through the Modify Plot command. This command can be accessed by the pull-down menu item or by double-clicking anywhere within an existing plot. In the former case, the plot in the topmost window is affected. If the topmost window is not a plot, the most recent plot is acted on.
 
 The dialog for this command is similar to that used to specify a new plot, except that the variables plotted cannot be changed (although the x- and y-axis labels can be edited). As with the New Plot command, linear or logarithmic scaling can be selected, and the plot limits and axis label formats can be changed. Options to modify the size of the axis labels are provided below the "X-Axis" and "Y-Axis" portions of the dialog.
@@ -15,6 +12,4 @@ A list box in the upper right lists the individual data sets plotted. Selecting 
 
 The Highlight button allows you to quickly change the selected line or lines to red with a larger line width. This button immediately exits the Modify Plot command and emphasizes the desired data.
 
-Other options in the Modify Plot menu are described in the :ref:`New Plot <newplot>`  menu.
-
-
+Other options in the Modify Plot menu are described in the :ref:`newplot`  menu.
