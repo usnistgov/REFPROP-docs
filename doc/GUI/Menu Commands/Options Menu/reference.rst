@@ -26,6 +26,4 @@ When working with mixtures, the default setting can be used for each pure fluid,
 
 The exergy reference state and definition can be selected based on the user's preference.
 
-The reference state choices are saved with other :ref:`preferences <preferences>`  when the :ref:`Save Current Options <savecurrentoptions>`  command is selected. It is restored to a previously saved option with the :ref:`Retrieve Options <retrieveoptions>`  command or :ref:`Open <opensession>`  command.
-
-
+The reference state choices are saved with other :ref:`preferences`  when the :ref:`savecurrentoptions` command is selected. It is restored to a previously saved option with the :ref:`retrieveoptions`  command or :ref:`opensession`  command.
