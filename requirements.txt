@@ -1,1 +1,1 @@
--U git+git://github.com/VACUMM/sphinx-fortran.git
+git+git://github.com/VACUMM/sphinx-fortran.git
