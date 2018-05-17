@@ -15,11 +15,10 @@ To generate one of the output formats, open a shell in the ``doc`` folder, and t
 
 ## Generation of CHM
 
-The most challenging "feature" of the documentation generation is that the VB6-based graphical user interface of REFPROP requires that the ``mapid`` are also added and sychronized between the VB6 GUI and the documentation in the CHM.  After significant iteration, it was determined that the most reliable means of ensuring that the correct mapid are added is to add a block that looks like this to the .hhp file that is generated in ``_build/htmlhelp`` folder.
+The most challenging "feature" of the documentation generation is that the VB6-based graphical user interface of REFPROP requires that the ``mapid`` are also added and sychronized between the VB6 GUI and the documentation in the CHM.  After significant iteration, it was determined that the most reliable means of ensuring that the correct mapid are added is to add a block that looks like this to the .hhp file that is generated in ``doc/_build/htmlhelp`` folder.
 
 ```
 ...
-
 [MAP]
 #define GENERAL_INFORMATION_STATUSLINE 5
 #define GENERAL_INFORMATION_FIRSTTIMEUSERS 813
@@ -27,7 +26,6 @@ The most challenging "feature" of the documentation generation is that the VB6-b
 [ALIAS]
 GENERAL_INFORMATION_STATUSLINE=General Information\statusline.html
 GENERAL_INFORMATION_FIRSTTIMEUSERS=General Information\firsttimeusers.html
-
 ...
 ```
 
@@ -39,4 +37,4 @@ in ``doc/_build/htmlhelp`` to open the CHM right to the page for first time user
 
 ### Other resources/information
 
-* The ``#IVB`` file inside the .CHM (which is itself simply a compressed zip files that can be opened by tools like 7-zip) contains the ``mapid`` that are being used in binary format.  they can also be read out by several commercial or freeware CHM decompilers.
+* The ``#IVB`` file inside the .CHM (the .CHM file is itself simply a compressed zip file that can be opened by tools like 7-zip) contains the ``mapid`` that are being used in binary format.  The special binary files like ``#IVB`` can also be read out by several commercial or freeware CHM decompilers.
