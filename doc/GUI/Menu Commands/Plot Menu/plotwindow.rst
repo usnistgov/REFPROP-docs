@@ -29,8 +29,8 @@ Click and drag the mouse to create a box. When the mouse button is released, the
 Modify Plot Characteristics
 ---------------------------
 
-Double click the mouse anywhere within the plot rectangle. The Modify Plot dialog appears, just as if the :ref:`modifyplot`  command were issued.
+Double click the mouse anywhere within the plot rectangle. The Modify Plot dialog appears, just as if the :ref:`modifyplot` command were issued.
 
 Add a Point to a Table
 ----------------------
-When the right mouse button is clicked within the plotting area, the spot will be marked with a circle, and the values of the properties at the selected state point will appear on the most recently used table (created from :ref:`specifiedstatepoints` ). If no table is active, the right mouse button marks the spot with a circle only. Points added to the plot in this fashion can then be connected with lines or deleted by entering the :ref:`modifyplot`  option.
+When the right mouse button is clicked within the plotting area, the spot will be marked with a circle, and the values of the properties at the selected state point will appear on the most recently used table (created from :ref:`specifiedstatepoints`). If no table is active, the right mouse button marks the spot with a circle only. Points added to the plot in this fashion can then be connected with lines or deleted by entering the :ref:`modifyplot` option.
