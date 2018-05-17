@@ -1,4 +1,4 @@
-.. _welcometorefprop: 
+.. _welcometorefpropgui: 
 
 ********************************
 REFPROP Graphical User Interface

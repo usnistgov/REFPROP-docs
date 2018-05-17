@@ -4,10 +4,7 @@
 Window Menu
 ***********
 
-**Window Menu**
-
 The Window menu contains the following four menu items
-
 
 .. toctree::
    :maxdepth: 2
