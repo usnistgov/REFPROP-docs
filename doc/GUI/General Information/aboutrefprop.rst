@@ -23,4 +23,4 @@ The user interface was written by Eric W. Lemmon.
 
 **IMPORTANT:** Please visit the `REFPROP FAQ <https://pages.nist.gov/REFPROP-docs/>`_ web site as your first resource when you encounter difficulties or have questions. Most email enquiries are answered by pointing to the FAQ. Using the FAQ will save valuable NIST resources that can be used to further develop REFPROP.
 
-*Certain trade names and other commercial designations are used in this work for the purpose of clarity. In no case does such identification imply endorsement by the National Institute of Standards and Technology, nor does it imply that the products or services so identified are necessarily the best available for the purpose.
+\*Certain trade names and other commercial designations are used in this work for the purpose of clarity. In no case does such identification imply endorsement by the National Institute of Standards and Technology, nor does it imply that the products or services so identified are necessarily the best available for the purpose.

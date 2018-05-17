@@ -4,7 +4,7 @@
 Read Data from File
 *******************
 
-Values can be read from an ASCII file and placed in an open table. An Open file dialog appears in which you may specify the file containing the independent property values. The box at the top of the window displays the first 20 lines of the selected file so that you can see the format of the values in the file. Although only 20 lines are shown, all of the lines are read in when you press the OK button. Lines in the file that begin with a nonnumeric character, such as *, are treated as comments and are ignored.
+Values can be read from an ASCII file and placed in an open table. An Open file dialog appears in which you may specify the file containing the independent property values. The box at the top of the window displays the first 20 lines of the selected file so that you can see the format of the values in the file. Although only 20 lines are shown, all of the lines are read in when you press the OK button. Lines in the file that begin with a nonnumeric character, such as \*, are treated as comments and are ignored.
 
 Data are read from the file and inserted into the table depending on the inputs under the 'Read column' and 'Insert data into field' options. The column specified under 'Read column' will be entered into the field specified under 'Insert data into field'. It is not necessary to read all of the input properties from the file. For example, you can read the temperature but not the pressure by selecting the blank line (at the top of the drop down box) in the second (and subsequent) rows.
 

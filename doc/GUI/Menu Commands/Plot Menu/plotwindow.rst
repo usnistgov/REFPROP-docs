@@ -17,7 +17,7 @@ Plot labels can be placed on a plot window with the :ref:`Add Label <addlabel>` 
 **Cross Hairs**
 Hold the Shift key down to display cross hair lines on the plot. The coordinates of the cross hairs (in units corresponding to the plot axes) are displayed at the top of the plot.
 
-**:ref:`Zoom <zooming>` **
+**Zoom** :ref:`(More information) <zooming>`
 Click and drag the mouse to create a box. When the mouse button is released, the plot within the box will become the new plotting area. To zoom out, click 'Zoom Out' on the :ref:`Plot menu <plotmenu>`, or type 'Ctrl-O' (hold down the 'control' button, labeled 'Ctrl', and press the letter 'O'). To return to the original, un-zoomed plot, click 'Zoom Full Frame' on the :ref:`Plot menu <plotmenu>`, or press 'Ctrl-F' (hold down the 'control' button, labeled 'Ctrl', and press the letter 'F').
 
 **Modify Plot Characteristics**
