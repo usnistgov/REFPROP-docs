@@ -16,7 +16,22 @@ The 'Copy table headers to clipboard with table data' option can be used to sele
 
 When the 'Show saturation boundaries in tables' option is selected, a blank line will appear between the single and two-phase state points and the boundary between the liquid and vapor phases.
 
-The steam conversion option will use the conversion 1 cal = 4.184 J when not selected, and the conversion 1 cal = 4.1868 J when selected. The latter value is generally used in the literature with the calculation of water and steam properties. The former value (4.184 J) is generally used with other fluids and mixtures.
+Steam conversion option. This option determines which conversion is used for calorie (cal) and British thermal unit (Btu). The International Table (IT) definition is generally used in the literature with the calculation of water and steam properties. The thermochemical (th) definition is generally used with other fluids and mixtures.
+
++-------------------------+----------------------+--------------------------------+
+| Steam conversion option | Conversion           | Corresponding Btu variant      |
++-------------------------+----------------------+--------------------------------+
+| Not selected            | 1 cal(th) = 4.184 J  | 1 Btu(th) = 1054.35026448889 J |
++-------------------------+----------------------+--------------------------------+
+| Selected                | 1 cal(IT) = 4.1868 J | 1 Btu(IT) = 1055.05585262000 J |
++-------------------------+----------------------+--------------------------------+
++-------------------------+----------------------+--------------------------------+
+|For reference:                                                                   |
++---------------------------------------------------------------------------------+
+|4.1868 · 453.59237 · 5 / 9 = 1055.05585262000                                    |
++---------------------------------------------------------------------------------+
+|4.184 · 453.59237 · 5 / 9 = 1054.35026448889                                     |
++---------------------------------------------------------------------------------+
 
 In certain applications, such as using Asian settings with Microsoft Windows, the degree sign, the superscript 2, and the superscript 3 may not be properly displayed, causing unit conversions to not work and displaying units with funny symbols. In such cases, the nonstandard characters should be turned off (by clicking on the 'Use nonstandard symbols' option), resulting in the loss of the degree signs. The text '^2' and '^3' will be used in place of the superscript 2 and 3.
 
