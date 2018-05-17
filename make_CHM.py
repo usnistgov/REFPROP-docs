@@ -19,5 +19,5 @@ with open('doc/_build/htmlhelp/REFPROPdoc.hhp','w') as fp:
 # Compile the CHM file from the htmlhelp 
 subprocess.call(r'"C:\Program Files (x86)\HTML Help Workshop\hhc.exe" REFPROPdoc.hhp', cwd = 'doc/_build/htmlhelp', **cmns)
 
-# Compile the CHM file from the htmlhelp 
+# Run the generated CHM at at a given mapid
 subprocess.call(r'Hh -mapid 700 REFPROPdoc.chm', cwd = 'doc/_build/htmlhelp', **cmns)
