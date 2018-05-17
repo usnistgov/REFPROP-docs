@@ -4,8 +4,6 @@
 Cautions
 ********
 
-**Cautions**
-
 Users of the REFPROP program should be aware of several potential pitfalls:
 
 If you experience large differences in your expected values of enthalpy or entropy as compared to those calculated by the program, see information on :ref:`reference`.
@@ -25,5 +23,3 @@ There are certain properties pertaining only to the saturation line, such as dp/
 For pure fluids, when the 'Show 2-phase' option in the plot menu is selected, the generated lines for pressure and temperature represent metastable fluid states and the calculated lines between them. These are calculations from the equation of state disregarding any saturation states and generally have no physical significance.
 
 Two equations of state are available for hydrogen to account for the different quantum spin states of the molecule. Normal hydrogen should be used in applications where it was created and stored at 250 K or above, or when it was cooled to below 250 K and stored without a catalyst for less than a day. The parahydrogen equation should be used where hydrogen was catalyzed or stored for several days at the normal boiling point (NBP) and used at any temperature within 1 day of storage at the NBP. Since the rate of conversion between quantum states is dependent on temperature, pressure, and the storage container, these values are only estimates. For more information, see the Leachman et al. literature reference in the Fluid Information window for hydrogen.
-
-
