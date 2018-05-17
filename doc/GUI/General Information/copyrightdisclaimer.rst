@@ -4,14 +4,15 @@
 Copyright and Disclaimer
 ************************
 
-REFPROP is a product of the
-**National Institute of Standards and Technology (NIST)**.
+REFPROP is a product of the **National Institute of Standards and Technology (NIST)**.
 
 Developed and maintained by:
+
 | Applied Chemicals and Materials Division
 | Boulder, CO 80305, USA
 
 Distributed by
+
 | Standard Reference Data
 | Gaithersburg, MD 20899, USA
 
