@@ -6,7 +6,7 @@ By Ian Bell, NIST, 2016-
 
 from __future__ import print_function
 from io import StringIO
-import glob, os, json, six, sys, textwrap
+import glob, os, json, six, sys, textwrap, time
 
 name_remapping = {'CCRIT':'CSTAR',
                   'SATPEST':'SATEST',
@@ -47,6 +47,8 @@ High_Level_Header = """
 
 .. _high_level_api:
 
+.. This file was auto-generated on {datetime:s}. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
+
 **************
 High-Level API
 **************
@@ -54,6 +56,8 @@ High-Level API
 """
 
 Legacy_Header = """
+
+.. This file was auto-generated on {datetime:s}. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
 
 **********
 Legacy API
@@ -403,7 +407,8 @@ def parse_manual_contents(contents, function_dict, dll_functions):
     funcs_high += '\n\nFunction Documentation\n----------------------\n'
     funcs_legacy += '\n\nFunction Documentation\n----------------------\n'
 
-    return High_Level_Header + funcs_high + sout_high, Legacy_Header + funcs_legacy + sout_legacy
+    return (High_Level_Header.format(datetime=time.strftime("%d %b %Y %H:%M:%S", time.localtime())) + funcs_high + sout_high, 
+           Legacy_Header.format(datetime=time.strftime("%d %b %Y %H:%M:%S", time.localtime())) + funcs_legacy + sout_legacy)
 
 if __name__=='__main__':
     # This path is hardcoded, change as needed
@@ -437,6 +442,9 @@ if __name__=='__main__':
     for fname, rst in [('high_level.rst',rst_high),('legacy.rst',rst_legacy)]:
         rst_file = os.path.join(docs_path, fname)
         with open(rst_file, 'w') as fp:
+            fp.write(rst)
+        this_dir = os.path.dirname(__file__)
+        with open(os.path.join(this_dir, '..', 'doc', 'DLL', fname), 'w') as fp:
             fp.write(rst)
 
     import subprocess

@@ -1,5 +1,7 @@
 
 
+.. This file was auto-generated on 17 May 2018 18:14:21. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
+
 **********
 Legacy API
 **********

@@ -2,6 +2,8 @@
 
 .. _high_level_api:
 
+.. This file was auto-generated on 17 May 2018 18:14:21. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
+
 **************
 High-Level API
 **************
@@ -754,7 +756,7 @@ Function Documentation
         | ``AGA8``            | * 0 - Turn off AGA8 and return to the fluids loaded from the call to SETUP (default)                |
         |                     | * 1 - Turn on the use of the AGA8 DETAIL equation of state.                                         |
         |                     |                                                                                                     |
-        |                     | This option is reset during the call to SETUP.                                                      |
+        |                     | This option is never reset.                                                                         |
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``GERG 2008``       | * 0 - Set a flag to turn off GERG 2008 next time SETUP is called.                                   |
         |                     | * 1 - Turn on the flag that will cause the GERG 2008 equation to be loaded next time SETUP is called|
@@ -1077,11 +1079,12 @@ Function Documentation
     - ``NAME``: Return the fluid short name.
     - ``NCOMP``: Return the number of components.
     - ``UNNUMBER``: Return the UN number.
-    - ``DOI_###``: Return the DOI of the equation given by the three letters following the underscore, where the valid letters
+    - ``DOI_###(#)``: Return the DOI of the equation given by the three letters following the underscore, where the valid letters
       are EOS for equation of state, VIS for viscosity, TCX for thermal conductivity, STN for surface tension,
       DIE for dielectic constant, MLT for melting line, and SBL for sublimation line.  For example, DOI_EOS would
-      return the DOI for the equation of state.
-    - ``WEB_###``: Return the web address for the equation given by the three letters following the underscore, as explained
+      return the DOI for the equation of state.  For mixtures, the component must be specified at the end in the parenthesis,
+      for example, DOI_VIS(3).
+    - ``WEB_###(#)``: Return the web address for the equation given by the three letters following the underscore, as explained
       in the DOI section.
     - ``REFSTATE``: Return the reference state in use (NBP, IIR, ASH, OTH, etc.)
     - ``GWP``: Return the global warming potential (found in the fluid file header).
