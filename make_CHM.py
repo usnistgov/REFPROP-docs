@@ -20,4 +20,4 @@ with open('doc/_build/htmlhelp/REFPROPdoc.hhp','w') as fp:
 subprocess.call(r'"C:\Program Files (x86)\HTML Help Workshop\hhc.exe" REFPROPdoc.hhp', cwd = 'doc/_build/htmlhelp', **cmns)
 
 # Run the generated CHM at at a given mapid
-subprocess.call(r'Hh -mapid 700 REFPROPdoc.chm', cwd = 'doc/_build/htmlhelp', **cmns)
+#subprocess.call(r'Hh -mapid 700 REFPROPdoc.chm', cwd = 'doc/_build/htmlhelp', **cmns)
