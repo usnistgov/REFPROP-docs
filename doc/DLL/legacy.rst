@@ -1,6 +1,6 @@
 
 
-.. This file was auto-generated on 17 May 2018 18:14:21. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
+.. This file was auto-generated on 21 May 2018 12:36:03. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
 
 **********
 Legacy API
@@ -2523,8 +2523,7 @@ Function Documentation
 
         :0: Use default and best methods, generally ancillary equations for pure fluids and splines (calculated from call to SATSPLN) for mixtures
         :11: Use Rackett technique to get density from T and P (value of kph and iprop ignored)
-        :12: Use initial guess equations of Lemmon from xxx
-        :13: xxx
+        :12: Use initial guess equations of Lemmon
 
         ``ierr`` flags
 
@@ -2989,8 +2988,9 @@ Function Documentation
 
         :0: Successful
         :111: Error in opening mixture file
-        :603: Illegal i,j specification (i=j or i>nc or j>nc)
-        :604: Order of fluids is backwards from that in HMX.BNC
+        :902: Routine not value for a pure fluid
+        :903: Illegal i,j specification (i=j or i>nc or j>nc)
+        :904: Order of fluids is backwards from that in HMX.BNC
 
 
 .. f:subroutine:: SETMIXdll (hMixNme, hFmix, hrf, ncc, hFiles, z, ierr, herr, hMixNme_length, hFmix_length, hrf_length, hFiles_length, herr_length)

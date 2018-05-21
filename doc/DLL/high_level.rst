@@ -2,7 +2,7 @@
 
 .. _high_level_api:
 
-.. This file was auto-generated on 17 May 2018 18:14:21. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
+.. This file was auto-generated on 21 May 2018 12:36:03. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
 
 **************
 High-Level API
@@ -33,12 +33,12 @@ Function Documentation
     
     General flash calculation that handles all inputs of T, P, D, h, e, s, and q.
     
-    This includes both blind flash calculations, and situations where
+    Includes both blind flash calculations, and situations where
     the phase is known to be liquid, vapor, or 2-phase, and thus the
     calculation time will be much faster.
     
     Many of the 2-phase flash routines can accept initial estimates to
-    decrease calculation time and increase convergence.  ABFLSH does
+    decrease calculation time and improve convergence.  ABFLSH does
     not accept these, and ABFL2 or other routines will need to be called
     to use the initial estimates.  These routines end in the letters FL2.
     
@@ -60,7 +60,7 @@ Function Documentation
     - Q - Quality [mol/mol or kJ/kg]
     
     * For example, 'PH' indicates pressure and enthalpy inputs.
-    * For saturation properties, use codes of 'TQ' or 'PQ' for ab, and send b=1
+    * For saturation properties, use codes of 'TQ' or 'PQ' for ab, and send b=1.
     * The order of the letters does not matter, for example 'DH' = 'HD'
       for saturated vapor values and b=0 for saturated liquid values.
     
@@ -82,17 +82,18 @@ Function Documentation
         - 2 - State point is in the vapor phase, do not call saturation routine to determine state.
         - 3 - State point is in the two-phase region.
     * kr,kq: Other flags for inputs of quality and either temperature or pressure (kq flag)
-        - 1 - Quality on a molar basis (moles vapor/total moles) (default, the value of 1 is not necessarily needed)
+        - 0 - Default
+        - 1 - Quality on a molar basis (moles vapor/total moles) (default, the value of 1 is not necessarily needed).
         - 2 - Quality on a mass basis (mass vapor/total mass);
-          For inputs of T and either h or e (kr flag)
-        - 3 - Return lower density root
-        - 4 - Return higher density root
+          for inputs of T and either h or e (kr flag)
+        - 3 - Return lower density root.
+        - 4 - Return higher density root.
     
     Examples:
     
     * 000 - Default - Phase of state is unknown, molar units will be used everywhere,
       higher density root will be returned.
-    * 001 - Use mass based properties for everything except composition.
+    * 002 - Use mass based properties for everything except composition.
     * 011 - State is in the liquid, properties are mass based.
     * 300 - Return the lower density root for TH or TE inputs.
     * 200 - All inputs are on a mole basis, but quality is sent on a mass basis.
@@ -106,9 +107,9 @@ Function Documentation
     :p double P [out]: Pressure [kPa] 
     :p double D [out]: Density [mol/L or kg/m^3] 
     :p double Dl [out]: Molar density of the liquid phase [mol/L or kg/m^3] 
-    :p double Dv [out]: Molar density of the vapor phase [mol/L or kg/m^3] If only one phase is present, Dl = Dv = D.
+    :p double Dv [out]: Molar density of the vapor phase [mol/L or kg/m^3]; if only one phase is present, Dl = Dv = D.
     :p double x(20) [out]: Composition of the liquid phase (array of mole or mass fractions) 
-    :p double y(20) [out]: Composition of the vapor phase (array of mole or mass fractions) If only one phase is present, x = y = z.
+    :p double y(20) [out]: Composition of the vapor phase (array of mole or mass fractions); if only one phase is present, x = y = z.
     :p double q [out]: Vapor quality on a MOLAR basis (moles of vapor/total moles)
     :p double e [out]: Overall internal energy [J/mol or kJ/kg] 
     :p double h [out]: Overall enthalpy [J/mol or kJ/kg] 
@@ -145,7 +146,7 @@ Function Documentation
     
     The output array is not reset so that several passes can be made to
     fill in holes left by the previous pass (such as entries at different
-    T, D, or z).  The caller should zero out this array if so desired.
+    T, D, or z).  The caller can zero out this array if so desired.
     
     This routine is designed with the "superuser" in mind.  It removes all
     string comparisons to approach the speed that could be obtained by
@@ -154,8 +155,19 @@ Function Documentation
     units are not returned here, look in the ALLPROPS documentation under
     the molar column.
     
+    These values of iOut are defined in the COMMONS.INC file
+    and are obtained by a call to GETENUM, as such for the enthalpy::
+    
+        call GETENUM (0,'H',iEnum,ierr,herr)
+    
+    To obtain the pure fluid value for some of the inputs,
+    add 10000*ic (where ic is the component number) to the value
+    of the enumerated value.  The properties that can be used for this are
+    given the bottom of the comments section in the ALLPROPS routine.
+    
+    
     :p int iIn [in]: Number of properties to calculate. 
-    :p int iOut(200) [in]: Array of enumerated values that identify the property to be calculated.  These values are defined in the COMMONS.INC file and are obtained by a call to GETENUM, as such for the enthalpy::  call GETENUM (0,'H',iEnum,ierr,herr)  To obtain the pure fluid value for some of the inputs, add 10000*ic (where ic is the component number) to the value of the enumerated value.  The properties that can be used for this are given the bottom of the comments section in the ALLPROPS routine.
+    :p int iOut(200) [in]: Array of enumerated values that identify the property to be calculated (see above)
     :p int iFlag [in]: Not yet used. 
     :p double T [in]: Temperature [K] 
     :p double D [in]: Density [mol/L] 
@@ -179,7 +191,7 @@ Function Documentation
     :p double T [in]: Temperature, with units based on the value of iUnits. 
     :p double D [in]: Density, with units based on the value of iUnits. 
     :p double z(20) [in]: Composition on a mole or mass basis (array of size ncmax=20) 
-    :p double c [out]: Output value (array of size 200 dimensioned as double precision) The number -9999970 will be returned when errors occur or no input was requested.
+    :p double c [out]: Output value (array of size 200 dimensioned as double precision). The number -9999970 will be returned when errors occur or no input was requested.
     :p int ierr [out]: Error flag
     :p char herr [out]: Error string (character*255) 
     :p int hOut_length: length of variable ``hOut`` (default: 255)
@@ -198,12 +210,14 @@ Function Documentation
     
         Do NOT call this routine for two-phase states,
         otherwise it will return metastable states if near but inside the
-        phase boundary, or complete nonsense at other conditions.  The
+        phase boundary, and complete nonsense at other conditions.  The
         value of q that is returned from the flash routines will indicate
         a two phase state by returning a value between 0 and 1.  In such
         a situation, properties can only be calculated for the saturated
-        liquid and vapor states.  For example, when calling PHFLSH:
-        call subroutine PHFLSH (P,h,z,T,D,Dl,Dv,x,y,q,e,s,Cv,Cp,w,ierr,herr)
+        liquid and vapor states.  For example, when calling PHFLSH::
+    
+            call PHFLSH (P,h,z,T,D,Dl,Dv,x,y,q,e,s,Cv,Cp,w,ierr,herr)
+    
         If q>0 and q<1, then values of the liquid and vapor compositions will
         be returned in the x and y arrays, and the properties of the
         liquid and vapor states can be calculated, for example::
@@ -215,10 +229,10 @@ Function Documentation
     Idaho under the direction of R.B. Stewart and R.T Jacobsen at the
     Center for Applied Thermodynamic Studies (CATS), with
     S.G. Penoncello and S.W. Beyerlein as professors at this institution.
-    The software was distributed for about 10 years until around the
-    year 2000 when it was officially replaced by the Refprop program.
+    The software was distributed for about 10 years until around 
+    2000 when it was officially replaced by the Refprop program.
     Some of the techniques from ALLPROPS was used in the development of
-    Version 6 of Refprop, and was in some ways its forerunner.  The
+    Version 6 of Refprop, and were in some ways its forerunner.  The
     original code was DOS based and distributed on 3 1/2" floppy disks
     by regular mail.  A Visual Basic version of ALLPROPS was developed
     in about 1995, and, although rarely distributed, inspired the
@@ -236,7 +250,7 @@ Function Documentation
     still in use today, and has been used in nearly all equations of
     state developed over the last 20 years.
     
-    The name ALLPROPS was revived here in 2017 in memory of an old but
+    The name ALLPROPS was revived at NIST in 2017 in memory of the old but
     not forgotten program whose roots still form the foundation of much
     that goes on behind the scenes in the development of equations of
     state and property software.
@@ -244,7 +258,7 @@ Function Documentation
     **Calling from the DLL**
     
     Two routines are available in the DLL, these are ALLPROPSdll and
-    ALLPRP200dll.  Both compress the hUnitsArray array so that it can be passed
+    ALLPRP200dll.  Both compress the ``hUnitsArray`` array so that it can be passed
     back as a single string.  The segments are divided by the character '|'.
     Both routines use the same list of arguments::
     
@@ -259,12 +273,12 @@ Function Documentation
     description of the property and units based on either a SI molar system
     (iUnits=1) or SI mass system (iUnits=2, or 3 with temperature in C).
     
-    **Note about criticals** The items TC,PC,DC will return the critical point of a pure fluid, or, when SATSPLN
+    **Note about criticals**: The items TC,PC,DC will return the critical point of a pure fluid, or, when SATSPLN
     has been called, the critical point of the mixture (or a very close approximation).
     When the splines have not been set up, the values are the same as TCEST below.
     For the critical points of the pure fluids in a mixture, use TCRIT, etc., explained
-    much further below, which is useful when multiple fluids have been loaded.
-    parameters in the HMX.BNC file, which, for a binary mixture, are close for Type I
+    below, which is useful when multiple fluids have been loaded.
+    Parameters in the HMX.BNC file, which, for a binary mixture, are close for Type I
     mixtures, but for a multi-component or non-Type I mixture, can be significantly wrong.
     
     ========== ============================================== =======================  ========================
@@ -306,21 +320,21 @@ Function Documentation
     
     Derivatives
     -----------------------------------------------------------------------------------------------------------
-    DPDD       dP/dD at constant T                            [(dm^3/mol)*kPa]         [(m^3/kg)*kPa]
+    DPDD       dP/dD at constant T                            [kPa/(dm^3/mol)]         [kPa/(m^3/kg)]
     DPDT       dP/dT at constant D                            [kPa/K]                  [kPa/K]
     DDDP       dD/dP at constant T                            [(mol/dm^3)/kPa]         [(kg/m^3)/kPa]
     DDDT       dD/dT at constant P                            [(mol/dm^3)/K]           [(kg/m^3)/K]
     DTDP       dT/dP at constant D                            [K/kPa]                  [K/kPa]
     DTDD       dT/dD at constant P                            [(dm^3/mol)*K]           [(m^3/kg)*K]
-    D2PDD2     d^2P/dD^2 at constant T                        [(dm^3/mol)^2*kPa]       [(m^3/kg)^2*kPa]
+    D2PDD2     d^2P/dD^2 at constant T                        [kPa/(dm^3/mol)^2]       [kPa/(m^3/kg)^2]
     D2PDT2     d^2P/dT^2 at constant D                        [kPa/K^2]                [kPa/K^2]
-    D2PDTD     d^2P/dTdD                                      [(dm^3/mol)*kPa/K]       [(m^3/kg)*kPa/K]
+    D2PDTD     d^2P/dTdD                                      [kPa/(dm^3/mol)/K]       [kPa/(m^3/kg)/K]
     D2DDP2     d^2D/dP^2 at constant T                        [(mol/dm^3)/kPa^2]       [(kg/m^3)/kPa^2]
     D2DDT2     d^2D/dT^2 at constant P                        [(mol/dm^3)/K^2]         [(kg/m^3)/K^2]
     D2DDPT     d^2D/dPdT                                      [(mol/dm^3)/(kPa*K)]     [(kg/m^3)/[kPa*K]]
     D2TDP2     d^2T/dP^2 at constant D                        [K/kPa^2]                [K/kPa^2]
     D2TDD2     d^2T/dD^2 at constant P                        [(dm^3/mol)^2*K]         [(m^3/kg)^2*K]
-    D2TDPD     d^2T/dPdD                                      [(dm^3/mol)*K/kPa]       [(m^3/kg)*K/kPa]
+    D2TDPD     d^2T/dPdD                                      [K/(dm^3/mol)/kPa]       [K/(m^3/kg)/kPa]
     
     Enthalpy derivatives
     -----------------------------------------------------------------------------------------------------------
@@ -480,7 +494,7 @@ Function Documentation
     
     Transport, etc.
     -----------------------------------------------------------------------------------------------------------
-    VIS        Viscosity                                      [uPa*s]
+    VIS        Viscosity                                      [uPa*s]                  [uPa*s]
     TCX        Thermal conductivity                           [W/(m*K)]                [W/(m*K)]
     PRANDTL    Prandlt number                                 [-]                      [-]
     TD         Thermal diffusivity                            [cm^2/s]                 [cm^2/s]
@@ -577,14 +591,14 @@ Function Documentation
         integer ierr,iUnits,iMass,iFlag,iUCodeArray(iPropMax) ! Note: as integer*4
         double precision Tx,Dx,zm(ncmax),Output(iPropMax)
     
-    :p char hOut [in]: Input string of properties to calculate (of any length). Inputs can be separated by spaces, commas, semicolons, or bars, but should not be mixed.  For example, a proper string would be hOut='T,P,D,H,E,S', whereas an improperly defined string would be hOut='T,P;D H|E,S'. Use of lower or upper case is not important. Some properties will return multiple values, for example, hOut='F,Fc,XMOLE' will return 12 properties for a four component system, these being F(1), F(2), F(3), F(4), Fc(1), Fc(2), etc. To retrieve the property of a single component, use, for example, hOut='XMOLE(2),XMOLE(3)'
+    :p char hOut [in]: Input string of properties to calculate. Inputs can be separated by spaces, commas, semicolons, or bars, but should not be mixed.  For example, a proper string would be hOut='T,P,D,H,E,S', whereas an improperly defined string would be hOut='T,P;D H|E,S'. Use of lower or upper case is not important. Some properties will return multiple values, for example, hOut='F,Fc,XMOLE' will return 12 properties for a four component system, these being F(1), F(2), F(3), F(4), Fc(1), Fc(2), etc. To retrieve the property of a single component, use, for example, hOut='XMOLE(2),XMOLE(3)'.
     :p int iUnits [in]: See subroutine REFPROP for a complete description of the iUnits input value. A negative value for iUnits indicates that the input temperature is given in K and density in mol/dm^3, (Refprop default units), otherwise T and D will be converted first to K and mol/dm^3.  Do not use the negative value for the iUnits parameter everywhere, only in this one situation.
     :p int iMass [in]: Specifies if the input composition is mole or mass based
     :p int iFlag [in]: Turn on or off writing of labels and units to hUnitsArray (eventually may be multiple flags combined into one variable, similar to ABFLSH)
     :p double T: XXXXXXXXXX
     :p double D: XXXXXXXXXX
     :p double z(20): XXXXXXXXXX
-    :p double Output(200) [out]: Array of properties that were specified in the hOut string. (array of size 200 dimensioned as double precision) The number -9999970 will be returned when errors occur or no input was requested.
+    :p double Output(200) [out]: Array of properties that were specified in the hOut string (array of size 200 dimensioned as double precision). The number -9999970 will be returned when errors occur or no input was requested.
     :p char hUnits: XXXXXXXXXX
     :p int iUCodeArray(200) [out]: Array (of size 200) with the values of iUCode(n) described in the REFPROP subroutine.
     :p int ierr [out]: Error flag
@@ -644,20 +658,20 @@ Function Documentation
         +=====================+=====================================================================================================+
         | ``Return errors``   | *  0 - Return only final messages (default).                                                        |
         |                     | *  1 - Return all intermediate messages.                                                            |
-        | or ``Errors``       | *  2 - Do not return messages.                                                                      |
+        |                     | *  2 - Do not return messages.                                                                      |
         |                     |                                                                                                     |
         |                     | This flag is not reset with a new call to SETUP.                                                    |
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``Write errors``    | *  0 - Error strings not written to screen (default).                                               |
         |                     | * -1 - Error string written to screen.                                                              |
-        | or ``Write``        | *  1 - Error string written to screen only if ierr is positive.                                     |
+        |                     | *  1 - Error string written to screen only if ierr is positive.                                     |
         |                     | * 3,-3 - Same as 1 and -1, but program also pauses.                                                 |
         |                     |                                                                                                     |
         |                     | This flag is not reset with a new call to SETUP.                                                    |
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``Dir search``      | * 0 - Search for fluid files in alternate directories (as defined in OPENFL) (default).             |
         |                     | * 1 - Do not search in directories other than the one set by the call to SETPATH,                   |
-        | or ``Dir``          |   except for a 'fluids' subdirectory within the folder given in SETPATH.                            |
+        |                     |   except for a 'fluids' subdirectory within the folder given in SETPATH.                            |
         |                     |   If the fluid files for the reference fluid(s) are not in the SETPATH directory,                   |
         |                     |   then transport properties may not be calculated.                                                  |
         |                     | * 2 - Make no additional checks if the fluid file is not found after the first attempt to open      |
@@ -673,7 +687,7 @@ Function Documentation
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``PX0``             | * 0 - Use the fluid file as is for the ideal gas equation (default).                                |
         |                     | * 1 - Use the PX0 (or PH0 when no PX0 is available) for all calculations and turn off the call      |
-        |                     |       to SETREF.  For mixtures, the reference state of "each pure component" will be used.          |
+        |                     |   to SETREF.  For mixtures, the reference state of "each pure component" will be used.              |
         |                     |                                                                                                     |
         |                     | This flag is never reset.  When setting up the fluids through a call to the REFPROP subroutine,     |
         |                     | the SETREF flag described below will override this flag if turned on.                               |
@@ -681,7 +695,7 @@ Function Documentation
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``Skip SETREF``     | * 0 - Call the SETREF routine to setup the reference state (default).                               |
         |                     | * 1 - Skip the call to SETREF.  However, this means energy, enthalpy, and entropy will not be       |
-        | or ``Skip``         |   correct (but only by an offset to their usual values).                                            |
+        |                     |   correct (but only by an offset to their usual values).                                            |
         |                     |                                                                                                     |
         |                     | This must be called before the call to SETUP, and is never reset.                                   |
         +---------------------+-----------------------------------------------------------------------------------------------------+
@@ -718,10 +732,10 @@ Function Documentation
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``Reset all``       | * 2 - Call RESETA to reset all cached values.                                                       |
         |                     |   This includes all flags set by calls to this routine, except for the use of a pure fluid in       |
-        | or ``RA``           |   a mixture or reducing nc.                                                                         |
+        |                     |   a mixture or reducing nc.                                                                         |
         |                     |                                                                                                     |
-        |                     | Subroutine RESETA is always called by SETUP, but does not reset the flags set by calls to this      |
-        |                     | routine.                                                                                            |
+        |                     | Subroutine RESETA is always called by SETUP, but does not reset many of the flags set by calls      |
+        |                     | to this routine.                                                                                    |
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``Reset HMX``       | * 1 - Reset the caching flag so that the HMX.BNC file is read again on the next call to SETUP.      |
         |                     |   This option is only useful during fitting mixture models or modifying the HMX.BNC file            |
@@ -732,7 +746,7 @@ Function Documentation
         | ``Pure fluid``      | * 0 - Use full mixture equation of state loaded (default).                                          |
         |                     | * <>0 - Use the pure fluid loaded in the slot specified by jFlag.                                   |
         |                     |                                                                                                     |
-        | or ``Pure``         | This option is reset during the call to SETUP.                                                      |
+        |                     | This option is reset during the call to SETUP.                                                      |
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``Component number``| * nc - Reduce the number of fluids being used to nc.  See SETNC routine for details.                |
         |                     |   The output in kFlag will give the number of fluids in use,                                        |
@@ -756,14 +770,19 @@ Function Documentation
         | ``AGA8``            | * 0 - Turn off AGA8 and return to the fluids loaded from the call to SETUP (default)                |
         |                     | * 1 - Turn on the use of the AGA8 DETAIL equation of state.                                         |
         |                     |                                                                                                     |
-        |                     | This option is never reset.                                                                         |
+        |                     | If the AGA8 option is active, it overrides all other models.  Unlike the GERG 2008 option, this     |
+        |                     | model is active (or deactivated) immediately upon calling this routine.                             |
+        |                     | The AGA8 flag is never reset, thus recalling SETUP only changes the fluids, not the model.          |
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``GERG 2008``       | * 0 - Set a flag to turn off GERG 2008 next time SETUP is called.                                   |
         |                     | * 1 - Turn on the flag that will cause the GERG 2008 equation to be loaded next time SETUP is called|
         |                     |                                                                                                     |
-        | or ``GERG``         | This option MUST be called before SETUP.                                                            |
-        |                     | When turning off the GERG, call the SETUP routine again after calling this routine.                 |
-        |                     | This option is never reset.                                                                         |
+        | or ``GERG``         | This option MUST be called before SETUP.   When turning off the GERG, call the SETUP routine again  |
+        |                     | after calling this routine.  Because the GERG model is not activated until SETUP is called,         |
+        |                     | the value of kflag will be 1 until the next call to setup, at which time it will be set to 2 to     |
+        |                     | indicate that it is fully active.    When turning off the GERG model, the value of kflag will be -1 |
+        |                     | until the next call to setup, and then it will be reset to zero.  The -1 indicates that it is still |
+        |                     | in use but waiting to be reset.  This flag is never reset.                                          |
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``Gas constant``    | * 0 - Default is to use the most current gas constant for all fluids except nitrogen, argon, oxygen,|
         |                     |   ethylene, CO2, methane, and ethane.                                                               |
@@ -775,7 +794,7 @@ Function Documentation
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``Calorie``         | * 0 - Use a calorie to joule conversion value of 4.184 cal/J (default).                             |
         |                     | * 1 - Use the IT value of 4.1868 cal/J.                                                             |
-        | or ``Cal``          |                                                                                                     |
+        |                     |                                                                                                     |
         |                     | This option is never reset.                                                                         |
         +---------------------+-----------------------------------------------------------------------------------------------------+
         | ``Debug``           | * 0 - Turn off all debugging.                                                                       |
@@ -803,7 +822,7 @@ Function Documentation
     in calls to ALLPROPS0 to increase the speed of property calculations
     by eliminating string comparisons (which are time expensive in Fortran).
     This can be done once at the beginning of a program for all properties
-    that will be used, and stored for use as needed later.
+    that will be used, and stored for later use as needed.
     
     The input strings possible are described in subroutines ALLPROPS and
     GETUNIT.
@@ -824,7 +843,7 @@ Function Documentation
         :0: Check all strings possible.
         :1: Check strings for property units only (e.g., SI, English, etc.).
         :2: Check property strings and those in #3 only.
-        :3: Check property strings only that are not functions of T and D. (for example, the critical point, acentric factor, limits of the EOS, etc.)
+        :3: Check property strings only that are not functions of T and D (for example, the critical point, acentric factor, limits of the EOS, etc.).
 
 
 .. f:subroutine:: REFPROP1dll (hIn, hOut, iUnits, iMass, a, b, z, c, q, ierr, herr, hIn_length, hOut_length, herr_length)
@@ -845,7 +864,7 @@ Function Documentation
     
     :p char hIn [in]: Input string of properties being sent to the routine. 
     :p char hOut [in]: Output string of properties to be calculated. 
-    :p int iUnits [in]: The unit system to be used for the input and output properties (such as SI, English, etc.) See the details in the REFPROP subroutine for a complete description of the iUnits input value. **NOTE** A mass based value for iUnits does not imply that the input and output compositions are on a mass basis, this is specified with the iMass variable.
+    :p int iUnits [in]: The unit system to be used for the input and output properties (such as SI, English, etc.) See the details in the REFPROP subroutine for a complete description of the iUnits input value. **NOTE**: A mass based value for iUnits does not imply that the input and output compositions are on a mass basis, this is specified with the iMass variable.
     :p int iMass [in]: Specifies if the input composition is mole or mass based
     :p double a [in]: First input property as specified in the hIn variable. 
     :p double b [in]: Second input property as specified in the hIn variable. 
@@ -907,7 +926,7 @@ Function Documentation
     
     Several items must be considered before using this routine.  The most important is the speed of calculations.
     The original fortran code that called dedicated functions such as TPRHO, TPFLSH, PHFLSH, and so on (mostly
-    given in FLSH_SUB.FOR) and the non-iterative functions such as THERM and TRNPRP requires very little (or none)
+    given in FLSH_SUB.FOR) and the non-iterative functions such as THERM and TRNPRP requires very few (or no)
     string comparisons and are quite fast.  Multiple string comparisons are made to determine the inputs and outputs
     the user has selected.  Due to the limitation of Fortran in string parsing, this will cause a dramatic
     increase in the time required to make the calculations, such as two to three times as long as the dedicated
@@ -922,7 +941,7 @@ Function Documentation
     or asterisks.  Once the routine has been called with hFld set to the desired fluids, a space can be
     sent for all other calls that use the same fluid(s).  For a predefined mixture, the extension ".mix"
     must be included.  If the composition is included in the hFld variable, or if a predefined mixture is
-    selected, the composition will be returned in the zm array (on a molar or mass basis depending on iMass.)
+    selected, the composition will be returned in the zm array (on a molar or mass basis depending on iMass).
     That composition (or other compositions) must be sent in zm in all subsequent calls to this routine.
     See subroutines SETFLUIDS and SETMIXTURE further below for additional information and examples.
     
@@ -954,7 +973,7 @@ Function Documentation
     a saturated vapor state.  A value between 0 and 1 will return a two-phase state.
     Valid inputs are:  TP, TD, TE, TH, TS, TQ, PD, PE, PH, PS, PQ, DE, DH, DS, DQ, ES, EQ, HS, HQ, SQ
     (or the inverse of any of these, e.g., QT) (hIn is not case sensitive, e.g., 'TQ' = 'tq').
-    When q is >0 and <1, then the quality uses a molar basis when iMass=0 and a mass basis
+    When q is >0 and <1, then the quality uses a molar basis when iMass=0, and a mass basis
     when iMass=1.  The value of iUnits has no effect on the value of q (as either an input or output).
     The shortcuts Tsat and Psat can be used to specify a saturation state for the liquid for a pure fluid.
     To return, for example, the saturated vapor density, Dvap would be used as an output variable.
@@ -963,7 +982,7 @@ Function Documentation
     
     The ABFLSH routine is called to determine the phase of the inputs (liquid, vapor, or 2-phase), and
     then the appropriate iterative routine will be called to obtain the independent properties of the
-    equations of state:  these being temperature and density.  For subsequent calculations for
+    equations of state: temperature and density.  For subsequent calculations for
     properties that are in the single phase, use the code TD&, where the symbol & indicates the single
     phase state.  The time required with the use of TD& is negligible compared to that required for
     the iterative solution called by ABFLSH.  However, the properties sent to this routine and the calculated
@@ -976,11 +995,11 @@ Function Documentation
     - ``**>`` or ``**L``:  When the letter 'L' is attached after the two letters that specify the input properties
       (such as 'TP'), the routine will assume that the input properties are in the single phase
       liquid region, or are within the two-phase area as a metastable state.  For example:
-      TP>, PH>, HSL
+      TP>, PH>, HSL.
     
     - ``**<`` or ``**V``: The letter 'V' (or the sign '<') specifies that the input state for the properties listed
       in the first two letters is in the single phase vapor (including metastable states).  For
-      example:  TP<, PH<, HSV
+      example:  TP<, PH<, HSV.
     
     - ``TH<`` or ``TH>``: Inputs of temperature and enthalpy (or occasionally temperature and internal energy) generally
       have two valid states.  To obtain the root with the higher pressure, use TH> or TE>,
@@ -1086,12 +1105,11 @@ Function Documentation
       for example, DOI_VIS(3).
     - ``WEB_###(#)``: Return the web address for the equation given by the three letters following the underscore, as explained
       in the DOI section.
-    - ``REFSTATE``: Return the reference state in use (NBP, IIR, ASH, OTH, etc.)
+    - ``REFSTATE``: Return the reference state in use (NBP, IIR, ASH, OTH, etc.).
     - ``GWP``: Return the global warming potential (found in the fluid file header).
     - ``ODP``: Return the ozone depletion potential (found in the fluid file header).
     - ``FDIR``: Return the location (directory) of the fluid file.  The directory is returned in both the hUnits string and in
-      herr if no other error occurred (paths that are more than 50 characters long are truncated in hUnits).  An error
-      code of -999 will also be returned that can be used to check if herr is the path and not another error message.
+      herr if no other error occurred (paths that are more than 50 characters long are truncated in hUnits).
       For mixtures, send FDIR(2), etc., to get the path of the second fluid and so on.
     - ``UNITSTRING``: Return the units of the property (e.g., K, psia, kg/m^3, J/mol, etc.) identified in hIn for the unit system
       defined in hFld (e.g., SI, E, etc.).  The input values for hIn are the labels described in the ALLPROPS
@@ -1103,12 +1121,12 @@ Function Documentation
       The unit strings are given much further below.  When converting from mole to mass units
       (or vice versa), the molar mass must be sent in the variable b.  The type of property
       (as specified in the CONVUNITS subroutine) must be appended to the string in hOut, for example,
-      hOut='UNITCONV_T' or hOut='UNITCONV_D'
+      hOut='UNITCONV_T' or hOut='UNITCONV_D'.
     - ``UNITUSER``, ``UNITUSER2``: Set a predefined set of units based on the user's need.
       Two different sets can be assigned depending on the input sent to the routine.  The variable hIn
       contains the numbers that are specified by the enumerations in the CONSTS.INC file, separated by semicolons.
       For example, hIn='0;157;0;0;0;403;0;0;0;0' would set the pressure to use units of atm and the
-      speed of sound to use units of km/h. The numbers are listed in the order of T, P, D, H, S, W, I, E, K, and N.
+      speed of sound to use units of km/h. The numbers are listed in the order of T, P, D, H, S, W, I, E, K, and N
       (temperature, pressure, density, enthalpy, entropy, speed of sound, kinematic viscosity, viscosity,
       thermal conductivity, and surface tension).  Because the enumerations might change, it is best to build this
       string with the enumerations listed in the CONSTS.INC file rather than hard coding the numbers as shown above.
@@ -1119,11 +1137,11 @@ Function Documentation
     - ``FULLCHEMFORM``: Return the long chemical formula.
     - ``HEATINGVALUE``: Return the upper heating value.
     - ``LIQUIDFLUIDSTRING``: Return a string that contains the fluid names and compositions for the liquid phase of a two-phase state.
-    - ``VAPORFLUIDSTRING``: Likewise for the vapor phase.
+    - ``VAPORFLUIDSTRING``: Return a string that contains the fluid names and compositions for the vapor phase of a two-phase state.
       For example, "R32;R125|0.25;0.75".  The string is passed back in hUnits.
     - ``QMOLE``: Return the molar quality for 2-phase states.
     - ``QMASS``: Return the mass quality for 2-phase states.
-    - ``XMASS``: Return the mass compositions in the Output array as with the X command.  See comment one line up.
+    - ``XMASS``: Return the mass compositions in the Output array as with the X command.  See comment about ``Qmass``.
     - ``XLIQ``: Return the mass or molar liquid compositions (depending on the value of iMass) for 2-phase states.
     - ``XVAP``: Return the mass or molar vapor  compositions (depending on the value of iMass) for 2-phase states.
     - ``XMOLELIQ``: Return the liquid compositions for 2-phase states on a mole basis regardless of the iMass variable.
@@ -1179,7 +1197,7 @@ Function Documentation
                          DEFAULT     MOLE SI     MASS SI       SI WITH C
         iUnits --->      0           1           2             3
         Temperature      K           K           K             C
-        Pressure         KPa         MPa         MPa           MPa
+        Pressure         kPa         MPa         MPa           MPa
         Density          mol/dm^3    mol/dm^3    kg/m^3        kg/m^3
         Enthalpy         J/mol       J/mol       J/g           J/g
         Entropy          (J/mol)/K   (J/mol)/K   (J/g)/K       (J/g)/K
