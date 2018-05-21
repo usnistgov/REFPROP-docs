@@ -45,9 +45,9 @@ FLSH_args = {
 
 High_Level_Header = """
 
-.. _high_level_api:
-
 .. This file was auto-generated on {datetime:s}. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
+
+.. _high_level_api:
 
 **************
 High-Level API
