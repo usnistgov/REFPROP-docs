@@ -1,6 +1,6 @@
 
 
-.. This file was auto-generated on 21 May 2018 13:48:02. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
+.. This file was auto-generated on 21 May 2018 14:16:20. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
 
 .. _high_level_api:
 
@@ -599,7 +599,7 @@ Function Documentation
     :p double D [in]: Density, with units based on the value of iUnits. 
     :p double z(20) [in]: Composition on a mole or mass basis (array of size ncmax=20) 
     :p double Output(200) [out]: Array of properties that were specified in the hOut string (array of size 200 dimensioned as double precision). The number -9999970 will be returned when errors occur or no input was requested.
-    :p char hUnitsArray [out]: Array with the label names from the hOut string followed by the units of the property that are in the Output array. (character array of size 200 with 50 characters each) Will also contain error messages when necessary. The array will be empty if iFlag=0.
+    :p char hUnits[out]: String with units. Will also contain error messages when necessary. The string will be empty if iFlag=0.
     :p int iUCodeArray(200) [out]: Array (of size 200) with the values of iUCode(n) described in the REFPROP subroutine.
     :p int ierr [out]: Error flag
     :p char herr [out]: Error string (character*255)  

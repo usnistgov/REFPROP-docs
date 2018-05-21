@@ -309,43 +309,49 @@ def parse_manual_contents(contents, function_dict, dll_functions):
                 docs = None
                 inout = ''
                 argname = arg[0].lower()
-                if argname in info.in_args:
-                    inout = ' [in]'
-                    docs = info.in_args[argname]
-                if argname in info.out_args:
-                    inout = ' [out]'
-                    docs = info.out_args[argname]
-                if docs is None: 
-                    badx = 'XXXXXXXXXX'
-                    docs = badx
-                    if func+'dll' in fallback_arguments:
-                        # Get docs from fallback(s)
-                        fb_names = fallback_arguments[func+'dll']
-                        if not isinstance(fb_names, list):
-                            fb_names = [fb_names]
+                # Nasty workaround...
+                if argname == 'hunitsarray' and func+'dll' == 'ALLPROPSdll':
+                    argname = 'hUnits'
+                    docs = "String with units. Will also contain error messages when necessary. The string will be empty if iFlag=0."
+                    inout = '[out]'
+                else:
+                    if argname in info.in_args:
+                        inout = ' [in]'
+                        docs = info.in_args[argname]
+                    if argname in info.out_args:
+                        inout = ' [out]'
+                        docs = info.out_args[argname]
+                    if docs is None: 
+                        badx = 'XXXXXXXXXX'
+                        docs = badx
+                        if func+'dll' in fallback_arguments:
+                            # Get docs from fallback(s)
+                            fb_names = fallback_arguments[func+'dll']
+                            if not isinstance(fb_names, list):
+                                fb_names = [fb_names]
 
-                        for fb_name in fb_names:
-                            fallinfo = deconstruct_function_info(contents[fb_name].split('\n'))
+                            for fb_name in fb_names:
+                                fallinfo = deconstruct_function_info(contents[fb_name].split('\n'))
 
-                            if argname in fallinfo.in_args:
-                                inout = ' [in]'
-                                docs = fallinfo.in_args[argname]
-                            if argname in fallinfo.out_args:
-                                inout = ' [out]'
-                                docs = fallinfo.out_args[argname]
+                                if argname in fallinfo.in_args:
+                                    inout = ' [in]'
+                                    docs = fallinfo.in_args[argname]
+                                if argname in fallinfo.out_args:
+                                    inout = ' [out]'
+                                    docs = fallinfo.out_args[argname]
 
-                            if docs != badx:
-                                break
+                                if docs != badx:
+                                    break
 
-                            # print(func, argname, docs, fallinfo.in_args)
+                                # print(func, argname, docs, fallinfo.in_args)
 
-                    elif func+'dll' in FLSH_funcs:
-                        if argname.upper() in FLSH_args:
-                            docs = FLSH_args[argname.upper()]
-                            if argname.upper() in func[0:2] or argname.upper() in FLSH_other_input_args:
-                                inout = ' [in]'
-                            else:
-                                inout = ' [out]'
+                        elif func+'dll' in FLSH_funcs:
+                            if argname.upper() in FLSH_args:
+                                docs = FLSH_args[argname.upper()]
+                                if argname.upper() in func[0:2] or argname.upper() in FLSH_other_input_args:
+                                    inout = ' [in]'
+                                else:
+                                    inout = ' [out]'
 
                         # print(func, argname, docs, fallinfo.in_args)
                     
@@ -354,7 +360,10 @@ def parse_manual_contents(contents, function_dict, dll_functions):
                     size = '(' + str(arg[2]) + ')'
                 # print(argname)
                 
-                args_string += ' '*4 + ':p {type:s} {name:s}{size:s}{inout:s}: {docs:s}\n'.format(name = arg[0].strip(), type = arg[1].strip('*').strip(), size =size, inout = inout, docs= docs)
+                name = arg[0].strip()
+                if arg[0] == 'hUnitsArray' and func+'dll' == 'ALLPROPSdll':
+                    name = 'hUnits'
+                args_string += ' '*4 + ':p {type:s} {name:s}{size:s}{inout:s}: {docs:s}\n'.format(name = name, type = arg[1].strip('*').strip(), size =size, inout = inout, docs= docs)
 
             if dll_functions:
                 for arg in function_dict[func+'dll']['string_arguments']:
