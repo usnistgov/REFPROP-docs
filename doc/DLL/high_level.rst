@@ -2,7 +2,7 @@
 
 .. _high_level_api:
 
-.. This file was auto-generated on 21 May 2018 12:36:03. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
+.. This file was auto-generated on 21 May 2018 13:40:41. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
 
 **************
 High-Level API
@@ -199,7 +199,7 @@ Function Documentation
 
 
 
-.. f:subroutine:: ALLPROPSdll (hOut, iUnits, iMass, iFlag, T, D, z, Output, hUnits, iUCodeArray, ierr, herr, hOut_length, hUnits_length, herr_length)
+.. f:subroutine:: ALLPROPSdll (hOut, iUnits, iMass, iFlag, T, D, z, Output, hUnitsArray, iUCodeArray, ierr, herr, hOut_length, hUnitsArray_length, herr_length)
 
     
     Calculate the single-phase properties identified in the hOut string
@@ -229,7 +229,7 @@ Function Documentation
     Idaho under the direction of R.B. Stewart and R.T Jacobsen at the
     Center for Applied Thermodynamic Studies (CATS), with
     S.G. Penoncello and S.W. Beyerlein as professors at this institution.
-    The software was distributed for about 10 years until around 
+    The software was distributed for about 10 years until around
     2000 when it was officially replaced by the Refprop program.
     Some of the techniques from ALLPROPS was used in the development of
     Version 6 of Refprop, and were in some ways its forerunner.  The
@@ -262,7 +262,7 @@ Function Documentation
     back as a single string.  The segments are divided by the character '|'.
     Both routines use the same list of arguments::
     
-        (hOut,iUnits,iMass,iFlag,T,D,zm,Output,hUnits,iUCode,ierr,herr)
+        (hOut,iUnits,iMass,iFlag,T,D,z,Output,hUnits,iUCode,ierr,herr)
     
     In ALLPROPSdll, the hOut string is 255 characters long, the hUnits string is
     1000 characters long, and the Output and iUCode arrays each have a length of 20.
@@ -516,7 +516,7 @@ Function Documentation
     HEATVAPZ   Heat of vaporization (for pure fluids)         [J/mol]                  [kJ/kg]
     HEATVAPZ_T ...at constant temperature (for mixtures)      [J/mol]                  [kJ/kg]
     HEATVAPZ_P ...at constant pressure (for mixtures)         [J/mol]                  [kJ/kg]
-    HEATVALUE  XXX
+    HEATVALUE  Heating value (mass or molar basis)            [J/mol]                  [kJ/kg]
     
     Other properties
     -----------------------------------------------------------------------------------------------------------
@@ -589,22 +589,22 @@ Function Documentation
         character*10000 hOut      ! hOut can actually be of any length.
         character herr*255,hUnitsArray(iPropMax)*50
         integer ierr,iUnits,iMass,iFlag,iUCodeArray(iPropMax) ! Note: as integer*4
-        double precision Tx,Dx,zm(ncmax),Output(iPropMax)
+        double precision T,D,z(ncmax),Output(iPropMax)
     
     :p char hOut [in]: Input string of properties to calculate. Inputs can be separated by spaces, commas, semicolons, or bars, but should not be mixed.  For example, a proper string would be hOut='T,P,D,H,E,S', whereas an improperly defined string would be hOut='T,P;D H|E,S'. Use of lower or upper case is not important. Some properties will return multiple values, for example, hOut='F,Fc,XMOLE' will return 12 properties for a four component system, these being F(1), F(2), F(3), F(4), Fc(1), Fc(2), etc. To retrieve the property of a single component, use, for example, hOut='XMOLE(2),XMOLE(3)'.
     :p int iUnits [in]: See subroutine REFPROP for a complete description of the iUnits input value. A negative value for iUnits indicates that the input temperature is given in K and density in mol/dm^3, (Refprop default units), otherwise T and D will be converted first to K and mol/dm^3.  Do not use the negative value for the iUnits parameter everywhere, only in this one situation.
     :p int iMass [in]: Specifies if the input composition is mole or mass based
     :p int iFlag [in]: Turn on or off writing of labels and units to hUnitsArray (eventually may be multiple flags combined into one variable, similar to ABFLSH)
-    :p double T: XXXXXXXXXX
-    :p double D: XXXXXXXXXX
-    :p double z(20): XXXXXXXXXX
+    :p double T [in]: Temperature, with units based on the value of iUnits. 
+    :p double D [in]: Density, with units based on the value of iUnits. 
+    :p double z(20) [in]: Composition on a mole or mass basis (array of size ncmax=20) 
     :p double Output(200) [out]: Array of properties that were specified in the hOut string (array of size 200 dimensioned as double precision). The number -9999970 will be returned when errors occur or no input was requested.
-    :p char hUnits: XXXXXXXXXX
+    :p char hUnitsArray [out]: Array with the label names from the hOut string followed by the units of the property that are in the Output array. (character array of size 200 with 50 characters each) Will also contain error messages when necessary. The array will be empty if iFlag=0.
     :p int iUCodeArray(200) [out]: Array (of size 200) with the values of iUCode(n) described in the REFPROP subroutine.
     :p int ierr [out]: Error flag
     :p char herr [out]: Error string (character*255)  
     :p int hOut_length: length of variable ``hOut`` (default: 10000)
-    :p int hUnits_length: length of variable ``hUnits`` (default: 10000)
+    :p int hUnitsArray_length: length of variable ``hUnitsArray`` (default: 10000)
     :p int herr_length: length of variable ``herr`` (default: 255)
 
 
@@ -922,7 +922,7 @@ Function Documentation
     Calculate the properties identified in the hOut string for the inputs specified in the hIn string for the
     fluid or mixture given in the hFld string.  The unit identifier for the properties should be passed in
     the iUnits variable (as described below).  Compositions can be sent as mole fractions or mass
-    fractions in the zm array depending on the value of iMass.
+    fractions in the z array depending on the value of iMass.
     
     Several items must be considered before using this routine.  The most important is the speed of calculations.
     The original fortran code that called dedicated functions such as TPRHO, TPFLSH, PHFLSH, and so on (mostly
@@ -941,8 +941,8 @@ Function Documentation
     or asterisks.  Once the routine has been called with hFld set to the desired fluids, a space can be
     sent for all other calls that use the same fluid(s).  For a predefined mixture, the extension ".mix"
     must be included.  If the composition is included in the hFld variable, or if a predefined mixture is
-    selected, the composition will be returned in the zm array (on a molar or mass basis depending on iMass).
-    That composition (or other compositions) must be sent in zm in all subsequent calls to this routine.
+    selected, the composition will be returned in the z array (on a molar or mass basis depending on iMass).
+    That composition (or other compositions) must be sent in z in all subsequent calls to this routine.
     See subroutines SETFLUIDS and SETMIXTURE further below for additional information and examples.
     
     *Note*:  The speed of the program will be increased (sometimes substantially) if you call this routine
@@ -1309,7 +1309,7 @@ Function Documentation
         parameter (iPropMax=200)                   !Number of output properties available in ALLPROPS.
         character*255 hFld,hIn,hOut,hUnits,herr              !hFld, hIn, and hOut can actually be of any length.
         integer iUnits,iMass,iFlag,ierr,iUCode               !Note: as integer*4
-        double precision a,b,q,Output(iPropMax),zm(ncmax),x(ncmax),y(ncmax),x3(ncmax)
+        double precision a,b,q,Output(iPropMax),z(ncmax),x(ncmax),y(ncmax),x3(ncmax)
     
     :p char hFld [in]: Fluid string.  See above 
     :p char hIn [in]: Input string of properties being sent to the routine. 
@@ -1319,7 +1319,7 @@ Function Documentation
     :p int iFlag [in]: Flag to specify if the routine SATSPLN should be called (where a value of 1 activates the call).  (Eventually this variable may be used to send multiple flags combined in this flag.)
     :p double a [in]: First input property as specified in the hIn variable 
     :p double b [in]: Second input property as specified in the hIn variable 
-    :p double z(20): XXXXXXXXXX
+    :p double z(20) [in]: Composition on a mole or mass basis depending on the value sent in iMass (array of size ncmax=20). 
     :p double Output(200) [out]: Array of properties specified by the hOut string (array of size 200 dimensioned as double precision). The number -9999970 will be returned when errors occur, and the number -9999990 will be returned when nothing was calculated. Read the comments in the ALLPROPS routine to fully understand the contents of this array.
     :p char hUnits [out]: The units for the first property in the Output array.  Strings such as a fluid name may also be passed back in this position. To obtain the units for all of the properties sent to the string, call the ALLPROPS routine instead.
     :p int iUCode [out]: Unit code that represents the units of the first property in the Output array. See below for further details. 
