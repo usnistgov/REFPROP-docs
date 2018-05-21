@@ -14,7 +14,7 @@ Or in BibTeX form::
       Title            = {{NIST Standard Reference Database 23: Reference Fluid Thermodynamic and Transport Properties-REFPROP, Version 10.0, National Institute of Standards and Technology}},
       Author           = {E. W. Lemmon and and Ian H. Bell and M. L. Huber and M. O. McLinden},
       Year             = {2018},
-      Doi              = {http://dx.doi.org/XXXXXXXXXX},
+      Doi              = {http://dx.doi.org/10.18434/T4JS3C},
       Url              = {https://www.nist.gov/srd/refprop}
     }
 

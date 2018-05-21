@@ -61,6 +61,7 @@
 #define MENU_COMMANDS_PLOT_MENU_INDEX 600
 #define MENU_COMMANDS_WINDOW_MENU_INDEX 700
 #define MENU_COMMANDS_HELP_MENU_INDEX 800
+#define MENU_COMMANDS_HELP_MENU_CITE 802
 #define PROGRAMMING_INDEX 823
 
 
@@ -127,4 +128,5 @@ MENU_COMMANDS_CALCULATE_MENU_INDEX=Menu Commands\Calculate Menu\index.html
 MENU_COMMANDS_PLOT_MENU_INDEX=Menu Commands\Plot Menu\index.html
 MENU_COMMANDS_WINDOW_MENU_INDEX=Menu Commands\Window Menu\index.html
 MENU_COMMANDS_HELP_MENU_INDEX=Menu Commands\Help Menu\index.html
+MENU_COMMANDS_HELP_MENU_CITE=Menu Commands\Help Menu\cite_refprop.html
 PROGRAMMING_INDEX=Programming\index.html
