@@ -391,7 +391,7 @@ def parse_manual_contents(contents, function_dict, dll_functions):
 
         sout = ''
         # This is the definition of the function prototype
-        theargs = ', '.join([a[0] for a in function_dict[func+'dll']['argument_list']])
+        theargs = ', '.join([a[0] if not (func+'dll'=='ALLPROPSdll' and a[0] == 'hUnitsArray') else 'hUnits' for a in function_dict[func+'dll']['argument_list']])
         # Add on the arguments at the end with the string lengths if you are documenting the DLL
         if dll_functions:
             theargs += ', ' + ', '.join([a[0] for a in function_dict[func+'dll']['string_arguments']])

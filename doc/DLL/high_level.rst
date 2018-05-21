@@ -1,6 +1,6 @@
 
 
-.. This file was auto-generated on 21 May 2018 14:16:20. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
+.. This file was auto-generated on 21 May 2018 14:21:38. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
 
 .. _high_level_api:
 
@@ -199,7 +199,7 @@ Function Documentation
 
 
 
-.. f:subroutine:: ALLPROPSdll (hOut, iUnits, iMass, iFlag, T, D, z, Output, hUnitsArray, iUCodeArray, ierr, herr, hOut_length, hUnitsArray_length, herr_length)
+.. f:subroutine:: ALLPROPSdll (hOut, iUnits, iMass, iFlag, T, D, z, Output, hUnits, iUCodeArray, ierr, herr, hOut_length, hUnitsArray_length, herr_length)
 
     
     Calculate the single-phase properties identified in the hOut string
