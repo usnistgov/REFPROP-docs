@@ -12,7 +12,7 @@ The 'Prompt before deleting row' option asks for confirmation (after either pres
 
 The 'Ignore all error messages' option will cause all error and warning messages to be ignored that occur during property calculations. While this option may relieve you of having to clear each error message, it may cause confusion when properties are not returned after entering inputs out of range or when the program does not converge. The 'Ignore all warning messages' option will cause all warning messages to be ignored, but will still display the serious error messages.
 
-The 'Copy table headers to clipboard with table data' option can be used to select whether or not the headers at the top of each table are included when :ref:`copytabledata`.
+The 'Copy table headers to clipboard with table data' option can be used to select whether or not the headers at the top of each table are included when :ref:`copying tables <copytabledata>`.
 
 When the 'Show saturation boundaries in tables' option is selected, a blank line will appear between the single and two-phase state points and the boundary between the liquid and vapor phases.
 
