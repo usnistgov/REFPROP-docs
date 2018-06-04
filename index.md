@@ -13,7 +13,7 @@ Please contact [Eric Lemmon](mailto:Eric.Lemmon@nist.gov) if you would be willin
 
 # Answers to Frequently Asked Questions
 
-The following information gives answers to some of the most frequently asked questions concerning [the REFPROP program](https://www.nist.gov/srd/nist23.cfm). _To download any of the files listed below, right-click on the file and select **Save Target As...** and then add the file to your Refprop or other appropriate directory._ Sections with new information added during the last several months are identified with a «. For questions not answered here, please see [the user's guide](http://www.nist.gov/srd/upload/REFPROP9.PDF).
+The following information gives answers to some of the most frequently asked questions concerning [the REFPROP program](https://www.nist.gov/srd/nist23.cfm). _To download any of the files listed below, right-click on the file and select **Save Target As...** and then add the file to your Refprop or other appropriate directory._ Sections with new information added during the last several months are identified with a «. For questions not answered here, please see [the user's guide](https://www.nist.gov/srd/upload/REFPROP9.PDF).
 
 «There are a few changes in versions 9.0 and 9.1 that may confuse you when you first run the program. The number of fluids will appear to be much shorter. Look under Substance/Specify Fluid Set and you will see the ability to select a set of fluids rather than list all of them. In the Options/Properties menu, the composition box is now missing from the Thermodynamic tab; you will find it in the Mixtures tab along with other properties that are generally displayed only for mixtures. When copying data from a table, the headers are no longer copied with the data. If you like that feature, select it in Options/Preferences, then save the defaults.prf file under Options/Save Current Options. Concerning the Fortran files and the calling routines to the DLL, all of the inputs/outputs to the routines are the same as those to 8.0 so your own code will not have to be updated. Just replace your old DLL with that from 9.0 or 9.1 and you will be set to go (of course you will also need the new FLD files and the HMX.BNC file).
 
@@ -95,8 +95,8 @@ component COMDLG32.OCX or one of its dependencies not correctly registered:
 
 check to see if you have a firewall or antivirus software that can be turned off.&nbsp; Deactivating these will often allow successful installs, especially on Vista machines.&nbsp; If this fails or is not an option, then >download the corresponding file from the link below and save it in your ``Windows\System32`` directory on 32 bit machines or to your ``Windows\SysWOW64`` directory on 64 bit machines. 
 
-- [MSHFLXGD.OCX](http://trc.nist.gov/refprop/FAQ/mshflxgd.ocx)
-- [COMDLG32.OCX](http://trc.nist.gov/refprop/FAQ/COMDLG32.OCX)
+- [MSHFLXGD.OCX](https://trc.nist.gov/refprop/FAQ/mshflxgd.ocx)
+- [COMDLG32.OCX](https://trc.nist.gov/refprop/FAQ/COMDLG32.OCX)
 
 In some cases where you are not allowed to be the administrator on a machine, this message will appear because it cannot access the System32 directory. Try placing the file in your Windows directory to get the program to work.
 
@@ -120,7 +120,7 @@ If an error message occurs referencing the file REFPROP.MSI, try the following: 
 ## REFPROP is a Program, not a Database Containing Measurements
 The REFPROP "database" is actually a program and does not contain any experimental information, aside from the critical and triple points of the pure fluids. The program uses equations for the thermodynamic and transport properties to calculate the state points of the fluid or mixture. These equations are the most accurate equations available worldwide. A link to one of these equations for R-125 is given below. Their high accuracy is obtained through many coefficients in the equations, and thus the calculation speed will be slower than other equations such as the Peng-Robinson cubic equations. The equations are generally valid over the entire vapor and liquid regions of the fluid, including supercritical states; the upper temperature limit is usually near the point of decomposition of the fluid, and the upper pressure (or density) limit is defined by the melting line of the substance.
 
-- [Equation of State for HFC-125](http://trc.nist.gov/refprop/FAQ/R125.PDF)
+- [Equation of State for HFC-125](https://trc.nist.gov/refprop/FAQ/R125.PDF)
 
 ## Referencing the REFPROP Program in Publications.
 The following reference can be used to cite the REFPROP program in publications:
@@ -134,7 +134,7 @@ Or in BibTeX form:
   Title                    = {{NIST Standard Reference Database 23: Reference Fluid Thermodynamic and Transport Properties-REFPROP, Version 9.1, National Institute of Standards and Technology}},
   Author                   = {E. W. Lemmon and M. L. Huber and M. O. McLinden},
   Year                     = {2013},
-  Doi                      = {http://dx.doi.org/10.18434/T4JS3C},
+  Doi                      = {https://dx.doi.org/10.18434/T4JS3C},
   Url                      = {https://www.nist.gov/srd/refprop}
 }
 ```
@@ -196,7 +196,7 @@ Version 9.1 is now the current release. Several problems in version 9.0 (listed 
 The most recent help file from Refprop is available below. You should download it to your
 machine before launching it, otherwise the help file will appear blank.
 
-- [REFPROP.CHM](http://trc.nist.gov/refprop/FAQ/REFPROP.CHM)
+- [REFPROP.CHM](https://trc.nist.gov/refprop/FAQ/REFPROP.CHM)
 
 # Using the Program
 
@@ -233,11 +233,11 @@ Dealing with saturation or 2-phase states in Refprop can be a bit confusing when
 
 As an example, consider the methane/ethane system with a molar composition of 50% methane and 50% ethane. For mixtures in the 2-phase (or at saturation), it is always best to turn on the composition columns (under Properties/Mixtures/Composition). For saturation states, bring up a saturation table [under Calculate/Saturation Points (at equilibrium)]. The table shows two entries for each property. It is very important to place the known property under the correct column. For example, the input property for bubble points (liquid state) should be placed under the “Liquid” column; dew points (vapor state) should be placed under the “Vapor” column. An example picture is given below. On the first line, 150 K was entered under the liquid column. This calculated a liquid bubble point pressure of 0.552 MPa. The liquid phase mole fractions show the input composition of 0.5/0.5. The vapor phase mole fractions show that the first bit of vapor will have a composition of 0.987/0.013. In the second row, 150 K was entered in the vapor column, producing a dew point pressure of 0.019 MPa. The vapor mole fractions show the input composition of 0.5/0.5. The first drop of liquid to form will have a mole fraction of 0.0074/0.9926.
 
-<img src="http://trc.nist.gov/refprop/FAQ/image002.jpg">
+<img src="https://trc.nist.gov/refprop/FAQ/image002.jpg">
 
 For 2-phase states, turn on the option labeled “Bulk, liquid, and vapor properties” under Options/Properties. Then bring up a table under Calculate/Specified State Points. The information obtained above shows that pressures for 2-phase state points at 150 K will lie between 0.019 and 0.552 MPa. Enter 150 K in the temperature column and 0.3 MPa in the pressure column. The program will then calculate the 2-phase point. The output shows that the overall composition of the mixture is still 0.5/0.5. The composition of the fluid in the liquid phase will be 0.246/0.754 and that of the vapor phase will be 0.972/0.028. This is shown in the picture below.
 
-<img src="http://trc.nist.gov/refprop/FAQ/image006.jpg">
+<img src="https://trc.nist.gov/refprop/FAQ/image006.jpg">
 
 The Excel sample spreadsheet included in the Refprop directory shows an example for the mixture R410A (between rows 70 and 98).
 
@@ -246,7 +246,7 @@ The Excel sample spreadsheet included in the Refprop directory shows an example 
 ## Changing Fluids and Calling SETUP Multiple Times
 Calling SETUP (or SETUPdll) many many times can result in a memory loss error and in a substantial decrease of computation speed. In many situations, it is better to load all of the fluids at the start of the program, calling SETUP only once. You can then switch between fluids through the use of calls to SETNC and PUREFLD. The example below shows how this can be done for a mixture combined with several pure fluids. If two different mixtures are required, load all fluids and set the composition to 0 for those fluids not involved in a particular application. This could easily be done by using two different arrays for the composition.
 
-- [EX-MULTI.FOR](http://trc.nist.gov/refprop/FAQ/EX-MULTI.FOR)
+- [EX-MULTI.FOR](https://trc.nist.gov/refprop/FAQ/EX-MULTI.FOR)
 
 ## Calculation of the Critical Point and Saturation States in the Critical Region
 The calculation of saturation states requires complex algorithms and significant processor time. Version 9.1 introduced the subroutine SATSPLN, which can be called directly after the call to SETUP, and generates spline curves that represent the various properties that are required as initial guesses to the saturation algorithms in order to increase convergence and speed. This new subroutine, however, can take several seconds to implement, and should only be done once at the very beginning. If the composition of the fluid changes significantly, and if you notice problems with convergence, you may need to call it again with the new composition. Although the routine gives estimates only for saturation states, single phase calculations will also be much faster since a call to the saturation routine is required to determine the phase of the input state. The routine is called like this:
@@ -284,21 +284,21 @@ The current equation of state for calculating the properties of natural gas mixt
 
 Kunz, O. and Wagner, W., The GERG-2008 Wide-Range Equation of State for Natural Gases and Other Mixtures: An Expansion of GERG-2004, to be submitted to J. Chem. Eng. Data, 2012.
 
-Kunz, O., Klimeck, R., Wagner, W., and Jaescke, M., The GERG-2004 Wide-Range Equation of State for Natural Gases and Other Mixtures: GERG Technical Monograph 15 and Fortschr.-Ber. VDI, Reihe 6, Nr. 557, VDI Verlag, Düsseldorf, 2007. [link to PDF](http://www.gerg.eu/public/uploads/files/publications/technical_monographs/tm15_04.pdf)
+Kunz, O., Klimeck, R., Wagner, W., and Jaescke, M., The GERG-2004 Wide-Range Equation of State for Natural Gases and Other Mixtures: GERG Technical Monograph 15 and Fortschr.-Ber. VDI, Reihe 6, Nr. 557, VDI Verlag, Düsseldorf, 2007. [link to PDF](https://www.gerg.eu/public/uploads/files/publications/technical_monographs/tm15_04.pdf)
 
 In the Refprop 9.1 program, the natural gas equation of state has been expanded to include ethylene, propylene, methanol, ethanol, toluene, benzene, cyclohexane, sulfur dioxide, ammonia, dodecane, acetone, and butylene. When selecting the option to use the full GERG-2008 equation of state (either through the GUI or by calling the “GERG2004” subroutine), the use of these additional fluids is still allowed. This is not the same as when the AGA-8 equation of state is selected, in which case only the original 21 fluids (same as those in the GERG-2008 model) are allowed.
 
 ## HFO-1234yf, 1234ze(E), 1234ze(Z), 1233zd(E), and Refrigerant Mixtures.
 Equations of state are now available for these fluids. R1234yf and R1234ze were included in versions 9.0 and 9.1, but version 9.0 incorrectly used the NBP reference state instead of IIR, as done with all other refrigerants.  The file name for R1234ze(E) has been renamed as ``R1234ZEE.FLD`` to avoid confusion with R1234ze(Z). You should delete your old ``R1234ZE.FLD`` file when downloading the fluid file for R1234ze(E) (the contents of the fluid file have not changed). The fluid files are located below and should be placed in your ``Refprop\Fluids`` directory for both versions 9.0 and 9.1.  This fluid file works with both versions 9.0 and 9.1 of Refprop.  R1234yf only needs to be downloaded if you are using version 9.0. The fluid files included in version 9.0 incorrectly used the NBP reference state.
 
-- [R1234YF.FLD](http://trc.nist.gov/refprop/FAQ/R1234YF.FLD) (uploaded June 6, 2012 with updated transport equations)
-- [R1234ZEE.FLD](http://trc.nist.gov/refprop/FAQ/R1234ZEE.FLD) (uploaded June 6, 2012 with new CAS number and updated transport equations. This is for R1234ze(E)). 
-- [R1234ZEZ.FLD](http://trc.nist.gov/refprop/FAQ/R1234ZEZ.FLD) (uploaded January 12, 2015 with transport equations. This is for R1234ze(Z)).
-- [R1233ZDE.FLD](http://trc.nist.gov/refprop/FAQ/R1233ZDE.FLD) (uploaded November 9, 2015)
+- [R1234YF.FLD](https://trc.nist.gov/refprop/FAQ/R1234YF.FLD) (uploaded June 6, 2012 with updated transport equations)
+- [R1234ZEE.FLD](https://trc.nist.gov/refprop/FAQ/R1234ZEE.FLD) (uploaded June 6, 2012 with new CAS number and updated transport equations. This is for R1234ze(E)). 
+- [R1234ZEZ.FLD](https://trc.nist.gov/refprop/FAQ/R1234ZEZ.FLD) (uploaded January 12, 2015 with transport equations. This is for R1234ze(Z)).
+- [R1233ZDE.FLD](https://trc.nist.gov/refprop/FAQ/R1233ZDE.FLD) (uploaded November 9, 2015)
 
 New refrigerant predefined mixture files are available, such as that for R-448A. To add these to Refprop, unzip the file below in your ``Refprop\Mixtures`` directory:
 
-- [NEWMIX.ZIP](http://trc.nist.gov/refprop/FAQ/NEWMIX.ZIP) For mixtures with R1234ze(E), you will need to download the renamed file above for this fluid.
+- [NEWMIX.ZIP](https://trc.nist.gov/refprop/FAQ/NEWMIX.ZIP) For mixtures with R1234ze(E), you will need to download the renamed file above for this fluid.
 
 «On November 10, 2015, we released a new mixture file (``HMX.BNC``) that now contains mixing parameters for every binary of the fluids R-32, R-125, R-134a, R-1234yf, and R-1234ze(E). With these, mixtures such as R-448A that contain all five of these no longer use the predictive methods to get the interaction parameters. This file works with both versions 9.0 and 9.1 of Refprop. If you would like this file, please contact us. 
 
@@ -314,12 +314,12 @@ The REFPROP program does not know the location of the solid-liquid interface&nbs
 ## Transport Properties for Nitrogen, Oxygen, Argon, and Air.
 The transport properties for nitrogen, argon, and oxygen in version 7.0 did not include the thermal conductivity enhancement for the critical region and did not represent the experimental data as well as possible.&nbsp; The transport equations for these fluids have been redone and now represent the data to within their experimental uncertainties.&nbsp; The publication below documents the new equations and shows all of the comparisons to data.
 
-- [N2-Ar-O2 Transport equations documentation](http://trc.nist.gov/refprop/FAQ/NAO.PDF)
+- [N2-Ar-O2 Transport equations documentation](https://trc.nist.gov/refprop/FAQ/NAO.PDF)
 
 ## Transport Properties for Pseudo-pure Fluids; Adding Pure Fluids to a Mixture Setup.
 The ability to load both a mixture and a pure fluid not associated with the mixture is now possible. For example, a natural gas mixture of methane, ethane, and propane could be loaded, along with R134a, which is not part of the mixture. By calling SETNC and PUREFLD, properties for either the mixture or the pure fluid can be made without ever calling SETUP more than once at the beginning. This is also useful for calculating transport properties when the pseudo-pure fluid equation of state is in use (for R-404A, R-407C, R-410A, and R-507A). Since transport properties are not available in the PPF files, the full mixture has to be loaded as well. The example program below gives all the details.
 
-- [PPF-EX.FOR](http://trc.nist.gov/refprop/FAQ/PPF-EX.FOR)
+- [PPF-EX.FOR](https://trc.nist.gov/refprop/FAQ/PPF-EX.FOR)
 
 ## Required Fluids for Distribution. 
 There are several fluid files that Refprop accesses in order to run properly.&nbsp; These are ``NITROGEN.FLD``, ``PROPANE.FLD``, ``R134A.FLD``, and ``C12.FLD`` (dodecane).&nbsp; These fluids are used as reference fluids in extended corresponding states methods employed in Refprop to predict transport properties for some instances.&nbsp; These fluids (and the hmx.bnc file) should be distributed in addition to those required in a particular application if the Refprop routines have been incorporated into a software package. Note that a licensing agreement must be purchased before distributing your software to others.
