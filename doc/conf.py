@@ -232,7 +232,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'REFPROP.tex', u'REFPROP Documentation',
-     u'EWL, IHB, MH, MML', 'manual'),
+     u'Eric W. Lemmon, Ian H. Bell, Marcia L. Huber, Mark O. McLinden', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
