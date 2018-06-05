@@ -53,7 +53,7 @@ Kunz, O. and Wagner, W. The GERG-2008 Wide-Range Equation of State for Natural G
 
 Calculations from the American Gas Association program for natural gas mixtures can also be made by selecting the 'Calculate mixture properties using the AGA8 equation'. This equation is not valid in the liquid phase or in the extended region near the critical point and users of this model should be aware of the uncertainties in the equation in the various regions where they calculate numbers. The default equations in REFPROP are used to calculate the phase boundaries since the AGA8 model does not allow this calculation.
 
-The 'Use Peng-Robinson equation for all calculations' option switches from the default equations to the less accurate Peng-Robinson equation. This equation is not recommended for general use in REFPROP.
+The 'Use Peng-Robinson cubic equation of state for all calculations' option switches from the default equations to the less accurate Peng-Robinson equation. This equation is not recommended for general use in REFPROP.
 
 In addition to these options, the number of digits in the tables can be selected on a global basis, rather than individually selecting the number of digits as described in the :ref:`formatcolumnposition` menu. Changes in the number of digits displayed will be applied to the currently displayed tables if the 'Apply to existing tables' option is selected. The 'Fixed digits' option allows a fixed number of total digits, including those before and after the decimal point. The 'Fixed decimal' option allows a fixed number of digits to be specified to the right of the decimal point. The 'Scientific notation' option allows the number to be displayed in that format.
 
