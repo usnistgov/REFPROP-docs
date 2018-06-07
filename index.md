@@ -59,8 +59,7 @@ The following information gives answers to some of the most frequently asked que
 
 ## Getting Help
 
-In addition to this page, further answers can be found at GitHub: https://github.com/usnistgov/REFPROP-issues/issues.  Please use the GitHub site to post new questions so that all REFPROP users may learn from the correspondence.  If you still need assistance, or have other matters that that you need to discuss, email refprop@nist.gov and we will get back to you as soon as we can.
-
+In addition to this page, further answers can be found at GitHub: [REFPROP-issues](https://github.com/usnistgov/REFPROP-issues/issues).  Please use the GitHub site to post new bugs or questions so that all REFPROP users may learn from the correspondence.  If you still need assistance, or have other matters that you need to discuss, email refprop@nist.gov and we will get back to you as soon as we can.
 
 ## Installation Problems.
 In some applications where calculations fail after installing versions 9.0 or 9.1, the old
