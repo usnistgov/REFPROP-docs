@@ -5,11 +5,7 @@ title: Home
 
 # Version 10.0!
 
-Version 10.0 of REFPROP will be coming out in late March 2018.  We currently do not have a firm date for its release, but will continue to update the new FAQ site from time to time with new information as it becomes available.  Please [see below](#updates-to-version-100) for information about REFPROP version 10.0
-
-We need heavy users of the REFPROP program to help us beta test the new source code.  This includes those that make weekly use of the graphical interface, the Excel/Refprop link, and so forth.  Most important would be those that distribute the Refprop code with their own application, and especially those that either access the Fortran code directly, or rely on the error codes coming from the GUI.  The Fortran code has undergone heavy reconstruction and there have been a significant number of changes.  The main calls to the routines are still the same, but the underlying code is quite different.  In such situations, it is imperative that you try the new code before version 10 is released.
-
-Please contact [Eric Lemmon](mailto:Eric.Lemmon@nist.gov) if you would be willing to beta test the next release.  For general questions on the release of version 10, visit this page from time to time for details of what has changed and other interesting information.  Please limit your contact with us with simple questions about the release as this uses precious time needed to make the update available.
+Version 10.0 of REFPROP has been released.  See [see below](#updates-to-version-100) for information about REFPROP version 10.0
 
 # Answers to Frequently Asked Questions
 
@@ -150,27 +146,30 @@ Span, R. and Wagner, W., J. Phys. Chem. Ref. Data, 25(6):1509-1596, 1996.
 
 ## Updates to Version 10.0
 
-Enhancements have been made to most areas of the NIST REFPROP program, including the graphical interface, the Excel spreadsheet, the Fortran files (i.e., core property routines), the sample programs in C++, MATLAB, VB, etc., and additional fluids. Some of the more important improvements are listed below:
+Enhancements have been made to most areas of the NIST REFPROP program, including the equations of state for many of the pure fluids and mixtures, the transport equations, the graphical interface, the Excel spreadsheet, the Fortran files (i.e., core property routines), the sample programs in Python, C++, MATLAB, VB, etc. Some of the more important improvements are listed below: 
 
-* Increased calculation speed.
-* Implemented mixture model of Gernert for selected mixtures with water, including water+CO2 and moist air.
-* New shared library (DLL) for the Mac; this allows use of REFPROP with MATLAB on OSX
-* New reference equations of state for ammonia, helium, heavy water, nitrogen, and oxygen.
-* The addition of the following fluids:  1-propanol, isopropanol, 1-butanol, 1-hexanol, chlorine, dichloroethane, ethylene glycol, ethylene oxide, hexadecane, docosane, R30, R40, R1233zd(E), R1243zf, R1336mzz(Z), and vinyl chloride.
-* The equations of state have been revised for cyclopentane, D4, heptane, hexane, hydrogen chloride, hydrogen sulfide, isopentane, MDM, MM, octane, pentane, R161, R245fa, R32, RE347mcc (HFE-7000), sulfur dioxide, and xenon.
-* New mixture models with improved accuracy for ammonia/water and ethylene glycol/water.
-* Mixture parameters were fitted (or refitted) for the following binary mixtures:  R1234yf with R32, R125, R134a, and R1234ze(E), R1234ze(E) with R125 and R134a, and CO2/R1216
-* New estimation scheme for selected families of binary mixtures (n-alkane + n-alkane mixtures, mixtures with CO2) to obtain estimated interaction parameters for mixtures that have not been fitted.
-* Henry's constant estimation scheme to obtain better starting values for VLE of mixtures.
-* All of the Fortran code was highly optimized, with the addition of many new comments to explain the workings of the code.
+* A new Excel file with many more examples and additional documentation.
+* All of the Fortran code was highly optimized resulting in increased calculation speed and improved convergence.  Many new flags were added to allow the user to specify better how the programs works.
+* A new function is available to allow users to call Refprop with one single command that replaces most other calls from 9.1 (thus removing the need to learn what routines to use and the inputs/outputs for each routine, such as TPFLSH, THERM, etc.)  However, the old routines are still available for backwards compatibility.
+* New shortcut keywords to load fluids and mixtures and other methods to simplify use of the code.
+* New shared library for the Mac; this allows use of Refprop with, for example, Python or Excel 2011.  A CMake-based build system allows for compilation on any platform (windows, OSX, Linux) : https://github.com/usnistgov/REFPROP-cmake
+* The vapor-liquid equilibrium calculations for tracing isotherms and isobars (T-x and p-x diagrams) are greatly improved (doi: [10.1002/aic.16074](https://doi.org/10.1002/aic.16074)).
+* New reference equations of state for ammonia, helium, and heavy water.  The ammonia equation of state introduces the first change to the Helmholtz energy functional form in over 25 years of development of equations for the thermodynamic properties of fluids.
+* The addition of the following refrigerants:  R1123, R1224yd(Z), R1233zd(E), R1234ze(Z), R1243zf, and R1336mzz(Z).
+* The addition of the following fluids:  1,3-butadiene, 1-butyne, 1-pentene, 2,2-dimethylbutane, 2,3-dimethylbutane, 3-methylpentane, acetylene, chlorine, chlorobenzene, cyclobutene, 1,2-dichloroethane, diethanolamine, docosane, ethylene glycol, ethylene oxide, hexadecane, monoethanolamine, perfluorohexane, propadiene, propylene oxide, and vinyl chloride.
+* New equations of state have been developed for cyclopentane, D4, heptane, hexane, hydrogen chloride, MDM, MD2M, MM, neon, octane, pentane, perfluorobutane, perfluoropentane, R-1233zd(E), R-161, R-245fa, R-E347mcc (HFE-7000), and sulfur dioxide.  The development of an equation of state is a complex process requiring many months of work for each one.
+* Mixture model of Gernert implemented for selected mixtures with water, including water+CO2 and moist air.
+* Transport equations have been added or modified for acetone, acetylene, ammonia, benzene, butane, 1,3-butadiene, 1-butene, 1-butyne, 2,2-dimethylbutane, 2,3-dimethylbutane, carbon dioxide, carbon monoxide, carbonyl sulfide, chlorine, chlorobenzene,  cis-butene, cyclobutene, cyclohexane, cyclopentane, cyclopropane, D4, D5, D6, 1,2-dichloroethane(R150), diethanolamine, diethyl ether, dimethyl carbonate, dimethyl ether, docosane, ethane, ethylbenzene, ethylene, ethylene glycol, ethylene oxide, fluorine, heptane, hexane, hexadecane, hydrogen chloride, hydrogen sulfide, isobutene, isohexane, isooctane, isopentane, krypton, methyl palmitate, methyl linolenate, methyl linoleate, methyl oleate, methyl stearate, m-xylene, MD2M, MD3M, MD4M, MDM, MM, methylcyclohexane, 3-methylpentane, monoethanolamine, neon, neopentane, nitrous oxide, Novec-649, o-xylene, p-xylene, pentane,1-pentene, propadiene, propylcyclohexane, propylene, propylene oxide, propyne, perfluorobutane, perfluoropentane, perfluorohexane, propane, R1123, R143a, R114, R161, R1224yd(Z), R1233zd(E), R1234yf, R1234ze(Z), R1234ze(E), R1243zf, R13I1 (CF3I), R1336mzz(Z), R218, R236fa, R236ea, R245ca, R245fa, R365mfc, RE143a, RE245cb2, RE245fa2,RE347mcc, RC318, R40, sulfur dioxide, trans-butene, toluene, undecane, vinyl chloride, and xenon.
+* New mixture models for ammonia + water and ethylene glycol + water.
+* Approximately 400 binary pairs have been added from the work of Bell and Lemmon (doi: [10.1021/acs.jced.6b00257](https://pubs.acs.org/doi/abs/10.1021/acs.jced.6b00257) )
+* Mixture parameters were fitted (or refitted) for the following binary mixtures:  R1234yf with R32, R125, R134a, and R1234ze(E), R1234ze(E) with R125 and R134a, and many others.  These new mixing parameters with R1234yf and R1234ze(E) are currently the standard used in the refrigeration industry and Version 10 puts all users in compliance with the property values now in use world-wide.  All new ASHRAE predefined mixtures except those with trans-1,2-dichloroethylene (t-EDC) (due to the lack of a pure fluid equation) are included.
+* New estimation schemes were developed for selected families of binary mixtures (n-alkane + n-alkane mixtures, mixtures with CO2, etc.) to obtain estimated interaction parameters for mixtures that have not been fitted.
+* A reverse Polish type notation was added to read any functional form for the transport properties, eliminating the need to compile a new DLL as new correlations are published.  The notation and corresponding coefficients of the equation are simply added to the fluid files and the new code will read and interpret the supplied text.
+* The DOI for each primary equation was added to the fluid files.  A link in the GUI is now available to load the publication if access to the journal is available.
+* Henry's constant estimation scheme to obtain better starting values for VLE of mixtures to improve convergence.
 * Additional code to identify type III mixtures for use in phase determination.
-* Addition of updated AGA-8 equations of state to conform with the 2017 release of that publication.
-* Transport equations have been added or modified for acetone, benzene, 1-butene, carbon dioxide, carbonyl sulfide, cis-butene, cyclohexane, cyclopentane, cyclopentane, D4, D5, D6, dichloroethane, diethyl ether, dimethyl carbonate, docosane, ethylene, ethylene oxide, heptane, hydrogen chloride, isobutene, isohexane, isooctane, isopentane, m-xylene, MD2M, MD3M, MD4M, MDM, MM, neon, neopentane, Novec-649, o-xylene, p-xylene, pentane, propylene, R114, R161, R1233zd(E), R1234yf, R1234ze(Z), R1243zf, R245fa, RE143a, RE347mcc, R40, trans-butene, toluene, undecane, and vinyl chloride.
-* A bug in the transport properties for mixtures with either hydrogen or helium was fixed.
-* All surface tension equations for the pure fluids have been updated.
-* New surface tension model for mixtures with much lower uncertainty.
-* New code to calculate heat of formation and the mass flux for a Venturi nozzle.
-* New function to allow users to call Refprop with the exact same command for any input/output properties, rather than having to learn the inputs/outputs for TPFLSH, THERM, etc. 
+* Most surface tension equations for the pure fluids have been updated, and an improved surface tension model for mixtures was added.
+* New code to calculate heat of formation or the mass flux for a Venturi nozzle.
 
 ### Breaking changes
 
