@@ -59,18 +59,7 @@ The following information gives answers to some of the most frequently asked que
 
 ## Getting Help
 
-Before contacting us, please look in the Help file – most answers can be found there. If you need to contact us regarding questions that are not answered below, do not send separate emails to those of us that support this work. Rather, include each person in the same email so that it is not necessary for each of us to respond to your question. This will free up resources to develop better products.
-
-Furthermore, when you do report problems with the use of REFPROP, here is information that is crucial for us to know to be able to help you:
-
-- What version of REFPROP do you use?
-- What operating system do you use (windows, OSX, linux, etc.)?
-- What exactly did you do to cause the problem you see?
-- What error message do you get? (The comment "it doesn't work" doesn't help us help you). Screenshots of the failure are very helpful.
-
-Please send questions to [Eric Lemmon](mailto:Eric.Lemmon@nist.gov)
-
-If you send a question and do not receive a response within several days, it is quite likely that your email did not make it or that my email was removed by your system administrators as spam or junk mail.  I try to respond to all emails within two days, so please write/call again if you do not receive a response.)
+In addition to this page, further answers can be found at GitHub: https://github.com/usnistgov/REFPROP-issues/issues.  Please use the GitHub site to post new questions so that all REFPROP users may learn from the correspondence.  If you still need assistance, or have other matters that that you need to discuss, email refprop@nist.gov and we will get back to you as soon as we can.
 
 
 ## Installation Problems.
