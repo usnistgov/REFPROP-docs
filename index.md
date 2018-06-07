@@ -109,15 +109,15 @@ The REFPROP "database" is actually a program and does not contain any experiment
 ## Referencing the REFPROP Program in Publications.
 The following reference can be used to cite the REFPROP program in publications:
 
-Lemmon, E.W., Huber, M.L., McLinden, M.O.&nbsp; NIST Standard Reference Database 23:&nbsp; Reference Fluid Thermodynamic and Transport Properties-REFPROP, Version 9.1, National Institute of Standards and Technology, Standard Reference Data Program, Gaithersburg, 2013.
+Lemmon, E.W., Bell, I.H., Huber, M.L., McLinden, M.O.&nbsp; NIST Standard Reference Database 23:&nbsp; Reference Fluid Thermodynamic and Transport Properties-REFPROP, Version 10.0, National Institute of Standards and Technology, Standard Reference Data Program, Gaithersburg, 2018.
 
 Or in BibTeX form:
 {% raw %}
 ```text
 @Misc{LEMMON-RP91,
-  Title                    = {{NIST Standard Reference Database 23: Reference Fluid Thermodynamic and Transport Properties-REFPROP, Version 9.1, National Institute of Standards and Technology}},
-  Author                   = {E. W. Lemmon and M. L. Huber and M. O. McLinden},
-  Year                     = {2013},
+  Title                    = {{NIST Standard Reference Database 23: Reference Fluid Thermodynamic and Transport Properties-REFPROP, Version 10.0, National Institute of Standards and Technology}},
+  Author                   = {E. W. Lemmon and I.H. Bell and M. L. Huber and M. O. McLinden},
+  Year                     = {2018},
   Doi                      = {https://dx.doi.org/10.18434/T4JS3C},
   Url                      = {https://www.nist.gov/srd/refprop}
 }
