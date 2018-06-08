@@ -44,6 +44,7 @@ The following information gives answers to some of the most frequently asked que
 
 **Fluids**
 
+15. [List of fluids](#list-of-fluids)
 16. [GERG-2008 Equation of State for Natural Gas Mixtures](#gerg-2008-equation-of-state-for-natural-gas-mixtures)
 17. [HFO-1234yf, 1234ze(E), 1234ze(Z), 1233zd(E), and Refrigerant Mixtures](#hfo-1234yf-1234zee-1234zez-1233zde-and-refrigerant-mixtures)
 18. [Humid Air](#humid-air)
@@ -181,9 +182,10 @@ Version 9.1 is now the current release. Several problems in version 9.0 (listed 
 
 ## Help File
 The most recent help file from Refprop is available below. You should download it to your
-machine before launching it, otherwise the help file will appear blank.
+machine before launching it, otherwise the help file will appear blank.  The PDF is an alternative form of the documentation that may be more convenient for you.  The most up-to-date version of the documentation is at http://refprop-docs.readthedocs.io/en/latest/
 
-- [REFPROP.CHM](https://trc.nist.gov/refprop/FAQ/REFPROP.CHM)
+- [REFPROP.CHM](https://trc.nist.gov/refprop/REFPROP.CHM)
+- [REFPROP.PDF](https://trc.nist.gov/refprop/REFPROP.PDF)
 
 # Using the Program
 
@@ -265,6 +267,10 @@ When using mixtures, error messages will sometimes be reported when Refprop fail
 The error message &quot;<span style='color:red'>No mixture data are available for one or more binary pairs in the specified mixture. The mixing parameters have been estimated.</span>&quot; (message #-117) occurs when an interaction parameter for two different fluids is not available in the program.&nbsp; The most common reason for this occurrence is a lack of experimental data to describe VLE, densities, and so forth for the binary pair.&nbsp; In other situations, such as many mixtures with water, interaction parameters have not been fitted to the REFPROP model even though data exist.&nbsp; An estimation scheme is available in the program to approximate one of the interaction parameters that helps improve bubble and dew point pressures.&nbsp; This error message indicates that you should be aware that calculated properties are estimates only.&nbsp; For similar fluids, especially among the refrigerants, the scheme works fairly well.&nbsp; It breaks down with dissimilar fluids and eventually the scheme will produce large interaction parameters and will report the error message&nbsp; &quot;<span style='color:red'>No mixture data are available for one or more binary pairs in the specified mixture. The mixture is outside the range of the model and calculations will not be made.</span>&quot;
 
 # Fluids
+
+## List of fluids
+
+The following is a list of fluids that come with REFPROP
 
 ## GERG-2008 Equation of State for Natural Gas Mixtures.
 The current equation of state for calculating the properties of natural gas mixtures is the GERG-2008 equation (GERG is the European Gas Research Group). This equation is based on an excess Helmholtz energy approach using pure fluid equations of state (either those specified by GERG, or the current standards that have slightly higher accuracies) and a mixture model that specifies the excess contribution. The 2008 version is an extension of the 2004 version, containing the additional fluids nonane, decane, and hydrogen sulfide in addition to methane, nitrogen, carbon dioxide, ethane, propane, n-butane, isobutane, n-pentane, isopentane, n-hexane, n-heptane, n-octane, hydrogen, oxygen, carbon monoxide, water, helium, and argon. The 2008 edition also replaced the pure fluid equations of state for isopentane and carbon monoxide with published versions. These two models are fully described in the following publications:
