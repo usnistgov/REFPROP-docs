@@ -63,6 +63,20 @@ The following information gives answers to some of the most frequently asked que
 In addition to this page, further answers can be found at GitHub: [REFPROP-issues](https://github.com/usnistgov/REFPROP-issues/issues).  Please use the GitHub site to post new bugs or questions so that all REFPROP users may learn from the correspondence.  If you still need assistance, or have other matters that you need to discuss, email refprop@nist.gov and we will get back to you as soon as we can.
 
 ## Installation Problems.
+
+### Upgrading from 9.x
+
+1.  Uninstall all Refprop versions on your machine.
+2.  Check if you have a ``Refprop`` directory in your ``Program files (x86)`` directory, if you do, delete it.
+3.  In your users directory is a hidden system directory called ``AppData``.  Check if you have the following subdirectory:  "Local\VirtualStore\Program Files\REFPROP".  If so, delete that folder.
+4.  Do a full system search (including Windows directories) for ``REFPROP.DLL`` and ``REFPRP64.DLL`` (or better:  ``REFPR*.DLL``), if you find it, delete it and anything else related to Refprop in that directory.
+5.  Install version 10.
+6.  If version 9.1 still shows up, uninstall 10, then install 9.1, uninstall it, and reinstall 10. (It’s painful, but seems to be the only way around this that we know of so far).  If you don’t have the installer for version 9.1, let us know.
+7.  If one of the beta versions for Refprop 9.4.x still appears, install it and then uninstall it.  If you don't have the installer, email us to get access to it.
+8.  If problems continue, go to Windows explorer, right click on the C: drive, go to Properties, and choose Disk Cleanup.  If this is not available, go to Start and in the search menu type in "Clean up".  Then click on Clean Up System Files and have it delete everything.  
+
+
+### OCX issues
 In some applications where calculations fail after installing versions 9.0 or 9.1, the old
 DLL from version 7.0 or 8.0 may be hiding in your ``Windows\System32`` directory. Open up this directory and search for Refprop.dll. If you find it, delete it (it should never be stored in the ``Windows`` directory). The new one belongs in the Refprop directory along with the executable.
 
