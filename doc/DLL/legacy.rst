@@ -1,6 +1,6 @@
 
 
-.. This file was auto-generated on 21 May 2018 14:21:38. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
+.. This file was auto-generated on 10 Aug 2018 12:30:38. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
 
 **********
 Legacy API
@@ -113,11 +113,9 @@ Function Listing
 - :f:func:`SATGUESSdll`
 - :f:func:`SATGVdll`
 - :f:func:`SATHdll`
-- :f:func:`SATESTdll`
 - :f:func:`SATPdll`
 - :f:func:`SATSPLNdll`
 - :f:func:`SATSdll`
-- :f:func:`SATESTdll`
 - :f:func:`SATTPdll`
 - :f:func:`SATTdll`
 - :f:func:`SETAGAdll`
@@ -2662,39 +2660,6 @@ Function Documentation
         :56: h > htrp (for sublimation inputs) (See subroutine LIMITX for other possible error numbers.)
 
 
-.. f:subroutine:: SATESTdll (iFlash, T, P, z, x, y, ierr, herr, herr_length)
-
-    
-    Estimate temperature, pressure, and compositions to be used
-    as initial guesses to SATTP.
-    
-    :p int iFlash [in]: Phase flag
-    :p double T [out]: Temperature [K] (input or output) 
-    :p double P [out]: Pressure [kPa] (input or output) 
-    :p double z(20) [in]: Composition (array of mole fractions) The composition for the known x or y array should be sent in this z array, not in the output arrays shown below. 
-    :p double x(20) [out]: Liquid phase composition (array of mole fractions) 
-    :p double y(20) [out]: Vapor phase composition (array of mole fractions) 
-    :p int ierr [out]: Error flag
-    :p char herr [out]: Error string (character*255) 
-    :p int herr_length: length of variable ``herr`` (default: 255)
-
-
-    :Flags: 
-
-        ``iflash`` flags
-
-        :0: Flash calculation (T and P known)
-        :1: T and x known, P and y returned
-        :2: T and y known, P and x returned
-        :3: P and x known, T and y returned
-        :4: P and y known, T and x returned If this value is negative, the retrograde point will be returned.
-
-        ``ierr`` flags
-
-        :0: Successful
-        :999: Unsuccessful
-
-
 .. f:subroutine:: SATPdll (P, z, kph, T, Dl, Dv, x, y, ierr, herr, herr_length)
 
     
@@ -2808,39 +2773,6 @@ Function Documentation
         :66: s < smin
         :67: s > smax
         :68: s > strp (for sublimation inputs) (See subroutine LIMITX for other possible error numbers.)
-
-
-.. f:subroutine:: SATESTdll (iFlash, T, P, z, x, y, ierr, herr, herr_length)
-
-    
-    Estimate temperature, pressure, and compositions to be used
-    as initial guesses to SATTP.
-    
-    :p int iFlash [in]: Phase flag
-    :p double T [out]: Temperature [K] (input or output) 
-    :p double P [out]: Pressure [kPa] (input or output) 
-    :p double z(20) [in]: Composition (array of mole fractions) The composition for the known x or y array should be sent in this z array, not in the output arrays shown below. 
-    :p double x(20) [out]: Liquid phase composition (array of mole fractions) 
-    :p double y(20) [out]: Vapor phase composition (array of mole fractions) 
-    :p int ierr [out]: Error flag
-    :p char herr [out]: Error string (character*255) 
-    :p int herr_length: length of variable ``herr`` (default: 255)
-
-
-    :Flags: 
-
-        ``iflash`` flags
-
-        :0: Flash calculation (T and P known)
-        :1: T and x known, P and y returned
-        :2: T and y known, P and x returned
-        :3: P and x known, T and y returned
-        :4: P and y known, T and x returned If this value is negative, the retrograde point will be returned.
-
-        ``ierr`` flags
-
-        :0: Successful
-        :999: Unsuccessful
 
 
 .. f:subroutine:: SATTPdll (T, P, z, iFlsh, iGuess, D, Dl, Dv, x, y, q, ierr, herr, herr_length)
