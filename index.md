@@ -3,7 +3,7 @@ layout: default
 title: Home
 ---
 
-# Version 10.0!
+# Version 10.0!  
 
 Version 10.0 of REFPROP has been released.  See [see below](#updates-to-version-100) for information about REFPROP version 10.0
 
@@ -22,6 +22,7 @@ The following information gives answers to some of the most frequently asked que
 5. [Updates to Version 10.0](#updates-to-version-100)
 6. [Updates to Version 9.1](#updates-to-version-91)
 7. [Help File](#help-file)
+8. [List of Fluids](#list-of-fluids)
 
 **Using the Program**
 
@@ -200,6 +201,460 @@ machine before launching it, otherwise the help file will appear blank.  The PDF
 
 - [REFPROP.CHM](https://trc.nist.gov/refprop/REFPROP.CHM)
 - [REFPROP.PDF](https://trc.nist.gov/refprop/REFPROP.PDF)
+
+## List of Fluids
+
+This is the list of pure fluids that are included in REFPROP 10:
+
+<table>
+<tr>
+<td><b>Fluid File</b></td><td><b>Name</b></td><td><b>Synonym</b></td><td><b>Chemical Formula</b></td>
+</tr>
+<tr>
+<td>13BUTADIENE.FLD</td><td>1,3-Butadiene</td><td>Vinylethylene</td><td>C4H6</td>
+</tr>
+<tr>
+<td>1BUTENE.FLD</td><td>Butene</td><td>1-Butylene</td><td>C4H8</td>
+</tr>
+<tr>
+<td>1BUTYNE.FLD</td><td>1-Butyne</td><td>Ethylacetylene</td><td>C4H6</td>
+</tr>
+<tr>
+<td>1PENTENE.FLD</td><td>1-Pentene</td><td>Propylethylene</td><td>C5H10</td>
+</tr>
+<tr>
+<td>22DIMETHYLBUTANE.FLD</td><td>2,2-Dimethylbutane</td><td>Neohexane</td><td>C6H14</td>
+</tr>
+<tr>
+<td>23DIMETHYLBUTANE.FLD</td><td>2,3-Dimethylbutane</td><td>Butane, 2,3-dimethyl-</td><td>C6H14</td>
+</tr>
+<tr>
+<td>3METHYLPENTANE.FLD</td><td>3-Methylpentane</td><td>Pentane, 3-methyl-</td><td>C6H14</td>
+</tr>
+<tr>
+<td>ACETONE.FLD</td><td>Acetone</td><td>Dimethyl ketone</td><td>C3H6O</td>
+</tr>
+<tr>
+<td>ACETYLENE.FLD</td><td>Acetylene</td><td>Narcylen, vinylene</td><td>C2H2</td>
+</tr>
+<tr>
+<td>AMMONIA.FLD</td><td>Ammonia</td><td>R-717</td><td>NH3</td>
+</tr>
+<tr>
+<td>ARGON.FLD</td><td>Argon</td><td>R-740</td><td>Ar</td>
+</tr>
+<tr>
+<td>BENZENE.FLD</td><td>Benzene</td><td>Benzene</td><td>C6H6</td>
+</tr>
+<tr>
+<td>BUTANE.FLD</td><td>Butane</td><td>R-600</td><td>C4H10</td>
+</tr>
+<tr>
+<td>C11.FLD</td><td>Undecane</td><td>n-Undecane</td><td>C11H24</td>
+</tr>
+<tr>
+<td>C12.FLD</td><td>Dodecane</td><td>n-Dodecane</td><td>C12H26</td>
+</tr>
+<tr>
+<td>C16.FLD</td><td>Hexadecane</td><td>n-Hexadecane</td><td>C16H34</td>
+</tr>
+<tr>
+<td>C1CC6.FLD</td><td>Methylcyclohexane</td><td>Cyclohexylmethane</td><td>C7H14</td>
+</tr>
+<tr>
+<td>C22.FLD</td><td>Docosane</td><td>n-Docosane</td><td>C22H46</td>
+</tr>
+<tr>
+<td>C2BUTENE.FLD</td><td>cis-Butene</td><td>(Z)-2-Butene</td><td>C4H8</td>
+</tr>
+<tr>
+<td>C3CC6.FLD</td><td>Propylcyclohexane</td><td>Propylcyclohexane</td><td>C9H18</td>
+</tr>
+<tr>
+<td>C4F10.FLD</td><td>Perfluorobutane</td><td>Perfluorobutane</td><td>C4F10</td>
+</tr>
+<tr>
+<td>C5F12.FLD</td><td>Perfluoropentane</td><td>Perfluoropentane</td><td>C5F12</td>
+</tr>
+<tr>
+<td>C6F14.FLD</td><td>Perfluorohexane</td><td>Perfluorohexane</td><td>C6F14</td>
+</tr>
+<tr>
+<td>CF3I.FLD</td><td>R13I1</td><td>HFC-13I1</td><td>CF3I</td>
+</tr>
+<tr>
+<td>CHLORINE.FLD</td><td>Chlorine</td><td>Chlorine</td><td>Cl2</td>
+</tr>
+<tr>
+<td>CHLOROBENZENE.FLD</td><td>Chlorobenzene</td><td>Phenyl chloride</td><td>C6H5Cl</td>
+</tr>
+<tr>
+<td>CO.FLD</td><td>Carbon monoxide</td><td>Carbon oxide</td><td>CO</td>
+</tr>
+<tr>
+<td>CO2.FLD</td><td>Carbon dioxide</td><td>R-744</td><td>CO2</td>
+</tr>
+<tr>
+<td>COS.FLD</td><td>Carbonyl sulfide</td><td>Carbon oxysulfide</td><td>COS</td>
+</tr>
+<tr>
+<td>CYCLOBUTENE.FLD</td><td>Cyclobutene</td><td>Cyclobutan-1,2-diyl</td><td>C4H6</td>
+</tr>
+<tr>
+<td>CYCLOHEX.FLD</td><td>Cyclohexane</td><td>Cyclohexane</td><td>C6H12</td>
+</tr>
+<tr>
+<td>CYCLOPEN.FLD</td><td>Cyclopentane</td><td>C5H10</td><td>C5H10</td>
+</tr>
+<tr>
+<td>CYCLOPRO.FLD</td><td>Cyclopropane</td><td>Trimethylene</td><td>C3H6</td>
+</tr>
+<tr>
+<td>D2.FLD</td><td>Deuterium</td><td>Deuterium</td><td>D2</td>
+</tr>
+<tr>
+<td>D2O.FLD</td><td>Heavy water</td><td>Deuterium oxide</td><td>D2O</td>
+</tr>
+<tr>
+<td>D4.FLD</td><td>D4</td><td>D4</td><td>C8H24O4Si4</td>
+</tr>
+<tr>
+<td>D5.FLD</td><td>D5</td><td>D5</td><td>C10H30O5Si5</td>
+</tr>
+<tr>
+<td>D6.FLD</td><td>D6</td><td>D6</td><td>C12H36Si6O6</td>
+</tr>
+<tr>
+<td>DEA.FLD</td><td>Diethanolamine</td><td>bis(2-hydroxyethyl)Amine</td><td>C4H11NO2</td>
+</tr>
+<tr>
+<td>DECANE.FLD</td><td>Decane</td><td>n-Decane</td><td>C10H22</td>
+</tr>
+<tr>
+<td>DEE.FLD</td><td>Diethyl ether</td><td>Ethyl ether</td><td>C4H10O</td>
+</tr>
+<tr>
+<td>DMC.FLD</td><td>Dimethyl carbonate</td><td>DMC</td><td>C3H6O3</td>
+</tr>
+<tr>
+<td>DME.FLD</td><td>Dimethyl ether</td><td>RE-170</td><td>C2H6O</td>
+</tr>
+<tr>
+<td>EBENZENE.FLD</td><td>Ethylbenzene</td><td>Benzene, ethyl-</td><td>C8H10</td>
+</tr>
+<tr>
+<td>EGLYCOL.FLD</td><td>Ethylene glycol</td><td>Glycol alcohol</td><td>C2H6O2</td>
+</tr>
+<tr>
+<td>ETHANE.FLD</td><td>Ethane</td><td>R-170</td><td>C2H6</td>
+</tr>
+<tr>
+<td>ETHANOL.FLD</td><td>Ethanol</td><td>Methyl carbinol</td><td>C2H6O</td>
+</tr>
+<tr>
+<td>ETHYLENE.FLD</td><td>Ethylene</td><td>R-1150</td><td>C2H4</td>
+</tr>
+<tr>
+<td>ETHYLENEOXIDE.FLD</td><td>Ethylene oxide</td><td>Oxirane</td><td>C2H4O</td>
+</tr>
+<tr>
+<td>FLUORINE.FLD</td><td>Fluorine</td><td>Fluorine</td><td>F2</td>
+</tr>
+<tr>
+<td>H2S.FLD</td><td>Hydrogen sulfide</td><td>Dihydrogen monosulfide</td><td>H2S</td>
+</tr>
+<tr>
+<td>HCL.FLD</td><td>Hydrogen chloride</td><td>Hydrogen chloride</td><td>HCl</td>
+</tr>
+<tr>
+<td>HELIUM.FLD</td><td>Helium</td><td>R-704</td><td>He</td>
+</tr>
+<tr>
+<td>HEPTANE.FLD</td><td>Heptane</td><td>n-Heptane</td><td>C7H16</td>
+</tr>
+<tr>
+<td>HEXANE.FLD</td><td>Hexane</td><td>n-Hexane</td><td>C6H14</td>
+</tr>
+<tr>
+<td>HYDROGEN.FLD</td><td>Hydrogen (normal)</td><td>R-702</td><td>H2</td>
+</tr>
+<tr>
+<td>IBUTENE.FLD</td><td>Isobutene</td><td>Methylpropene</td><td>C4H8</td>
+</tr>
+<tr>
+<td>IHEXANE.FLD</td><td>Isohexane</td><td>Methylpentane</td><td>C6H14</td>
+</tr>
+<tr>
+<td>IOCTANE.FLD</td><td>Isooctane</td><td>Isobutyltrimethylmethane</td><td>C8H18</td>
+</tr>
+<tr>
+<td>IPENTANE.FLD</td><td>Isopentane</td><td>R-601a</td><td>C5H12</td>
+</tr>
+<tr>
+<td>ISOBUTAN.FLD</td><td>Isobutane</td><td>R-600a</td><td>C4H10</td>
+</tr>
+<tr>
+<td>KRYPTON.FLD</td><td>Krypton</td><td>R-784</td><td>Kr</td>
+</tr>
+<tr>
+<td>LJFAR.FLD</td><td>LJF_argon</td><td>LJF</td><td>Ar</td>
+</tr>
+<tr>
+<td>MD2M.FLD</td><td>MD2M</td><td>MD2M</td><td>C10H30Si4O3</td>
+</tr>
+<tr>
+<td>MD3M.FLD</td><td>MD3M</td><td>MD3M</td><td>C12H36Si5O4</td>
+</tr>
+<tr>
+<td>MD4M.FLD</td><td>MD4M</td><td>MD4M</td><td>C14H42O5Si6</td>
+</tr>
+<tr>
+<td>MDM.FLD</td><td>MDM</td><td>MDM</td><td>C8H24O2Si3</td>
+</tr>
+<tr>
+<td>MEA.FLD</td><td>Monoethanolamine</td><td>2-Aminoethanol</td><td>C2H7NO</td>
+</tr>
+<tr>
+<td>METHANE.FLD</td><td>Methane</td><td>R-50</td><td>CH4</td>
+</tr>
+<tr>
+<td>METHANOL.FLD</td><td>Methanol</td><td>Methyl alcohol</td><td>CH4O</td>
+</tr>
+<tr>
+<td>MLINOLEA.FLD</td><td>Methyl linoleate</td><td>Methyl ester(Z,Z)-9,12-octadecadienoic acid</td><td>C19H34O2</td>
+</tr>
+<tr>
+<td>MLINOLEN.FLD</td><td>Methyl linolenate</td><td>Methyl ester linolenic acid</td><td>C19H32O2</td>
+</tr>
+<tr>
+<td>MM.FLD</td><td>MM</td><td>MM</td><td>C6H18OSi2</td>
+</tr>
+<tr>
+<td>MOLEATE.FLD</td><td>Methyl oleate</td><td>Methyl ester oleic acid</td><td>C19H36O2</td>
+</tr>
+<tr>
+<td>MPALMITA.FLD</td><td>Methyl palmitate</td><td>Methyl ester palmitic acid</td><td>C17H34O2</td>
+</tr>
+<tr>
+<td>MSTEARAT.FLD</td><td>Methyl stearate</td><td>Methyl ester stearic acid</td><td>C19H38O2</td>
+</tr>
+<tr>
+<td>MXYLENE.FLD</td><td>m-Xylene</td><td>m-Xylene</td><td>C8H10</td>
+</tr>
+<tr>
+<td>N2O.FLD</td><td>Nitrous oxide</td><td>R-744A</td><td>N2O</td>
+</tr>
+<tr>
+<td>NEON.FLD</td><td>Neon</td><td>R-720</td><td>Ne</td>
+</tr>
+<tr>
+<td>NEOPENTN.FLD</td><td>Neopentane</td><td>Tetramethylmethane</td><td>C5H12</td>
+</tr>
+<tr>
+<td>NF3.FLD</td><td>Nitrogen trifluoride</td><td>Trifluoroamine</td><td>F3N</td>
+</tr>
+<tr>
+<td>NITROGEN.FLD</td><td>Nitrogen</td><td>R-728</td><td>N2</td>
+</tr>
+<tr>
+<td>NONANE.FLD</td><td>Nonane</td><td>n-Nonane</td><td>C9H20</td>
+</tr>
+<tr>
+<td>NOVEC649.FLD</td><td>Novec 649, 1230</td><td>Dodecafluoro-2-methylpentan-3-one</td><td>C6F12O</td>
+</tr>
+<tr>
+<td>OCTANE.FLD</td><td>Octane</td><td>n-Octane</td><td>C8H18</td>
+</tr>
+<tr>
+<td>ORTHOHYD.FLD</td><td>Orthohydrogen</td><td>R-702</td><td>H2</td>
+</tr>
+<tr>
+<td>OXYGEN.FLD</td><td>Oxygen</td><td>R-732</td><td>O2</td>
+</tr>
+<tr>
+<td>OXYLENE.FLD</td><td>o-Xylene</td><td>o-Xylene</td><td>C8H10</td>
+</tr>
+<tr>
+<td>PARAHYD.FLD</td><td>Parahydrogen</td><td>R-702p</td><td>H2</td>
+</tr>
+<tr>
+<td>PENTANE.FLD</td><td>Pentane</td><td>R-601</td><td>C5H12</td>
+</tr>
+<tr>
+<td>PROPADIENE.FLD</td><td>Propadiene</td><td>Allene</td><td>C3H4</td>
+</tr>
+<tr>
+<td>PROPANE.FLD</td><td>Propane</td><td>R-290</td><td>C3H8</td>
+</tr>
+<tr>
+<td>PROPYLEN.FLD</td><td>Propylene</td><td>R-1270</td><td>C3H6</td>
+</tr>
+<tr>
+<td>PROPYLENEOXIDE.FLD</td><td>Propylene oxide</td><td>Methyloxirane</td><td>C3H6O</td>
+</tr>
+<tr>
+<td>PROPYNE.FLD</td><td>Propyne</td><td>Methyl acetylene</td><td>C3H4</td>
+</tr>
+<tr>
+<td>PXYLENE.FLD</td><td>p-Xylene</td><td>p-Xylene</td><td>C8H10</td>
+</tr>
+<tr>
+<td>R11.FLD</td><td>R11</td><td>CFC-11</td><td>CCl3F</td>
+</tr>
+<tr>
+<td>R1123.FLD</td><td>R1123</td><td>HFO-1123</td><td>C2HF3</td>
+</tr>
+<tr>
+<td>R113.FLD</td><td>R113</td><td>CFC-113</td><td>C2Cl3F3</td>
+</tr>
+<tr>
+<td>R114.FLD</td><td>R114</td><td>CFC-114</td><td>C2Cl2F4</td>
+</tr>
+<tr>
+<td>R115.FLD</td><td>R115</td><td>CFC-115</td><td>C2ClF5</td>
+</tr>
+<tr>
+<td>R116.FLD</td><td>R116</td><td>FC-116</td><td>C2F6</td>
+</tr>
+<tr>
+<td>R12.FLD</td><td>R12</td><td>CFC-12</td><td>CCl2F2</td>
+</tr>
+<tr>
+<td>R1216.FLD</td><td>R1216</td><td>Hexafluoropropylene</td><td>C3F6</td>
+</tr>
+<tr>
+<td>R1224YDZ.FLD</td><td>R1224yd(Z)</td><td>HCFO-1224yd(Z)</td><td>C3HClF4</td>
+</tr>
+<tr>
+<td>R123.FLD</td><td>R123</td><td>HCFC-123</td><td>C2HCl2F3</td>
+</tr>
+<tr>
+<td>R1233ZDE.FLD</td><td>R1233zd(E)</td><td>HFO-1233zd(E)</td><td>C3H2ClF3</td>
+</tr>
+<tr>
+<td>R1234YF.FLD</td><td>R1234yf</td><td>R-1234yf</td><td>C3F4H2</td>
+</tr>
+<tr>
+<td>R1234ZEE.FLD</td><td>R1234ze(E)</td><td>HFO-1234ze(E)</td><td>C3F4H2</td>
+</tr>
+<tr>
+<td>R1234ZEZ.FLD</td><td>R1234ze(Z)</td><td>R-1234ze(Z)</td><td>C3F4H2</td>
+</tr>
+<tr>
+<td>R124.FLD</td><td>R124</td><td>HCFC-124</td><td>C2HClF4</td>
+</tr>
+<tr>
+<td>R1243ZF.FLD</td><td>R1243zf</td><td>HFO-1243zf</td><td>C3H3F3</td>
+</tr>
+<tr>
+<td>R125.FLD</td><td>R125</td><td>HFC-125</td><td>C2HF5</td>
+</tr>
+<tr>
+<td>R13.FLD</td><td>R13</td><td>CFC-13</td><td>CClF3</td>
+</tr>
+<tr>
+<td>R1336MZZZ.FLD</td><td>R1336mzz(Z)</td><td>HFO-1336mzz(Z)</td><td>C4H2F6</td>
+</tr>
+<tr>
+<td>R134A.FLD</td><td>R134a</td><td>HFC-134a</td><td>C2H2F4</td>
+</tr>
+<tr>
+<td>R14.FLD</td><td>R14</td><td>FC-14</td><td>CF4</td>
+</tr>
+<tr>
+<td>R141B.FLD</td><td>R141b</td><td>HCFC-141b</td><td>C2H3Cl2F</td>
+</tr>
+<tr>
+<td>R142B.FLD</td><td>R142b</td><td>HCFC-142b</td><td>C2H3ClF2</td>
+</tr>
+<tr>
+<td>R143A.FLD</td><td>R143a</td><td>HFC-143a</td><td>C2H3F3</td>
+</tr>
+<tr>
+<td>R150.FLD</td><td>Dichloroethane</td><td>R-150</td><td>C2H4Cl2</td>
+</tr>
+<tr>
+<td>R152A.FLD</td><td>R152a</td><td>HFC-152a</td><td>C2H4F2</td>
+</tr>
+<tr>
+<td>R161.FLD</td><td>R161</td><td>Ethyl fluoride</td><td>C2H5F</td>
+</tr>
+<tr>
+<td>R21.FLD</td><td>R21</td><td>HCFC-21</td><td>CHCl2F</td>
+</tr>
+<tr>
+<td>R218.FLD</td><td>R218</td><td>Perfluoropropane</td><td>C3F8</td>
+</tr>
+<tr>
+<td>R22.FLD</td><td>R22</td><td>HCFC-22</td><td>CHClF2</td>
+</tr>
+<tr>
+<td>R227EA.FLD</td><td>R227ea</td><td>HFC-227ea</td><td>C3HF7</td>
+</tr>
+<tr>
+<td>R23.FLD</td><td>R23</td><td>HFC-23</td><td>CHF3</td>
+</tr>
+<tr>
+<td>R236EA.FLD</td><td>R236ea</td><td>HFC-236ea</td><td>C3H2F6</td>
+</tr>
+<tr>
+<td>R236FA.FLD</td><td>R236fa</td><td>HFC-236fa</td><td>C3H2F6</td>
+</tr>
+<tr>
+<td>R245CA.FLD</td><td>R245ca</td><td>HFC-245ca</td><td>C3H3F5</td>
+</tr>
+<tr>
+<td>R245FA.FLD</td><td>R245fa</td><td>HFC-245fa</td><td>C3H3F5</td>
+</tr>
+<tr>
+<td>R32.FLD</td><td>R32</td><td>HFC-32</td><td>CH2F2</td>
+</tr>
+<tr>
+<td>R365MFC.FLD</td><td>R365mfc</td><td>HFC-365mfc</td><td>C4H5F5</td>
+</tr>
+<tr>
+<td>R40.FLD</td><td>R40</td><td>Methyl chloride</td><td>CH3Cl</td>
+</tr>
+<tr>
+<td>R41.FLD</td><td>R41</td><td>HFC-41</td><td>CH3F</td>
+</tr>
+<tr>
+<td>RC318.FLD</td><td>RC318</td><td>FC-C318</td><td>C4F8</td>
+</tr>
+<tr>
+<td>RE143A.FLD</td><td>RE143a</td><td>HFE-143a</td><td>C2H3F3O</td>
+</tr>
+<tr>
+<td>RE245CB2.FLD</td><td>RE245cb2</td><td>HFE-245cb2</td><td>C3H3F5O</td>
+</tr>
+<tr>
+<td>RE245FA2.FLD</td><td>RE245fa2</td><td>HFE-245fa2</td><td>C3H3F5O</td>
+</tr>
+<tr>
+<td>RE347MCC.FLD</td><td>RE347mcc (HFE-7000)</td><td>HFE-7000</td><td>C4H3F7O</td>
+</tr>
+<tr>
+<td>SF6.FLD</td><td>Sulfur hexafluoride</td><td>Sulfur fluoride</td><td>SF6</td>
+</tr>
+<tr>
+<td>SO2.FLD</td><td>Sulfur dioxide</td><td>R-764</td><td>O2S</td>
+</tr>
+<tr>
+<td>T2BUTENE.FLD</td><td>trans-Butene</td><td>(E)-2-Butene</td><td>C4H8</td>
+</tr>
+<tr>
+<td>TOLUENE.FLD</td><td>Toluene</td><td>Toluene</td><td>C7H8</td>
+</tr>
+<tr>
+<td>VINYLCHLORIDE.FLD</td><td>Vinyl chloride</td><td>R-1140</td><td>C2H3Cl</td>
+</tr>
+<tr>
+<td>WATER.FLD</td><td>Water</td><td>R-718</td><td>H2O</td>
+</tr>
+<tr>
+<td>XENON.FLD</td><td>Xenon</td><td>Xenon</td><td>Xe</td>
+</tr>
+</table>
 
 # Using the Program
 
