@@ -397,9 +397,6 @@ This is the list of pure fluids that are included in REFPROP 10:
 <td>KRYPTON.FLD</td><td>Krypton</td><td>R-784</td><td>Kr</td>
 </tr>
 <tr>
-<td>LJFAR.FLD</td><td>LJF_argon</td><td>LJF</td><td>Ar</td>
-</tr>
-<tr>
 <td>MD2M.FLD</td><td>MD2M</td><td>MD2M</td><td>C10H30Si4O3</td>
 </tr>
 <tr>
