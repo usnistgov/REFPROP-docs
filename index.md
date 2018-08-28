@@ -204,7 +204,7 @@ machine before launching it, otherwise the help file will appear blank.  The PDF
 
 ## List of Fluids
 
-This is the list of pure fluids that are included in REFPROP 10:
+This is the list of pure fluids that are included in REFPROP 10 (a more comprehensive list is available in the Refprop 10 Excel file REFPROP.XLS):
 
 <table>
 <tr>
