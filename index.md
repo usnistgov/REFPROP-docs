@@ -17,7 +17,7 @@ The following information gives answers to some of the most frequently asked que
 
 1. [Getting Help](#getting-help)
 2. [Installation Problems](#installation-problems)
-3. [OSX/linux](#osx-linux)
+3. [OSX and linux](#osx-and-linux)
 4. [REFPROP is a Program, not a Database Containing Measurements](#refprop-is-a-program-not-a-database-containing-measurements)
 5. [Referencing the REFPROP Program in Publications](#referencing-the-refprop-program-in-publications)
 6. [Updates to Version 10.0](#updates-to-version-100)
@@ -118,9 +118,9 @@ regsvr32 c:\Windows\SysWOW64\mshflxgd.ocx
 
 If an error message occurs referencing the file REFPROP.MSI, try the following: Press your Start button, and then click on "Run …". Type in Regedit. If it does not start at the top of registry, scroll to the top and click on "My Computer". Search for "Refprop 8.1.msi", or whatever msi file it is complaining about in the install error message. You should find something like ``HKEY_CLASSES_ROOT\ Installer\ Products\ 6398724E8B370524FA88122E26945D8F``. For every occurrence of the item in the registry, you should either rename or delete it. To rename, simply add an underscore in the sequence of numbers, such as "_6398724...". Then try reinstalling the program.
 
-## OSX/linux
+## OSX and linux
 
-For users on OSX or linux, you are invited to compile REFPROP yourself with the cmake-based build system provided at https://github.com/usnistgov/REFPROP-cmake.  You'll need to install REFPROP onto a windows machine to get access to the ``FLUIDS``, ``MIXTURES``, and ``FORTRAN`` folders. Any issues with compilation should be reported as an issue in that repository: https://github.com/usnistgov/REFPROP-cmake/issues.
+For users on OSX or linux, you are invited to compile REFPROP yourself with the cmake-based build system provided at [https://github.com/usnistgov/REFPROP-cmake](https://github.com/usnistgov/REFPROP-cmake).  You'll need to install REFPROP onto a windows machine to get access to the ``FLUIDS``, ``MIXTURES``, and ``FORTRAN`` folders. Any issues with compilation should be reported as an issue in that repository: [https://github.com/usnistgov/REFPROP-cmake/issues](https://github.com/usnistgov/REFPROP-cmake/issues).
 
 If you are feeling brave, you can also try to install REFPROP into the ``wine`` environment (a windows-emulation environment).  Once you have installed ``wine`` (via homebrew on OSX, or via package manager of your linux distribution, google for more information), you can install REFPROP (along with its GUI) into wine with (for instance with REFPROP 10):
 
@@ -128,8 +128,7 @@ If you are feeling brave, you can also try to install REFPROP into the ``wine`` 
 wine NIST2310.exe
 ```
 
-To force 32-bit mode on 64-bit OS (recommended for REFPROP, it doesn't seem to work in a 64-bit wine environment) see https://askubuntu.com/questions/136714/how-to-force-wine-into-acting-like-32-bit-windows-on-64-bit-ubuntu
-
+To force 32-bit mode on 64-bit OS (recommended for REFPROP, it doesn't seem to work in a 64-bit wine environment) see [how to foce wine into acting like 32-bit windows on 64-bit ubuntu](https://askubuntu.com/questions/136714/how-to-force-wine-into-acting-like-32-bit-windows-on-64-bit-ubuntu)
 
 ## REFPROP is a Program, not a Database Containing Measurements
 The REFPROP "database" is actually a program and does not contain any experimental information, aside from the critical and triple points of the pure fluids. The program uses equations for the thermodynamic and transport properties to calculate the state points of the fluid or mixture. These equations are the most accurate equations available worldwide. A link to one of these equations for R-125 is given below. Their high accuracy is obtained through many coefficients in the equations, and thus the calculation speed will be slower than other equations such as the Peng-Robinson cubic equations. The equations are generally valid over the entire vapor and liquid regions of the fluid, including supercritical states; the upper temperature limit is usually near the point of decomposition of the fluid, and the upper pressure (or density) limit is defined by the melting line of the substance.
