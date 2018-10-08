@@ -69,6 +69,8 @@ In addition to this page, further answers can be found at GitHub: [REFPROP-issue
 
 - [R507A.PPF](https://trc.nist.gov/refprop/FAQ/R507A.PPF)
 
+2.  The function RPVersion does not return the correct output.
+
 ## Installation Problems.
 
 ### Upgrading from 9.x
