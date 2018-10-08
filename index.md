@@ -70,6 +70,7 @@ In addition to this page, further answers can be found at GitHub: [REFPROP-issue
 - [R507A.PPF](https://trc.nist.gov/refprop/FAQ/R507A.PPF)
 
 2.  The function RPVersion does not return the correct output.
+3.  Valid liquid-phase states below the triple point of water may return a message that the point is out of bounds or in the solid phase given certain inputs such as pressure-enthalpy.
 
 ## Installation Problems.
 
