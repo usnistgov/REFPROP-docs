@@ -15,45 +15,46 @@ The following information gives answers to some of the most frequently asked que
 
 1. [Getting Help](#getting-help)
 2. [Errors in Version 10](#errors-in-version-10)
-3. [Installation Problems](#installation-problems)
-4. [OSX and linux](#osx-and-linux)
-5. [REFPROP is a Program, not a Database Containing Measurements](#refprop-is-a-program-not-a-database-containing-measurements)
-6. [Referencing the REFPROP Program in Publications](#referencing-the-refprop-program-in-publications)
-7. [Updates to Version 10.0](#updates-to-version-100)
-8. [Updates to Version 9.1](#updates-to-version-91)
-9. [Help File](#help-file)
-10. [List of Fluids](#list-of-fluids)
+3. [Purchasing REFPROP](#purchasing-refprop)
+4. [Installation Problems](#installation-problems)
+5. [OSX and linux](#osx-and-linux)
+6. [REFPROP is a Program, not a Database Containing Measurements](#refprop-is-a-program-not-a-database-containing-measurements)
+7. [Referencing the REFPROP Program in Publications](#referencing-the-refprop-program-in-publications)
+8. [Updates to Version 10.0](#updates-to-version-100)
+9. [Updates to Version 9.1](#updates-to-version-91)
+10. [Help File](#help-file)
+11. [List of Fluids](#list-of-fluids)
 
 **Using the Program**
 
-11. [Reference States (enthalpy and entropy differences)](#reference-states-enthalpy-and-entropy-differences)
-12. [Multiple and Metastable States](#multiple-and-metastable-states)
-13. [Intro to Pure Fluids and 2-Phase States](#intro-to-pure-fluids-and-2-phase-states)
-14. [Intro to Mixtures and 2-Phase States](#intro-to-mixtures-and-2-phase-states)
+12. [Reference States (enthalpy and entropy differences)](#reference-states-enthalpy-and-entropy-differences)
+13. [Multiple and Metastable States](#multiple-and-metastable-states)
+14. [Intro to Pure Fluids and 2-Phase States](#intro-to-pure-fluids-and-2-phase-states)
+15. [Intro to Mixtures and 2-Phase States](#intro-to-mixtures-and-2-phase-states)
 
 **Programming**
 
-15. [Changing Fluids and Calling SETUP Multiple Times](#changing-fluids-and-calling-setup-multiple-times)
-16. [Calculation of the Critical Point and Saturation States in the Critical Region](#calculation-of-the-critical-point-and-saturation-states-in-the-critical-region)
-17. [Calculation of Phase Diagrams for Plotting Purposes](#calculation-of-phase-diagrams-for-plotting-purposes)
-18. [FLSH Routines and Metastable States](#flsh-routines-and-metastable-states)
+16. [Changing Fluids and Calling SETUP Multiple Times](#changing-fluids-and-calling-setup-multiple-times)
+17. [Calculation of the Critical Point and Saturation States in the Critical Region](#calculation-of-the-critical-point-and-saturation-states-in-the-critical-region)
+18. [Calculation of Phase Diagrams for Plotting Purposes](#calculation-of-phase-diagrams-for-plotting-purposes)
+19. [FLSH Routines and Metastable States](#flsh-routines-and-metastable-states)
 
 **Error Messages**
 
-19. [Convergence Failures and Forcing Phase Calculations](#convergence-failures-and-forcing-phase-calculations)
-20. [Mixture Error Messages](#mixture-error-messages)
+20. [Convergence Failures and Forcing Phase Calculations](#convergence-failures-and-forcing-phase-calculations)
+21. [Mixture Error Messages](#mixture-error-messages)
 
 **Fluids**
 
-21. [List of fluids](#list-of-fluids)
-22. [GERG-2008 Equation of State for Natural Gas Mixtures](#gerg-2008-equation-of-state-for-natural-gas-mixtures)
-23. [HFO-1234yf, 1234ze(E), 1234ze(Z), 1233zd(E), and Refrigerant Mixtures](#hfo-1234yf-1234zee-1234zez-1233zde-and-refrigerant-mixtures)
-24. [Humid Air](#humid-air)
-25. [Mixture Models](#mixture-models)
-26. [Solids](#solids)
-27. [Transport Properties for Nitrogen, Oxygen, Argon, and Air](#transport-properties-for-nitrogen-oxygen-argon-and-air)
-28. [Transport Properties for Pseudo-pure Fluids; Adding Pure Fluids to a Mixture Setup](#transport-properties-for-pseudo-pure-fluids-adding-pure-fluids-to-a-mixture-setup)
-29. [Required Fluids for Distribution](#required-fluids-for-distribution)
+22. [List of fluids](#list-of-fluids)
+23. [GERG-2008 Equation of State for Natural Gas Mixtures](#gerg-2008-equation-of-state-for-natural-gas-mixtures)
+24. [HFO-1234yf, 1234ze(E), 1234ze(Z), 1233zd(E), and Refrigerant Mixtures](#hfo-1234yf-1234zee-1234zez-1233zde-and-refrigerant-mixtures)
+25. [Humid Air](#humid-air)
+26. [Mixture Models](#mixture-models)
+27. [Solids](#solids)
+28. [Transport Properties for Nitrogen, Oxygen, Argon, and Air](#transport-properties-for-nitrogen-oxygen-argon-and-air)
+29. [Transport Properties for Pseudo-pure Fluids; Adding Pure Fluids to a Mixture Setup](#transport-properties-for-pseudo-pure-fluids-adding-pure-fluids-to-a-mixture-setup)
+30. [Required Fluids for Distribution](#required-fluids-for-distribution)
 
 **Linking with other Applications**
 
@@ -72,6 +73,10 @@ In addition to this page, further answers can be found at GitHub: [REFPROP-issue
 2.  The function RPVersion does not return the correct output.
 3.  Valid liquid-phase states below the triple point of water may return a message that the point is out of bounds or in the solid phase given certain inputs such as pressure-enthalpy.
 4.  Calling ABFLSH directly with mass inputs for the input/output properties can result in incorrect output values for energy, enthalpy, entropy, Cv, and Cp, however, the density will be returned correctly (in mass units).
+
+## Purchasing REFPROP
+
+There are three ways to purchase REFPROP:  For your use only, for company wide use, or for use in distribution in your code.  These are all explained at https://www.nist.gov/srd/refprop.  If you purchase the program for your use only, the copy you will receive can be installed on all machines that you use (not including servers where others can also access the program).  You do not need to purchase a copy for each machine you own.  There is no protection in the REFPROP installer or program, we trust that you will use the program and license appropriately.
 
 ## Installation Problems.
 
