@@ -71,6 +71,7 @@ In addition to this page, further answers can be found at GitHub: [REFPROP-issue
 
 2.  The function RPVersion does not return the correct output.
 3.  Valid liquid-phase states below the triple point of water may return a message that the point is out of bounds or in the solid phase given certain inputs such as pressure-enthalpy.
+4.  Calling ABFLSH directly with mass inputs for the input/output properties can result in incorrect output values for energy, enthalpy, entropy, Cv, and Cp, however, the density will be returned correctly (in mass units).
 
 ## Installation Problems.
 
