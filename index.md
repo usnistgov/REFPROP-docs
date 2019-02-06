@@ -56,6 +56,10 @@ The following information gives answers to some of the most frequently asked que
 29. [Transport Properties for Pseudo-pure Fluids; Adding Pure Fluids to a Mixture Setup](#transport-properties-for-pseudo-pure-fluids-adding-pure-fluids-to-a-mixture-setup)
 30. [Required Fluids for Distribution](#required-fluids-for-distribution)
 
+**Excel**
+
+31. [Resolving Problems Linking with Excel](#resolving-problems-linking-with-excel)
+
 **Linking with other Applications**
 
 [This part has moved, click here to go to the new site](https://github.com/usnistgov/REFPROP-wrappers)
@@ -78,7 +82,7 @@ In addition to this page, further answers can be found at GitHub: [REFPROP-issue
 
 There are three ways to purchase REFPROP:  For your use only, for company wide use, or for use in distribution in your code.  These are all explained at https://www.nist.gov/srd/refprop.  If you purchase the program for your use only, the copy you will receive can be installed on all machines that you use (not including servers where others can also access the program).  You do not need to purchase a copy for each machine you own.  There is no protection in the REFPROP installer or program, we trust that you will use the program and license appropriately.
 
-## Installation Problems.
+## Installation Problems
 
 ### Upgrading from 9.x
 
@@ -150,7 +154,7 @@ The REFPROP "database" is actually a program and does not contain any experiment
 
 - [Equation of State for HFC-125](https://trc.nist.gov/refprop/FAQ/R125.PDF)
 
-## Referencing the REFPROP Program in Publications.
+## Referencing the REFPROP Program in Publications
 The following reference can be used to cite the REFPROP program in publications:
 
 Lemmon, E.W., Bell, I.H., Huber, M.L., McLinden, M.O.&nbsp; NIST Standard Reference Database 23:&nbsp; Reference Fluid Thermodynamic and Transport Properties-REFPROP, Version 10.0, National Institute of Standards and Technology, Standard Reference Data Program, Gaithersburg, 2018.
@@ -702,11 +706,11 @@ OTH !default reference state
 ```
 These lines will set the enthalpy to 10000 J/mol and the entropy to 100 J/mol-K at 300 K and 1 kPa.&nbsp; These values can be changed to any other desired values.
 
-## Multiple and Metastable States.
+## Multiple and Metastable States
 
 There are cases where an input state point can result in two separate valid states.&nbsp; The most common is temperature-enthalpy inputs.&nbsp; Viewing a P-H diagram (or a T-H diagram with very high pressures) will help show how there can be two valid states points for a given input.&nbsp; For example, nitrogen at 140 K and 1000 J/mol can exist at 6.85 MPa and at 60.87 MPa.&nbsp; When this situation occurs, Refprop returns the state with the higher density.&nbsp; For these state points , the character '&lt;' or '&gt;' can be added to the number (before or after) to find the lower or upper root, respectively.&nbsp; The example file REFPROP.XLS contains new code and an example of its use. These same characters can also be used to find metastable fluid states for temperature and pressure inputs.&nbsp; For example, the saturation pressure for nitrogen at 100 K is 0.778 MPa.&nbsp; Inputs of 100 K and 0.777 MPa will return a vapor state, but inputs of '100' for temperature and '0.777&gt;' for pressure will return a metastable liquid state.&nbsp; See [below](#convergence-failures-and-forcing-phase-calculations) for additional information about the use of the '&gt;' and '&lt;' symbols.
 
-## Intro to Pure Fluids and 2-Phase States. 
+## Intro to Pure Fluids and 2-Phase States
 Defining the state of a fluid normally requires two inputs, such as pressure-temperature, temperature-enthalpy, pressure-enthalpy, and so forth. This is true for the single-phase states and for two-phase solutions with mixtures of fluids. (Some inputs may have [two solutions](#multiple-and-metastable-states), this was described earlier.) For pure fluids, using inputs of pressure and temperature is not sufficient to describe the state of the fluid since both remain constant between the liquid and vapor states. Some other property, such as quality, enthalpy, or density, is required to specify the two-phase state point for the pure fluid. Once the quality is known, some of the other thermodynamic properties can be calculated with the equation _M=q*M<sub>vap</sub> + (1-q)*M<sub>liq</sub>_, where _M_ is the property of interest and _q_ is the quality. There are several properties that cannot be calculated this way, including the heat capacities, the speed of sound, and the transport properties. These quantities are undefined in the two-phase region for any fluid, except _Cv_, which is defined very differently than one would expect. There are some people who use a different formula to calculate the speed of sound in the two phase, but it is applicable only in certain specific applications. In these situations, it is best to consider the properties of the liquid and of the vapor separately, and how they interact with the application being developed.
 
 As an example, consider _Cp_, which could be calculated from any equation of state using the quality, but thermodynamically is not defined for a two-phase mixture. _Cp_ is the heat capacity along an isobaric process and is equal to _dH/dT_ at constant _p_. Since pressure and temperature do not change across the two phase for a pure fluid, then that means _Cp_ would be equal to infinity because the heat capacity changes but the temperature does not, thus the definition makes it thermodynamically impossible to calculate it.&nbsp; The only place that _Cp_ can be infinity is at the critical point.
@@ -740,20 +744,20 @@ call SATSPLNdll (x, ierr, herr, 255)
 
 In Excel or MATLAB, the call to SATSPLN is included in the code, but is deactivated. To activate this call, enter the code (press Alt-F11 in Excel) and search for this subroutine in the file (under “Modules” in Excel). Then read the comments above the line and activate the routine by removing the first character on that line. You may need to exit and restart Excel or MATLAB for this to work.
 
-## Calculation of Phase Diagrams for Plotting Purposes.
+## Calculation of Phase Diagrams for Plotting Purposes
 The calculation of the entire phase diagram can be difficult with the routines that require either temperature or pressure as inputs due to the second root in the retrograde region. An alternative routine called SATGV is available that makes this process simple through the use of density as the input; see the file Manual.txt in your Refprop\Fortran directory for a list of the inputs and outputs. In order to use this routine, you must first call subroutine SATSPLN, [see the details above](#calculation-of-the-critical-point-and-saturation-states-in-the-critical-region). Subroutine SATGV can then be called like this:
 ```
 call SATGV (t,p,z,vf,d,1,6,1,rhox,rhoy,x,y,ierr,herr)
 ```
 The inputs are composition in the z array and density (either vapor or liquid phase) in the variable d. The variable vf is double precision and should be set to 1.0. The routine will then return the temperature and pressure at this density. To obtain data points for the entire phase diagram, call this routine starting at a very low density in the vapor phase, and slowly increment the density until you are deep in the liquid phase at low temperatures. The other outputs are not necessary for this application.
 
-## FLSH Routines and Metastable States.
+## FLSH Routines and Metastable States
 
 For subroutines such as ENTHAL, ENTRO, CVCP, etc., where temperature and density are the input properties, the output property data will differ from those returned when using routines such as PHFLSH or TPFLSH when in the two-phase region.&nbsp; Any routine (except TDFLSH) that uses temperature and density as inputs will return what appears to be erroneous results in the two-phase region.&nbsp; These results&nbsp;actually show calculations directly from the equation of state without taking into account the fact that the mixture has split into two phases.&nbsp; The results would be valid for such situations where a substance is heated beyond its boiling point (a metastable state), but without boiling (such as water in a glass container being heated in a microwave).&nbsp; The results eventually end up at the spinodal, beyond which it is no longer possible to increase the temperature without boiling the liquid.&nbsp; Thus, for typical results these routines should never be used for two-phase calculations, rather the FLSH routines should be called.&nbsp; The flash routines return the properties in the liquid and vapor states, and these can be used to call routines such as THERM, CVCP, TRNPRP, etc., with the associated liquid or vapor density at the saturated temperature.
 
 # Error Messages
 
-## Convergence Failures and Forcing Phase Calculations.
+## Convergence Failures and Forcing Phase Calculations
 
 When using mixtures, error messages will sometimes be reported when Refprop fails to converge during an iteration, usually during the calculation of a VLE state close to the critical point.&nbsp; In some situations you may know that the point is in the single phase and wish to force the calculation in spite of the error message.&nbsp; This can be done with the '&gt;' and '&lt;' symbols.&nbsp; When one of these is attached to a number in the Specified State Points table, Refprop will assume that the point is in the liquid phase when '&gt;' is attached and in the vapor phase when '&lt;' is attached.&nbsp; Care must be taken because metastable states will be returned in the point is in the two phase.&nbsp; When a state point is above the critical point but Refprop reports a nonconvergence, you can use either of these symbols to force the calculation.&nbsp; For example, a 0.5/0.5 mixture of methane/propane will report a nonconvergence at 300 K and 10 MPa.&nbsp; A P-rho diagram shows that the point is above the critical pressure.&nbsp; Entering '300' for temperature and '10&gt;' for pressure will return the valid state point at 10.826 mol/l. For programming convergence errors, see [above](#calculation-of-the-critical-point-and-saturation-states-in-the-critical-region).
 
@@ -766,7 +770,7 @@ The error message &quot;<span style='color:red'>No mixture data are available fo
 
 The following is a list of fluids that come with REFPROP
 
-## GERG-2008 Equation of State for Natural Gas Mixtures.
+## GERG-2008 Equation of State for Natural Gas Mixtures
 The current equation of state for calculating the properties of natural gas mixtures is the GERG-2008 equation (GERG is the European Gas Research Group). This equation is based on an excess Helmholtz energy approach using pure fluid equations of state (either those specified by GERG, or the current standards that have slightly higher accuracies) and a mixture model that specifies the excess contribution. The 2008 version is an extension of the 2004 version, containing the additional fluids nonane, decane, and hydrogen sulfide in addition to methane, nitrogen, carbon dioxide, ethane, propane, n-butane, isobutane, n-pentane, isopentane, n-hexane, n-heptane, n-octane, hydrogen, oxygen, carbon monoxide, water, helium, and argon. The 2008 edition also replaced the pure fluid equations of state for isopentane and carbon monoxide with published versions. These two models are fully described in the following publications:
 
 Kunz, O. and Wagner, W., The GERG-2008 Wide-Range Equation of State for Natural Gases and Other Mixtures: An Expansion of GERG-2004, to be submitted to J. Chem. Eng. Data, 2012.
@@ -775,7 +779,7 @@ Kunz, O., Klimeck, R., Wagner, W., and Jaescke, M., The GERG-2004 Wide-Range Equ
 
 The natural gas equation of state has been expanded to include ethylene, propylene, methanol, ethanol, toluene, benzene, cyclohexane, sulfur dioxide, ammonia, dodecane, acetone, and butylene. When selecting the option to use the full GERG-2008 equation of state (either through the GUI or by calling the “GERG2004” subroutine), the use of these additional fluids is still allowed. This is not the same as when the AGA-8 equation of state is selected, in which case only the original 21 fluids (same as those in the GERG-2008 model) are allowed.
 
-## HFO-1234yf, 1234ze(E), 1234ze(Z), 1233zd(E), and Refrigerant Mixtures.
+## HFO-1234yf, 1234ze(E), 1234ze(Z), 1233zd(E), and Refrigerant Mixtures
 If you are using Refprop 9.0 or 9.1 (this section does not apply to version 10), equations of state are now available for these fluids. R1234yf and R1234ze were included in versions 9.0 and 9.1, but version 9.0 incorrectly used the NBP reference state instead of IIR, as done with all other refrigerants.  The file name for R1234ze(E) has been renamed as ``R1234ZEE.FLD`` to avoid confusion with R1234ze(Z). You should delete your old ``R1234ZE.FLD`` file when downloading the fluid file for R1234ze(E) (the contents of the fluid file have not changed). The fluid files are located below and should be placed in your ``Refprop\Fluids`` directory for both versions 9.0 and 9.1.  This fluid file works with both versions 9.0 and 9.1 of Refprop.  R1234yf only needs to be downloaded if you are using version 9.0. The fluid files included in version 9.0 incorrectly used the NBP reference state.
 
 - [R1234YF.FLD](https://trc.nist.gov/refprop/FAQ/R1234YF.FLD) (uploaded June 6, 2012 with updated transport equations)
@@ -789,30 +793,62 @@ New refrigerant predefined mixture files are available, such as that for R-448A.
 
 «On November 10, 2015, we released a new mixture file (``HMX.BNC``) that now contains mixing parameters for every binary of the fluids R-32, R-125, R-134a, R-1234yf, and R-1234ze(E). With these, mixtures such as R-448A that contain all five of these no longer use the predictive methods to get the interaction parameters. This file works with both versions 9.0 and 9.1 of Refprop. If you would like this file, please contact us. 
 
-## Humid Air.
+## Humid Air
 Although Refprop allows mixtures of nitrogen, argon, oxygen, and water as a consequence from the addition of the new natural gas mixture model, calculations for moist air have not been tested yet.&nbsp; It is likely that calculated values are reasonable, however, Refprop may not return results because the saturation routines may fail.&nbsp; The program calls the saturation routines to determine if the state is vapor, liquid, or two-phase.&nbsp; If you know that your state point is in the vapor phase, you can avoid the call to the saturation routines by using TPRHO instead of TPFLSH.&nbsp; The Fortran file FLSH_SUB.FOR gives additional information concerning the inputs to these routines.&nbsp; In the graphical interface, see the section [below](#convergence-failures-and-forcing-phase-calculations) on forcing phase calculations. A moist air mixture could be made up starting with the composition of dry air used in Refprop:&nbsp; 0.7812 nitrogen, 0.0092 argon, and 0.2096 oxygen (on a mole basis).&nbsp; A small amount of water could be added to this composition and then normalized.
 
-## Mixture Models.
+## Mixture Models
 The LJ6 mixture model has been replaced with KW0. This was necessary to implement a more efficient and stable algorithm. For most situations, this change will be completely transparent, and calculated values will not change. For those that have fitted mixture parameters to their own data (e.g., for proprietary mixtures), you can simply insert the lines from your old ``HMX.BNC`` file for a particular binary mixture into the new ``HMX.BNC`` file that comes with 9.1 (be sure that no other block exists for that mixture). When running SETUP, you may receive an error message about the LJ6 mixture model not found (``ierr = –117``); this should be ignored because the values are later internally converted to the KW0 model (this error message will be removed in future versions). Conversion of LJ6 to KW0 converts the LJ6 xeta parameter (for the reducing temperature) to the KW0 gammaT and betaT values. The numerical values of the parameters are different, but the calculated properties will be identical. For those wishing to fit mixing parameters to new experimental VLE data, XR0 should be used for the fitting process and only the gammaT value should be fitted.
 
 ## Solids
 The REFPROP program does not know the location of the solid-liquid interface&nbsp;for a mixture.&nbsp; For many of the pure fluids, melting line auxiliary equations are available and can be used to calculate liquid properties at the point where solids begin to form and can be used to keep the program from entering the solid phase.&nbsp; When melting lines are not available, the program uses the liquid phase density at the triple point as the maximum density, thus valid states between this density and the melting line will not be available.&nbsp; The location of the solid-liquid boundary can be calculated under the Calculate/Saturation Tables option.&nbsp; This option will also print out the vapor phase properties along the sublimation line if requested (and if an auxiliary equation is available).
 
-## Transport Properties for Nitrogen, Oxygen, Argon, and Air.
+## Transport Properties for Nitrogen, Oxygen, Argon, and Air
 The transport properties for nitrogen, argon, and oxygen in version 7.0 did not include the thermal conductivity enhancement for the critical region and did not represent the experimental data as well as possible.&nbsp; The transport equations for these fluids have been redone and now represent the data to within their experimental uncertainties.&nbsp; The publication below documents the new equations and shows all of the comparisons to data.
 
 - [N2-Ar-O2 Transport equations documentation](https://trc.nist.gov/refprop/FAQ/NAO.PDF)
 
-## Transport Properties for Pseudo-pure Fluids; Adding Pure Fluids to a Mixture Setup.
+## Transport Properties for Pseudo-pure Fluids; Adding Pure Fluids to a Mixture Setup
 The ability to load both a mixture and a pure fluid not associated with the mixture is now possible. For example, a natural gas mixture of methane, ethane, and propane could be loaded, along with R134a, which is not part of the mixture. By calling SETNC and PUREFLD, properties for either the mixture or the pure fluid can be made without ever calling SETUP more than once at the beginning. This is also useful for calculating transport properties when the pseudo-pure fluid equation of state is in use (for R-404A, R-407C, R-410A, and R-507A). Since transport properties are not available in the PPF files, the full mixture has to be loaded as well. The example program below gives all the details.
 
 - [PPF-EX.FOR](https://trc.nist.gov/refprop/FAQ/PPF-EX.FOR)
 
-## Required Fluids for Distribution. 
+## Required Fluids for Distribution
 There are several fluid files that Refprop accesses in order to run properly.&nbsp; These are ``NITROGEN.FLD``, ``PROPANE.FLD``, ``R134A.FLD``, and ``C12.FLD`` (dodecane).&nbsp; These fluids are used as reference fluids in extended corresponding states methods employed in Refprop to predict transport properties for some instances.&nbsp; These fluids (and the hmx.bnc file) should be distributed in addition to those required in a particular application if the Refprop routines have been incorporated into a software package. Note that a licensing agreement must be purchased before distributing your software to others.
 
+## Resolving Problems Linking with Excel
+1.  Open the REFPROP.XLS file to see if the calculations work in that file.
 
-Last modified: October 2, 2018.
+2.  Check the path statement to ensure that the directory where Refprop was installed is included in the path.  This can be found under Control Panel/System/Advanced System Settings/Environment Variables.  Also make sure that a string called RPprefix is there with the same directory path.
+
+3.  Do a full system search for REFPRP64.DLL and REFPROP.DLL, including Windows and hidden directories, and delete anything that is not in your newly installed directory for version 10.  (In one situation, a new computer was purchased and all files from the old computer were copied over, including the REFPRP64.DLL file from version 9.1; somehow Windows latched on to that file rather than the new one from version 10.)
+
+4.  If #3 does not work, one of the best ways to fix problems is to uninstall Refprop and reinstall it outside of the Program Files directories, such as in your Users directory or in the root directory of your harddrive.  After reinstalling, check that the path and RPprefix variable were updated as described above.
+
+5.  Go to the Refprop.xla file (assuming that it has already been selected as an Add-in) by pressing Alt-F11.  Open up the item labeled REFPROP.XLA in the list on the left, click on Modules, and then on Refprop10Code.  Near the top you will find …Sub REFPROPdll Lib "REFPRP64.DLL"…  Change this to …Sub REFPROPdll Lib "c:\Program Files (x86)\Refprop\REFPRP64.DLL"…  If using a 32 bit version of Excel, add the same path to the line two lines below this one.
+
+6.  If this works, you will need to save the .xla file to keep the changes permanent.  Go to File/Save.  If your computer does not allow you to overwrite the file in the Program Files directories, sometimes deleting the old one first and then saving the new one works, but be sure to save it as a 2003 Excel add-in with an extension of .xla.  You could also save it as a .xlam file, but you will need to remove the REFPROP.XLA file from your add-ins, and then add this new file as its replacement.  See the “Welcome” screen in the Refprop.xls file for more information.
+
+7.  When Excel cannot find the DLL, cells will show “NAME”.  When it has been found but not working, cells will show “VALUE”.  Check if the problems are simply that the fluid files cannot be found by entering the command =REFPROP("DLL#"). If this works but no other commands do, then please contact us.
+
+8.  If your spreadsheet contains Refprop 9.1 commands, you can either convert them with a macro (see the “Welcome” screen in the Refprop.xls file for more information), or (but not preferably) you can use the add-in from version 9.1, which can be found here:
+https://trc.nist.gov/refprop/10-PATCH/REFPRP91.XLA.
+
+9.  The macro for converting from 9.1 to 10 will only convert items that start as “=ENTHALPY(…”.  We recently updated this macro to not include the equal sign so that all commands will be converted properly.  The new files are located here:
+https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLS
+https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLA
+
+10.  The macro to do this conversion does not show up in the View Macros option in Excel.  Again, see the “Welcome” screen in the Refprop.xls file for more information.
+
+11.  If problems still persist, it would be very useful if we can log into your machine remotely to try to find the problem and then include the solution here.
+
+12.  If you find errors in the directions above, and especially if you find better solutions, please contact us.
+
+13.  The best way to contact us is to use the github system so that others can see the problems and solutions.  You will find that here:  https://github.com/usnistgov/REFPROP-issues/issues.  This website is loaded with answers to many other Refprop questions; be sure to search through the issues, and if you wish, change your Watch status so that you receive updates every time something is posted.  We try to put up much more detailed answers there than would be received by a simple email request.  For linking issues with other programs, be sure to look at https://github.com/usnistgov/REFPROP-wrappers/issues.
+
+14.  For very simple comments such as misspellings, or for private conversations with us, our email addresses are   Eric.Lemmon@nist.gov  and   Ian.Bell@nist.gov
+
+
+Last modified: February 6, 2019.
 
 [Go to the source of this file](https://github.com/usnistgov/REFPROP-docs/blob/nist-pages/index.md)
 
