@@ -59,6 +59,7 @@ The following information gives answers to some of the most frequently asked que
 **Excel**
 
 31. [Resolving Problems Linking with Excel](#resolving-problems-linking-with-excel)
+32. [Other Issues Related to the Use of Refprop in Excel](#other-issues-related-to-the-use-of-refprop-in-excel)
 
 **Linking with other Applications**
 
@@ -847,8 +848,19 @@ https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLA
 
 14.  For very simple comments such as misspellings, or for private conversations with us, our email addresses are   Eric.Lemmon@nist.gov  and   Ian.Bell@nist.gov
 
+## Other Issues Related to the Use of Refprop in Excel
 
-Last modified: February 6, 2019.
+9.1 to 10.0 Conversions: If the macro (called RefpropConversion in the ConvertRefprop9to10 Module) for converting existing Excel files with REFPROP 9.x or earlier to the new REFPROP 10.0 format does not appear when trying to View Macros in Excel, first view the Welcome page in the Refprop.xls file.  If the information there does not help, copy the ConvertRefprop9to10 Module under REFPROPExcelSpreadsheet in the REFPROP.xla file to the Modules section of your own spreadsheet, which will hopefully allow you to see and run it.  Once done, the Module can be deleted from your spreadsheet.
+
+10.0 to 9.1 Back Conversions:  A new macro called RefpropBackConversionto91 is now available in case you wish to undo what happened when you ran the forward conversions.
+
+New files:  You can find the updated files at https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLS and https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLA
+
+9.1 Macros:  To continue using the commands from version 9.1 with the new 10.0 DLL, download the following xla file and include it as an Excel add-in: https://trc.nist.gov/refprop/10-PATCH/REFPRP91.XLA
+
+
+
+Last modified: March 24, 2019.
 
 [Go to the source of this file](https://github.com/usnistgov/REFPROP-docs/blob/nist-pages/index.md)
 
