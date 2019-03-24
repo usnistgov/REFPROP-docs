@@ -854,11 +854,9 @@ https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLA
 
 10.0 to 9.1 Back Conversions:  A new macro called RefpropBackConversionto91 is now available in case you wish to undo what happened when you ran the forward conversions.
 
-New files:  You can find the updated files at https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLS and https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLA
+New files:  You can find the updated files at (https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLS) and (https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLA)
 
-9.1 Macros:  To continue using the commands from version 9.1 with the new 10.0 DLL, download the following xla file and include it as an Excel add-in: https://trc.nist.gov/refprop/10-PATCH/REFPRP91.XLA
-
-
+9.1 Macros:  To continue using the commands from version 9.1 with the new 10.0 DLL, download the following xla file and include it as an Excel add-in: (https://trc.nist.gov/refprop/10-PATCH/REFPRP91.XLA)
 
 Last modified: March 24, 2019.
 
