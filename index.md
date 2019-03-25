@@ -850,7 +850,7 @@ https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLA
 
 ## Other Issues Related to the Use of Refprop in Excel
 
-9.1 to 10.0 Conversions: If the macro (called RefpropConversion in the ConvertRefprop9to10 Module) for converting existing Excel files with REFPROP 9.x or earlier to the new REFPROP 10.0 format does not appear when trying to View Macros in Excel, first view the Welcome page in the Refprop.xls file.  If the information there does not help, copy the ConvertRefprop9to10 Module under REFPROPExcelSpreadsheet in the REFPROP.xla file to the Modules section of your own spreadsheet, which will hopefully allow you to see and run it.  Once done, the Module can be deleted from your spreadsheet.
+9.1 to 10.0 Conversions: If the macro (called RefpropConversion in the ConvertRefprop9to10 Module) for converting existing Excel files with REFPROP 9.x or earlier to the new REFPROP 10.0 format does not appear when trying to View Macros in Excel, first view the Welcome page in the Refprop.xls file.  If the information there does not help, copy the ConvertRefprop9to10 Module under REFPROPExcelSpreadsheet in the REFPROP.xla file to the Modules section of your own spreadsheet, which will hopefully allow you to see and run it.  If you Ctrl+click or Shift+click to select multiple spreadsheet tabs, then run the macro, all of the selected tabs will update.  Once done, the Module can be deleted from your spreadsheet.
 
 10.0 to 9.1 Back Conversions:  A new macro called RefpropBackConversionto91 is now available in case you wish to undo what happened when you ran the forward conversions.
 
