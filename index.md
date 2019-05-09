@@ -840,13 +840,15 @@ https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLA
 
 10.  The macro to do this conversion does not show up in the View Macros option in Excel.  Again, see the “Welcome” screen in the Refprop.xls file for more information.
 
-11.  If problems still persist, it would be very useful if we can log into your machine remotely to try to find the problem and then include the solution here.
+11.  Some users have reported that the original Office was installed via the Microsoft Store which installs as a “Microsoft App” rather than installing the full software.  Once the full software was installed then all worked. 
 
-12.  If you find errors in the directions above, and especially if you find better solutions, please contact us.
+12.  If problems still persist, it would be very useful if we can log into your machine remotely to try to find the problem and then include the solution here.
 
-13.  The best way to contact us is to use the github system so that others can see the problems and solutions.  You will find that here:  https://github.com/usnistgov/REFPROP-issues/issues.  This website is loaded with answers to many other Refprop questions; be sure to search through the issues, and if you wish, change your Watch status so that you receive updates every time something is posted.  We try to put up much more detailed answers there than would be received by a simple email request.  For linking issues with other programs, be sure to look at https://github.com/usnistgov/REFPROP-wrappers/issues.
+13.  If you find errors in the directions above, and especially if you find better solutions, please contact us.
 
-14.  For very simple comments such as misspellings, or for private conversations with us, our email addresses are   Eric.Lemmon@nist.gov  and   Ian.Bell@nist.gov
+14.  The best way to contact us is to use the github system so that others can see the problems and solutions.  You will find that here:  https://github.com/usnistgov/REFPROP-issues/issues.  This website is loaded with answers to many other Refprop questions; be sure to search through the issues, and if you wish, change your Watch status so that you receive updates every time something is posted.  We try to put up much more detailed answers there than would be received by a simple email request.  For linking issues with other programs, be sure to look at https://github.com/usnistgov/REFPROP-wrappers/issues.
+
+15.  For very simple comments such as misspellings, or for private conversations with us, our email addresses are   Eric.Lemmon@nist.gov  and   Ian.Bell@nist.gov
 
 ## Other Issues Related to the Use of Refprop in Excel
 
