@@ -840,7 +840,7 @@ https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLA
 
 10.  The macro to do this conversion does not show up in the View Macros option in Excel.  Again, see the “Welcome” screen in the Refprop.xls file for more information.
 
-11.  Some users have reported that the original Office was installed via the Microsoft Store which installs as a “Microsoft App” rather than installing the full software.  Once the full software was installed then all worked. 
+11.  Some users have reported that the original Office was installed via the "Microsoft Store", which installs as a “Microsoft App” rather than installing the full software.  The installation via the “Microsoft Store” is often done when purchasing a computer with Office pre-installed.  Uninstalling office and reinstalling from office.com/myaccount may solve any issues.
 
 12.  If problems still persist, it would be very useful if we can log into your machine remotely to try to find the problem and then include the solution here.
 
@@ -860,7 +860,7 @@ New files:  You can find the updated files at [https://trc.nist.gov/refprop/10-P
 
 9.1 Macros:  To continue using the commands from version 9.1 with the new 10.0 DLL, download the following xla file and include it as an Excel add-in: [https://trc.nist.gov/refprop/10-PATCH/REFPRP91.XLA](https://trc.nist.gov/refprop/10-PATCH/REFPRP91.XLA)
 
-Last modified: March 24, 2019.
+Last modified: May 11, 2019.
 
 [Go to the source of this file](https://github.com/usnistgov/REFPROP-docs/blob/nist-pages/index.md)
 
