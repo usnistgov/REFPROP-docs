@@ -53,13 +53,14 @@ The following information gives answers to some of the most frequently asked que
 26. [Mixture Models](#mixture-models)
 27. [Solids](#solids)
 28. [Transport Properties for Nitrogen, Oxygen, Argon, and Air](#transport-properties-for-nitrogen-oxygen-argon-and-air)
-29. [Transport Properties for Pseudo-pure Fluids; Adding Pure Fluids to a Mixture Setup](#transport-properties-for-pseudo-pure-fluids-adding-pure-fluids-to-a-mixture-setup)
-30. [Required Fluids for Distribution](#required-fluids-for-distribution)
+29. [Transport Properties for Mixtures](#transport-properties-for-mixtures)
+30. [Transport Properties for Pseudo-pure Fluids; Adding Pure Fluids to a Mixture Setup](#transport-properties-for-pseudo-pure-fluids-adding-pure-fluids-to-a-mixture-setup)
+31. [Required Fluids for Distribution](#required-fluids-for-distribution)
 
 **Excel**
 
-31. [Resolving Problems Linking with Excel](#resolving-problems-linking-with-excel)
-32. [Other Issues Related to the Use of Refprop in Excel](#other-issues-related-to-the-use-of-refprop-in-excel)
+32. [Resolving Problems Linking with Excel](#resolving-problems-linking-with-excel)
+33. [Other Issues Related to the Use of Refprop in Excel](#other-issues-related-to-the-use-of-refprop-in-excel)
 
 **Linking with other Applications**
 
@@ -807,6 +808,9 @@ The REFPROP program does not know the location of the solid-liquid interface&nbs
 The transport properties for nitrogen, argon, and oxygen in version 7.0 did not include the thermal conductivity enhancement for the critical region and did not represent the experimental data as well as possible.&nbsp; The transport equations for these fluids have been redone and now represent the data to within their experimental uncertainties.&nbsp; The publication below documents the new equations and shows all of the comparisons to data.
 
 - [N2-Ar-O2 Transport equations documentation](https://trc.nist.gov/refprop/FAQ/NAO.PDF)
+
+## Transport Properties for Mixtures
+The transport properties for mixtures can be calculated (or estimated) for nearly all mixtures, except for: mixtures with more than 5% (by mole) water, and mixtures with alcohols. The user should be cautioned that experimental data coverage for transport properties of mixtures are very sparse, and the extended corresponding states approach for transport properties is used in fully predictive mode for many mixtures. Please see [Chicester and Huber's NIST internal report](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=832196) for a description of this methodology.
 
 ## Transport Properties for Pseudo-pure Fluids; Adding Pure Fluids to a Mixture Setup
 The ability to load both a mixture and a pure fluid not associated with the mixture is now possible. For example, a natural gas mixture of methane, ethane, and propane could be loaded, along with R134a, which is not part of the mixture. By calling SETNC and PUREFLD, properties for either the mixture or the pure fluid can be made without ever calling SETUP more than once at the beginning. This is also useful for calculating transport properties when the pseudo-pure fluid equation of state is in use (for R-404A, R-407C, R-410A, and R-507A). Since transport properties are not available in the PPF files, the full mixture has to be loaded as well. The example program below gives all the details.
