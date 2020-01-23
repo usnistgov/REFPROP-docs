@@ -854,6 +854,8 @@ https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLA
 
 15.  For very simple comments such as misspellings, or for private conversations with us, our email addresses are   Eric.Lemmon@nist.gov  and   Ian.Bell@nist.gov
 
+16.  If the equations work in the REFPROP.XLS file but not in a new blank workbook (the error #VALUES is returned), try adding the file paths of the Refprop DLLs to the REFPROP.XLA file.  Simply search for Lib "REFPROP.DLL" and change this to something like Lib "C:\Program files (x86)\REFPROP\REFPROP.DLL", or wherever the DLLs for Refprop are located.  Do this for the REFPRP64.DLL occurrence as well.
+
 ## Other Issues Related to the Use of Refprop in Excel
 
 9.1 to 10.0 Conversions: If the macro (called RefpropConversion in the ConvertRefprop9to10 Module) for converting existing Excel files with REFPROP 9.x or earlier to the new REFPROP 10.0 format does not appear when trying to View Macros in Excel, first view the Welcome page in the Refprop.xls file.  If the information there does not help, copy the ConvertRefprop9to10 Module under REFPROPExcelSpreadsheet in the REFPROP.xla file to the Modules section of your own spreadsheet, which will hopefully allow you to see and run it.  If you Ctrl+click or Shift+click to select multiple spreadsheet tabs, then run the macro, all of the selected tabs will update.  Once done, the Module can be deleted from your spreadsheet.
