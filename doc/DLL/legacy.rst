@@ -1,6 +1,6 @@
 
 
-.. This file was auto-generated on 10 Aug 2018 12:30:38. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
+.. This file was auto-generated on 13 May 2020 18:40:44. DO NOT(!!!!) modify this file directly.  Modify the generator script in the scripts folder.
 
 **********
 Legacy API
@@ -155,10 +155,12 @@ Function Listing
 - :f:func:`UNSETAGAdll`
 - :f:func:`VAPSPNDLdll`
 - :f:func:`VIRBAdll`
+- :f:func:`VIRBCD12dll`
 - :f:func:`VIRBCDdll`
 - :f:func:`VIRBdll`
 - :f:func:`VIRCAdll`
 - :f:func:`VIRCdll`
+- :f:func:`VIRTAUdll`
 - :f:func:`WMOLIdll`
 - :f:func:`WMOLdll`
 - :f:func:`XMASSdll`
@@ -178,22 +180,43 @@ Function Documentation
     
     Care must be taken when sending inputs of T, P, or D, so that the same
     variable is not sent twice.   For example, the following would be wrong::
-    
         call ABFL1 ('TH',T,H,z,kph,0,0,Dmin,Dmax,T,P,D,ierr,herr)
     
     Rather, the following are examples of correct inputs::
+        call ABFL1 ('TH',T,H,z,kph,0,Dmin,Dmax,tt,P, D,ierr,herr)
+        call ABFL1 ('TP',T,P,z,kph,0,Dmin,Dmax,tt,pp,D,ierr,herr)
+        call ABFL1 ('DS',D,S,z,kph,0,Dmin,Dmax,T, P,dd,ierr,herr)
     
-        call ABFL1 ('TH',T,H,z,kph,0,0,Dmin,Dmax,tt,P, D,ierr,herr)
-        call ABFL1 ('TP',T,P,z,kph,0,0,Dmin,Dmax,tt,pp,D,ierr,herr)
-        call ABFL1 ('DS',D,S,z,kph,0,0,Dmin,Dmax,T, P,dd,ierr,herr)
+    When calling the ABFL1dll routine, the inputs are different::
+        call ABFL1dll (a,b,z,kph,ab,Dmin,Dmax,T,P,D,ierr,herr)
+    
+    The examples above are repeated below for this call::
+        call ABFL1dll (T,H,z,kph,'TH',Dmin,Dmax,tt,P, D,ierr,herr)
+        call ABFL1dll (T,P,z,kph,'TP',Dmin,Dmax,tt,pp,D,ierr,herr)
+        call ABFL1dll (D,S,z,kph,'DS',Dmin,Dmax,T, P,dd,ierr,herr)
     
     This routine accepts only single-phase inputs, it is intended primarily
     for use with the more general flash routine ABFLSH, but can be called
     independently for increased calculation speed if the inputs are
-    know to be single-phase.  This will avoid the call to the flash routines
+    known to be single-phase.  This will avoid the call to the flash routines
     to determine the phase of the inputs.  If this routine is called, but
     the inputs are 2-phase, either an incorrect root or a metastable state
     will be returned (which is OK if the metastable state is desired).
+    
+    However!  This routine is not necessary because all flash calls can be made
+    through a call to ABFLSH or ABFLSHdll.  It is recommended to use either
+    the REFPROP or ABFLSH routines for all flash calculations even for single
+    phase calls when it is not necessary to check the phase of the input
+    properties.  For example, the TH call above for a known liquid phase state
+    could be called like this::
+    
+       iFlag=10  !Indicates that the input state is in the liquid.
+                 !Use iFlag=20 for vapor phase states.
+       call ABFLSHdll ('TH',T,H,z,iFlag,tt,P,D,Dl,Dv,
+      &                   x,y,q,e,hh,s,Cv,Cp,w,ierr,herr)
+    
+    Further information is given in the comments under the ABFLSH and REFPROP
+    subroutines.
     
     :p double a [in]: First property (either temperature, pressure, density, entropy) 
     :p double b [in]: Second property (pressure, density, energy, enthalpy, or entropy) Possible inputs for these two variables are
@@ -531,7 +554,7 @@ Function Documentation
 
     
     :p double T [out]: Temperature [K]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double Cv [in]: Isochoric heat capacity [J/mol-K]
     :p double Cp [out]: Isobaric heat capacity [J/mol-K]
@@ -586,7 +609,7 @@ Function Documentation
     energy, and composition.
     (See subroutine ABFL1 for the description of all variables.)
     
-    :p double D [in]: Density [mol/K]
+    :p double D [in]: Density [mol/L]
     :p double e [in]: Internal energy [J/mol]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double T [out]: Temperature [K]
@@ -602,7 +625,7 @@ Function Documentation
     Flash calculation given density, energy, and bulk composition.
     (See subroutines ABFLSH or DBFLSH for the description of all variables.)
     
-    :p double D [in]: Density [mol/K]
+    :p double D [in]: Density [mol/L]
     :p double e [in]: Internal energy [J/mol]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double T [out]: Temperature [K]
@@ -677,7 +700,7 @@ Function Documentation
     enthalpy, and composition.
     (See subroutine ABFL1 for the description of all variables.)
     
-    :p double D [in]: Density [mol/K]
+    :p double D [in]: Density [mol/L]
     :p double h [in]: Enthalpy [J/mol]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double T [out]: Temperature [K]
@@ -693,7 +716,7 @@ Function Documentation
     Flash calculation given density, enthalpy, and bulk composition.
     (See subroutines ABFLSH or DBFLSH for the description of all variables.)
     
-    :p double D [in]: Density [mol/K]
+    :p double D [in]: Density [mol/L]
     :p double h [in]: Enthalpy [J/mol]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double T [out]: Temperature [K]
@@ -795,7 +818,7 @@ Function Documentation
     Flash calculation given bulk density, quality, and composition.
     (See subroutine ABFL2 for the description of all variables.)
     
-    :p double D [in]: Density [mol/K]
+    :p double D [in]: Density [mol/L]
     :p double q [in]: Vapor quality [mol/mol]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p int kq: XXXXXXXXXX
@@ -837,7 +860,7 @@ Function Documentation
     entropy, and composition.
     (See subroutine ABFL1 for the description of all variables.)
     
-    :p double D [in]: Density [mol/K]
+    :p double D [in]: Density [mol/L]
     :p double s [in]: Entropy [J/mol-K]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double T [out]: Temperature [K]
@@ -853,7 +876,7 @@ Function Documentation
     Flash calculation given density, entropy, and bulk composition.
     (See subroutines ABFLSH or DBFLSH for the description of all variables.)
     
-    :p double D [in]: Density [mol/K]
+    :p double D [in]: Density [mol/L]
     :p double s [in]: Entropy [J/mol-K]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double T [out]: Temperature [K]
@@ -900,7 +923,7 @@ Function Documentation
 
     
     :p double T [out]: Temperature [K]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double h [out]: Enthalpy [J/mol]
 
@@ -910,7 +933,7 @@ Function Documentation
 
     
     :p double T [out]: Temperature [K]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double s [out]: Entropy [J/mol-K]
 
@@ -927,7 +950,7 @@ Function Documentation
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double T [out]: Temperature [K]
     :p double P [out]: Pressure [kPa]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p double Dl [out]: Molar density of the liquid phase [mol/L]
     :p double Dv [out]: Molar density of the vapor phase [mol/L]
     :p double x(20) [out]: Composition of the liquid phase (array of mole fractions)
@@ -1039,7 +1062,7 @@ Function Documentation
     This is a duplicate of the GERG08 routine below, and is meant only for use
     with older versions of Refprop.
     
-    :p int ncomp [in]: Number of components (1 for pure fluid) 
+    :p int ncomp [in]: Number of components (no longer used) 
     :p int iFlag [in]: Set to 1 to load the GERG 2008 equations, set to 0 for defaults 
     :p int ierr [out]: Error flag
     :p char herr [out]: Error string (character*255) (returned from SETMOD) 
@@ -1059,7 +1082,7 @@ Function Documentation
     Once this routine is called, it need not be called again to keep the
     GERG08 model active, even when calling SETUP.
     
-    :p int ncomp [in]: Number of components (1 for pure fluid) 
+    :p int ncomp [in]: Number of components (no longer used) 
     :p int iFlag [in]: Set to 1 to load the GERG 2008 equations, set to 0 for defaults 
     :p int ierr [out]: Error flag
     :p char herr [out]: Error string (character*255) (returned from SETMOD) 
@@ -1294,7 +1317,7 @@ Function Documentation
     :p double Dmin [in]: Lower bound on density [mol/L]
     :p double Dmax [in]: Upper bound on density [mol/L]
     :p double T [out]: Temperature [K]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p int ierr [out]: Error code (no error if ierr==0)
     :p char herr [out]: Error string (character*255)
     :p int herr_length: length of variable ``herr`` (default: 255)
@@ -1801,7 +1824,7 @@ Function Documentation
     (See subroutine ABFL1 for the description of all variables.)
     
     :p double P [in]: Pressure [kPa]
-    :p double D [in]: Density [mol/K]
+    :p double D [in]: Density [mol/L]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double T [out]: Temperature [K]
     :p int ierr [out]: Error code (no error if ierr==0)
@@ -1819,7 +1842,7 @@ Function Documentation
     (See subroutines ABFLSH or TPDFLSH for the description of all variables.)
     
     :p double P [in]: Pressure [kPa]
-    :p double D [in]: Density [mol/K]
+    :p double D [in]: Density [mol/L]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double T [out]: Temperature [K]
     :p double Dl [out]: Molar density of the liquid phase [mol/L]
@@ -1851,7 +1874,7 @@ Function Documentation
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p int kph: XXXXXXXXXX
     :p double T [out]: Temperature [K]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p int ierr [out]: Error code (no error if ierr==0)
     :p char herr [out]: Error string (character*255)
     :p int herr_length: length of variable ``herr`` (default: 255)
@@ -1868,7 +1891,7 @@ Function Documentation
     :p double e [in]: Internal energy [J/mol]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double T [out]: Temperature [K]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p double Dl [out]: Molar density of the liquid phase [mol/L]
     :p double Dv [out]: Molar density of the vapor phase [mol/L]
     :p double x(20) [out]: Composition of the liquid phase (array of mole fractions)
@@ -1897,7 +1920,7 @@ Function Documentation
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p int kph: XXXXXXXXXX
     :p double T [out]: Temperature [K]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p int ierr [out]: Error code (no error if ierr==0)
     :p char herr [out]: Error string (character*255)
     :p int herr_length: length of variable ``herr`` (default: 255)
@@ -1914,7 +1937,7 @@ Function Documentation
     :p double h [in]: Enthalpy [J/mol]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double T [out]: Temperature [K]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p double Dl [out]: Molar density of the liquid phase [mol/L]
     :p double Dv [out]: Molar density of the vapor phase [mol/L]
     :p double x(20) [out]: Composition of the liquid phase (array of mole fractions)
@@ -2081,7 +2104,7 @@ Function Documentation
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p int kq: XXXXXXXXXX
     :p double T [out]: Temperature [K]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p double Dl [out]: Molar density of the liquid phase [mol/L]
     :p double Dv [out]: Molar density of the vapor phase [mol/L]
     :p double x(20) [out]: Composition of the liquid phase (array of mole fractions)
@@ -2164,7 +2187,7 @@ Function Documentation
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p int kph: XXXXXXXXXX
     :p double T [out]: Temperature [K]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p int ierr [out]: Error code (no error if ierr==0)
     :p char herr [out]: Error string (character*255)
     :p int herr_length: length of variable ``herr`` (default: 255)
@@ -2181,7 +2204,7 @@ Function Documentation
     :p double s [in]: Entropy [J/mol-K]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double T [out]: Temperature [K]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p double Dl [out]: Molar density of the liquid phase [mol/L]
     :p double Dv [out]: Molar density of the vapor phase [mol/L]
     :p double x(20) [out]: Composition of the liquid phase (array of mole fractions)
@@ -2628,7 +2651,7 @@ Function Documentation
     :p double z(20) [in]: Composition (array of mole fractions) 
     :p int kph [in]: Flag specifying desired root
     :p int nroot [out]: Number of roots.  Value is set to one for kph=1,3,4 if ierr=0 
-    :p int k1 [out]: Phase of first root (1-liquid, 2-vapor, 3-melt, 4-subl) 
+    :p int k1 [out]: Phase of first root (1-liquid, 2-vapor, 3-melt, 4-subl) For mixtures where the saturation line goes infinite in pressure, k1=-1 if h>hmax (where hmax was found in the vapor phase)
     :p double T1 [out]: Temperature of first root [K] 
     :p double P1 [out]: Pressure of first root [kPa] 
     :p double D1 [out]: Molar density of first root [mol/L] 
@@ -2665,6 +2688,9 @@ Function Documentation
     
     Iterate for saturated liquid and vapor states given pressure
     and the composition of one phase.
+    
+    All variables should be initialized before calling this routine
+    because they will be used as initial values if T<0.
     
     :p double P [in]: Pressure [kPa] If T is negative, all other variables are used as initial guesses at ABS(T).
     :p double z(20) [in]: Composition (array of mole fractions) (phase specified by kph) 
@@ -2824,6 +2850,9 @@ Function Documentation
     Iterate for saturated liquid and vapor states given temperature
     and the composition of one phase.
     
+    All variables should be initialized before calling this routine
+    because they will be used as initial values if T<0.
+    
     :p double T [in]: Temperature [K] If T is negative, all other variables are used as initial guesses at ABS(T).
     :p double z(20) [in]: Composition (array of mole fractions) (phase specified by kph) 
     :p int kph [in]: Phase flag
@@ -2980,11 +3009,11 @@ Function Documentation
 
         ``htype`` flags
 
+        :'NBS': Reset all of the above model types to 'NBS' (values of hmix and hcomp are ignored)
         :'EOS': Equation of state
         :'ETA': Viscosity
         :'TCX': Thermal conductivity
         :'STN': Surface tension
-        :'NBS': Reset all of the above model types to 'NBS' (values of hmix and hcomp are ignored)
 
         ``hmix`` flags
 
@@ -3082,13 +3111,14 @@ Function Documentation
         :'DEF': Default reference state as specified in fluid file
         :'OTH': Other, as specified by h0, s0, T0, P0 (real gas state)
         :'OT0': Other, as specified by h0, s0, T0, P0 (ideal-gas state)
+        :'TD0': h,s = 0 at zero temperature and density
         :'NA': Not applicable, do not set up the reference state. The values of e, h, and s will have a random reference state. Do not use except for EOS testing.
         :'???': Set hrf to the value of the current reference state and exit
 
         ``ixflag`` flags
 
         :1: Reference state applied to pure components
-        :2: Reference state applied to mixture x0
+        :2: Reference state applied to mixture x0 In order for option 2 to work, each fluid in the mixture must use the same reference state.
 
         ``ierr`` flags
 
@@ -3325,7 +3355,7 @@ Function Documentation
     (See subroutines ABFLSH or TPDFLSH for the description of all variables.)
     
     :p double T [in]: Temperature [K]
-    :p double D [in]: Density [mol/K]
+    :p double D [in]: Density [mol/L]
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double P [out]: Pressure [kPa]
     :p double Dl [out]: Molar density of the liquid phase [mol/L]
@@ -3357,7 +3387,7 @@ Function Documentation
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double Dmin [in]: Lower bound on density [mol/L]
     :p double Dmax [in]: Upper bound on density [mol/L]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p int ierr [out]: Error code (no error if ierr==0)
     :p char herr [out]: Error string (character*255)
     :p int herr_length: length of variable ``herr`` (default: 255)
@@ -3375,7 +3405,7 @@ Function Documentation
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p int kr: XXXXXXXXXX
     :p double P [out]: Pressure [kPa]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p double Dl [out]: Molar density of the liquid phase [mol/L]
     :p double Dv [out]: Molar density of the vapor phase [mol/L]
     :p double x(20) [out]: Composition of the liquid phase (array of mole fractions)
@@ -3525,7 +3555,7 @@ Function Documentation
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double Dmin [in]: Lower bound on density [mol/L]
     :p double Dmax [in]: Upper bound on density [mol/L]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p int ierr [out]: Error code (no error if ierr==0)
     :p char herr [out]: Error string (character*255)
     :p int herr_length: length of variable ``herr`` (default: 255)
@@ -3545,7 +3575,7 @@ Function Documentation
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p int kr: XXXXXXXXXX
     :p double P [out]: Pressure [kPa]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p double Dl [out]: Molar density of the liquid phase [mol/L]
     :p double Dv [out]: Molar density of the vapor phase [mol/L]
     :p double x(20) [out]: Composition of the liquid phase (array of mole fractions)
@@ -3676,7 +3706,7 @@ Function Documentation
 
         :1: Liquid phase
         :2: Vapor phase
-        :0: Stable phase - NOT ALLOWED (use TPFLSH) (Unless an initial guess is supplied for D)
+        :0: Any single phase state when T>Tc or P>Pc.  For T<Tc or P<Pc, this option is not allowed and TPFLSH should be used instead. TPFLSH is required in order to find the saturation state, which is then used to determine if the state is liquid or vapor. However, if an initial guess is supplied for D then kph=0 can be used and the routine will determine the phase by checking if D<Dc or D>Dc.
         :-1: Force the search in the liquid phase (for metastable points)
         :-2: Force the search in the vapor phase (for metastable points)
 
@@ -3705,7 +3735,7 @@ Function Documentation
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p int kq: XXXXXXXXXX
     :p double P [out]: Pressure [kPa]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p double Dl [out]: Molar density of the liquid phase [mol/L]
     :p double Dv [out]: Molar density of the vapor phase [mol/L]
     :p double x(20) [out]: Composition of the liquid phase (array of mole fractions)
@@ -3830,7 +3860,7 @@ Function Documentation
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p double Dmin [in]: Lower bound on density [mol/L]
     :p double Dmax [in]: Upper bound on density [mol/L]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p int ierr [out]: Error code (no error if ierr==0)
     :p char herr [out]: Error string (character*255)
     :p int herr_length: length of variable ``herr`` (default: 255)
@@ -3848,7 +3878,7 @@ Function Documentation
     :p double z(20) [in]: Bulk Composition (array of mole fractions)
     :p int kr: XXXXXXXXXX
     :p double P [out]: Pressure [kPa]
-    :p double D [out]: Density [mol/K]
+    :p double D [out]: Density [mol/L]
     :p double Dl [out]: Molar density of the liquid phase [mol/L]
     :p double Dv [out]: Molar density of the vapor phase [mol/L]
     :p double x(20) [out]: Composition of the liquid phase (array of mole fractions)
@@ -3916,6 +3946,24 @@ Function Documentation
 
 
 
+.. f:subroutine:: VIRBCD12dll (T, z, iFlag, B, C, D, E, )
+
+    
+    Compute virial coefficients as a function of temperature and composition.
+    The routine currently works only for pure fluids and for the Helmholtz equation.
+    All values are computed exactly based on the terms in the EOS, not
+    as was done in VIRB by calculating properties at a density of 1d-8.
+    
+    :p double T [in]: Temperature [K] 
+    :p double z(20) [in]: Composition (array of mole fractions) 
+    :p int iFlag [in]: Flag to specify the outputs (or for use in future applications). 0 - Return virial coefficients. 1 - Return acoustic virial coefficients; see: Trusler and Zarari, J. Chem. Thermodyn., 28:329-335, 1996. Gillis and Moldover, Int. J. Theromphys., 17(6):1305-1324, 1996. 
+    :p double B(6): XXXXXXXXXX
+    :p double C(6): XXXXXXXXXX
+    :p double D(6): XXXXXXXXXX
+    :p double E(6): XXXXXXXXXX
+
+
+
 .. f:subroutine:: VIRBCDdll (T, z, B, C, D, E, )
 
     
@@ -3972,6 +4020,27 @@ Function Documentation
     :p double T [in]: Temperature [K] 
     :p double z(20) [in]: Composition (array of mole fractions) 
     :p double C [out]:  Third virial coefficient [(L/mol)^2]   = a02 
+
+
+
+.. f:subroutine:: VIRTAUdll (T, z, iFlag, BTau, CTau, DTau, ETau, ierr, herr, herr_length)
+
+    
+    Compute virial coefficients as a function of tau and composition.
+    The routine currently works only for pure fluids and for the Helmholtz equation.
+    All values are computed exactly based on the terms in the EOS, not
+    as was done in VIRB by calculating properties at a density of 1d-8.
+    
+    :p double T [in]: Temperature [K] 
+    :p double z(20) [in]: Composition (array of mole fractions) 
+    :p int iFlag: XXXXXXXXXX
+    :p double BTau(6): XXXXXXXXXX
+    :p double CTau(6): XXXXXXXXXX
+    :p double DTau(6): XXXXXXXXXX
+    :p double ETau(6): XXXXXXXXXX
+    :p int ierr: XXXXXXXXXX
+    :p char herr: XXXXXXXXXX
+    :p int herr_length: length of variable ``herr`` (default: 255)
 
 
 
