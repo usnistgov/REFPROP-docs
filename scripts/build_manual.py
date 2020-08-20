@@ -9,8 +9,8 @@ from io import StringIO
 import glob, os, json, six, sys, textwrap, time
 
 name_remapping = {'CCRIT':'CSTAR',
-                  'SATPEST':'SATEST',
-                  'SATTEST':'SATEST'}
+                  'SATPEST':None,
+                  'SATTEST':None}
 
 fallback_arguments = {'GERG04dll': 'GERG08', 'THERM2dll': ['THERMdll','THERM3dll','AG','DERVPVTdll']}
 
@@ -27,7 +27,7 @@ FLSH_args = {
     'E': 'Internal energy [J/mol]',
     'H': 'Enthalpy [J/mol]',
     'S': 'Entropy [J/mol-K]',
-    'D': 'Density [mol/K]',
+    'D': 'Density [mol/L]',
     'DL': 'Molar density of the liquid phase [mol/L]',
     'DV': 'Molar density of the vapor phase [mol/L]',
     'CV': 'Isochoric heat capacity [J/mol-K]',
@@ -285,10 +285,15 @@ def parse_manual_contents(contents, function_dict, dll_functions):
     sout_high, sout_legacy = '', ''
     funcs_legacy = 'Function Listing\n----------------\n\n'
     funcs_high = 'Function Listing\n----------------\n\n'
-    for func in sorted(has_dll):
+    print(sorted(set(has_dll)))
+    for func in sorted(set(has_dll)):
+        print('XXXXXXXXXX', func, chop_dll(func))
 
         # Get remapped name, or the same dll-stripped name back again otherwise
         func = name_remapping.get(chop_dll(func), chop_dll(func))
+        if func is None:
+            print('skipping deprecated function:', func)
+            continue
 
         # Format the output
         something_outputted = False
