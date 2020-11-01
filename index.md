@@ -156,7 +156,7 @@ The REFPROP "database" is actually a program and does not contain any experiment
 
 - [Equation of State for HFC-125](https://trc.nist.gov/refprop/FAQ/R125.PDF)
 
-## Referencing the REFPROP Program in Publications
+## Referencing the REFPROP Program in Publications.
 The following reference can be used to cite the REFPROP program in publications:
 
 Lemmon, E.W., Bell, I.H., Huber, M.L., McLinden, M.O.&nbsp; NIST Standard Reference Database 23:&nbsp; Reference Fluid Thermodynamic and Transport Properties-REFPROP, Version 10.0, National Institute of Standards and Technology, Standard Reference Data Program, Gaithersburg, 2018.
@@ -164,11 +164,11 @@ Lemmon, E.W., Bell, I.H., Huber, M.L., McLinden, M.O.&nbsp; NIST Standard Refere
 Or in BibTeX form:
 {% raw %}
 ```text
-@Misc{LEMMON-RP91,
+@Misc{LEMMON-RP10,
   Title                    = {{NIST Standard Reference Database 23: Reference Fluid Thermodynamic and Transport Properties-REFPROP, Version 10.0, National Institute of Standards and Technology}},
   Author                   = {E. W. Lemmon and I.H. Bell and M. L. Huber and M. O. McLinden},
   Year                     = {2018},
-  Doi                      = {https://dx.doi.org/10.18434/T4JS3C},
+  Doi                      = {https://doi.org/10.18434/T4/1502528},
   Url                      = {https://www.nist.gov/srd/refprop}
 }
 ```
@@ -781,8 +781,13 @@ Kunz, O., Klimeck, R., Wagner, W., and Jaescke, M., The GERG-2004 Wide-Range Equ
 
 The natural gas equation of state has been expanded to include ethylene, propylene, methanol, ethanol, toluene, benzene, cyclohexane, sulfur dioxide, ammonia, dodecane, acetone, and butylene. When selecting the option to use the full GERG-2008 equation of state (either through the GUI or by calling the “GERG2004” subroutine), the use of these additional fluids is still allowed. This is not the same as when the AGA-8 equation of state is selected, in which case only the original 21 fluids (same as those in the GERG-2008 model) are allowed.
 
+<<<<<<< HEAD
+## HFO-1234yf, 1234ze(E), 1234ze(Z), 1233zd(E), and Refrigerant Mixtures.
+Equations of state are now available for these fluids. R1234yf and R1234ze(E) were included in versions 9.0 and 9.1, but version 9.0 incorrectly used the NBP reference state instead of IIR, as done with all other refrigerants.  The file name for R1234ze(E) has been renamed as ``R1234ZEE.FLD`` to avoid confusion with R1234ze(Z). You should delete your old ``R1234ZE.FLD`` file when downloading the fluid file for R1234ze(E) (the contents of the fluid file have not changed). The fluid files are located below and should be placed in your ``Refprop\Fluids`` directory for both versions 9.0 and 9.1.  This fluid file works with both versions 9.0 and 9.1 of Refprop.  R1234yf only needs to be downloaded if you are using version 9.0. The fluid files included in version 9.0 incorrectly used the NBP reference state.
+=======
 ## HFO-1234yf, 1234ze(E), 1234ze(Z), 1233zd(E), and Refrigerant Mixtures
 If you are using Refprop 9.0 or 9.1 (this section does not apply to version 10), equations of state are now available for these fluids. R1234yf and R1234ze were included in versions 9.0 and 9.1, but version 9.0 incorrectly used the NBP reference state instead of IIR, as done with all other refrigerants.  The file name for R1234ze(E) has been renamed as ``R1234ZEE.FLD`` to avoid confusion with R1234ze(Z). You should delete your old ``R1234ZE.FLD`` file when downloading the fluid file for R1234ze(E) (the contents of the fluid file have not changed). The fluid files are located below and should be placed in your ``Refprop\Fluids`` directory for both versions 9.0 and 9.1.  This fluid file works with both versions 9.0 and 9.1 of Refprop.  R1234yf only needs to be downloaded if you are using version 9.0. The fluid files included in version 9.0 incorrectly used the NBP reference state.
+>>>>>>> c48166a5a58c5493c32c4fb3c6408eaa5d5bc8ca
 
 - [R1234YF.FLD](https://trc.nist.gov/refprop/FAQ/R1234YF.FLD) (uploaded June 6, 2012 with updated transport equations)
 - [R1234ZEE.FLD](https://trc.nist.gov/refprop/FAQ/R1234ZEE.FLD) (uploaded June 6, 2012 with new CAS number and updated transport equations. This is for R1234ze(E)). 
