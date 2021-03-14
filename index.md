@@ -821,44 +821,51 @@ The ability to load both a mixture and a pure fluid not associated with the mixt
 There are several fluid files that Refprop accesses in order to run properly.&nbsp; These are ``NITROGEN.FLD``, ``PROPANE.FLD``, ``R134A.FLD``, and ``C12.FLD`` (dodecane).&nbsp; These fluids are used as reference fluids in extended corresponding states methods employed in Refprop to predict transport properties for some instances.&nbsp; These fluids (and the hmx.bnc file) should be distributed in addition to those required in a particular application if the Refprop routines have been incorporated into a software package. Note that a licensing agreement must be purchased before distributing your software to others.
 
 ## Resolving Problems Linking with Excel
+
+Before reading the items below, we highly advise you to either uninstall and reinstall the REFPROP program outside of the Windows system directories (such as on a different drive or in your Users directory) or to simply move the installed directory outside the Windows protected locations.  This will decrease many of the frustrations caused by not having control over saving and changing files.  If you move the directory, see the information below about changing the path and the RPprefix variables.
+
 1.  Open the REFPROP.XLS file to see if the calculations work in that file.
 
-2.  Check the path statement to ensure that the directory where Refprop was installed is included in the path.  This can be found under Control Panel/System/Advanced System Settings/Environment Variables.  Also make sure that a string called RPprefix is there with the same directory path.
+2.  Check the path statement to ensure that the directory where Refprop was installed is included in the path.  This can be found under Control Panel/System/Advanced System Settings/Environment Variables.  
 
-3.  Do a full system search for REFPRP64.DLL and REFPROP.DLL, including Windows and hidden directories, and delete anything that is not in your newly installed directory for version 10.  (In one situation, a new computer was purchased and all files from the old computer were copied over, including the REFPRP64.DLL file from version 9.1; somehow Windows latched on to that file rather than the new one from version 10.)
+3.  Check carefully the RPprefix environment variable found in the same location as the path (as described in #2 directly above).  This variable may appear in both the top and bottom sections, if so, delete the one in the bottom section.  The path it lists may not be the correct path to the Refprop directory, sometimes it may show "C:\Program Files\REFPROP" when it actually should be "C:\Program Files (x86)\REFPROP".  Additional information is given here: https://github.com/usnistgov/REFPROP-wrappers/issues/298
 
-4.  If #3 does not work, one of the best ways to fix problems is to uninstall Refprop and reinstall it outside of the Program Files directories, such as in your Users directory or in the root directory of your harddrive.  After reinstalling, check that the path and RPprefix variable were updated as described above.
+4.  In your Users directory is a hidden system directory called ``AppData``.  Check if you have the following subdirectory:  "AppData\Local\VirtualStore\Program Files\REFPROP".  If so, delete that folder.  Look for another subdirectory in your Users directory labeled "AppData\Roaming\Microsoft\addins" and check for any Refprop files there.  If found, delete them.
 
-5.  Go to the Refprop.xla file (assuming that it has already been selected as an Add-in) by pressing Alt-F11.  Open up the item labeled REFPROP.XLA in the list on the left, click on Modules, and then on Refprop10Code.  Near the top you will find …Sub REFPROPdll Lib "REFPRP64.DLL"…  Change this to …Sub REFPROPdll Lib "c:\Program Files (x86)\Refprop\REFPRP64.DLL"…  If using a 32 bit version of Excel, add the same path to the line two lines below this one.
+5.  Do a full system search for REFPRP64.DLL and REFPROP.DLL, including Windows and hidden directories, and delete anything that is not in your newly installed directory for version 10.  (In one situation, a new computer was purchased and all files from the old computer were copied over, including the REFPRP64.DLL file from version 9.1; somehow Windows latched on to that file rather than the new one from version 10.)
 
-6.  If this works, you will need to save the .xla file to keep the changes permanent.  Go to File/Save.  If your computer does not allow you to overwrite the file in the Program Files directories, sometimes deleting the old one first and then saving the new one works, but be sure to save it as a 2003 Excel add-in with an extension of .xla.  You could also save it as a .xlam file, but you will need to remove the REFPROP.XLA file from your add-ins, and then add this new file as its replacement.  See the “Welcome” screen in the Refprop.xls file for more information.
+6.  Go to the REFPROP.XLA file (assuming that it has already been selected as an Add-in) by pressing Alt-F11.  Open up the item labeled REFPROP.XLA in the list on the left, click on Modules, and then on Refprop10Code.  Near the top you will find …Sub REFPROPdll Lib "REFPRP64.DLL"…  Change this to …Sub REFPROPdll Lib "c:\Program Files (x86)\REFPROP\REFPRP64.DLL"…  If using a 32 bit version of Excel, add the same path to the line two lines below this one.
 
-7.  When Excel cannot find the DLL, cells will show “NAME”.  When it has been found but not working, cells will show “VALUE”.  Check if the problems are simply that the fluid files cannot be found by entering the command =REFPROP("DLL#"). If this works but no other commands do, then please contact us.
+7.  If this works, you will need to save the .XLA file to keep the changes permanent.  Go to File/Save.  If your computer does not allow you to overwrite the file in the Program Files directories, sometimes deleting the old one first and then saving the new one works, but be sure to save it as a 2003 Excel add-in with an extension of .xla.  You could also save it as a .xlam file, but you will need to remove the REFPROP.XLA file from your add-ins, and then add this new file as its replacement.  See the “Welcome” screen in the REFPROP.XLS file for more information.
 
-8.  If your spreadsheet contains Refprop 9.1 commands, you can either convert them with a macro (see the “Welcome” screen in the Refprop.xls file for more information), or (but not preferably) you can use the add-in from version 9.1, which can be found here:
+8.  When Excel cannot find the DLL, cells will show “NAME”.  When it has been found but not working, cells will show “VALUE”.  Check if the problems are simply that the fluid files cannot be found by entering the command =REFPROP("DLL#"). If this works but no other commands do, the problem is usually fixed by correcting the RPprefix variable (described above).
+
+9.  If your spreadsheet contains Refprop 9.1 commands, you can either convert them with a macro (see the “Welcome” screen in the REFPROP.XLS file for more information), or (but not preferably) you can use the add-in from version 9.1, which can be found here:
 https://trc.nist.gov/refprop/10-PATCH/REFPRP91.XLA.
 
-9.  The macro for converting from 9.1 to 10 will only convert items that start as “=ENTHALPY(…”.  We recently updated this macro to not include the equal sign so that all commands will be converted properly.  The new files are located here:
+10.  The macro for converting from 9.1 to 10 will only convert items that start as “=ENTHALPY(…”.  We recently updated this macro to not include the equal sign so that all commands will be converted properly.  The new files are located here:
 https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLS
 https://trc.nist.gov/refprop/10-PATCH/REFPROP.XLA
+If you cannot access or save these files, you can add a new macro to your worksheet called Refprop91code and simply add the text from the file below.
+https://trc.nist.gov/refprop/FAQ/REFPROP91macros.txt
 
-10.  The macro to do this conversion does not show up in the View Macros option in Excel.  Again, see the “Welcome” screen in the Refprop.xls file for more information.
+12.  The macro to do this conversion does not show up in the View Macros option in Excel.  Again, see the “Welcome” screen in the REFPROP.XLS file for more information.
 
-11.  Some users have reported that the original Office was installed via the "Microsoft Store", which installs as a “Microsoft App” rather than installing the full software.  The installation via the “Microsoft Store” is often done when purchasing a computer with Office pre-installed.  Uninstalling office and reinstalling from office.com/myaccount may solve any issues.
+13.  Some users have reported that the original Office was installed via the "Microsoft Store", which installs as a “Microsoft App” rather than installing the full software.  The installation via the “Microsoft Store” is often done when purchasing a computer with Office pre-installed.  Uninstalling office and reinstalling from office.com/myaccount may solve any issues.
 
-12.  If problems still persist, it would be very useful if we can log into your machine remotely to try to find the problem and then include the solution here.
+14.  If problems still persist, it would be very useful if we can log into your machine remotely to try to find the problem and then include the solution here.
 
-13.  If you find errors in the directions above, and especially if you find better solutions, please contact us.
+15.  If you find errors in the directions above, and especially if you find better solutions, please contact us.
 
-14.  The best way to contact us is to use the github system so that others can see the problems and solutions.  You will find that here:  https://github.com/usnistgov/REFPROP-issues/issues.  This website is loaded with answers to many other Refprop questions; be sure to search through the issues, and if you wish, change your Watch status so that you receive updates every time something is posted.  We try to put up much more detailed answers there than would be received by a simple email request.  For linking issues with other programs, be sure to look at https://github.com/usnistgov/REFPROP-wrappers/issues.
+16.  The best way to contact us is to use the github system so that others can see the problems and solutions.  You will find that here:  https://github.com/usnistgov/REFPROP-issues/issues.  This website is loaded with answers to many other Refprop questions; be sure to search through the issues, and if you wish, change your Watch status so that you receive updates every time something is posted.  We try to put up much more detailed answers there than would be received by a simple email request.  For linking issues with other programs, be sure to look at https://github.com/usnistgov/REFPROP-wrappers/issues.
 
-15.  For very simple comments such as misspellings, or for private conversations with us, our email addresses are   Eric.Lemmon@nist.gov  and   Ian.Bell@nist.gov
+17.  For very simple comments such as misspellings, or for private conversations with us, our email addresses are   Eric.Lemmon@nist.gov  and   Ian.Bell@nist.gov
 
-16.  If the equations work in the REFPROP.XLS file but not in a new blank workbook (the error #VALUES is returned), try adding the file paths of the Refprop DLLs to the REFPROP.XLA file.  Simply search for Lib "REFPROP.DLL" and change this to something like Lib "C:\Program files (x86)\REFPROP\REFPROP.DLL", or wherever the DLLs for Refprop are located.  Do this for the REFPRP64.DLL occurrence as well.
+18.  If the equations work in the REFPROP.XLS file but not in a new blank workbook (the error #VALUES is returned), try adding the file paths of the Refprop DLLs to the REFPROP.XLA file.  Simply search for Lib "REFPROP.DLL" and change this to something like Lib "C:\Program files (x86)\REFPROP\REFPROP.DLL", or wherever the DLLs for Refprop are located.  Do this for the REFPRP64.DLL occurrence as well.
 
 ## Other Issues Related to the Use of Refprop in Excel
 
-9.1 to 10.0 Conversions: If the macro (called RefpropConversion in the ConvertRefprop9to10 Module) for converting existing Excel files with REFPROP 9.x or earlier to the new REFPROP 10.0 format does not appear when trying to View Macros in Excel, first view the Welcome page in the Refprop.xls file.  If the information there does not help, copy the ConvertRefprop9to10 Module under REFPROPExcelSpreadsheet in the REFPROP.xla file to the Modules section of your own spreadsheet, which will hopefully allow you to see and run it.  If you Ctrl+click or Shift+click to select multiple spreadsheet tabs, then run the macro, all of the selected tabs will update.  Once done, the Module can be deleted from your spreadsheet.
+9.1 to 10.0 Conversions: If the macro (called RefpropConversion in the ConvertRefprop9to10 Module) for converting existing Excel files with REFPROP 9.x or earlier to the new REFPROP 10.0 format does not appear when trying to View Macros in Excel, first view the Welcome page in the REFPROP.XLS file.  If the information there does not help, copy the ConvertRefprop9to10 Module under REFPROPExcelSpreadsheet in the REFPROP.XLA file to the Modules section of your own spreadsheet, which will hopefully allow you to see and run it.  If you Ctrl+click or Shift+click to select multiple spreadsheet tabs, then run the macro, all of the selected tabs will update.  Once done, the Module can be deleted from your spreadsheet.
 
 10.0 to 9.1 Back Conversions:  A new macro called RefpropBackConversionto91 is now available in case you wish to undo what happened when you ran the forward conversions.
 
@@ -866,7 +873,7 @@ New files:  You can find the updated files at [https://github.com/usnistgov/REFP
 
 9.1 Macros:  To continue using the commands from version 9.1 with the new 10.0 DLL, download the following xla file and include it as an Excel add-in: [https://trc.nist.gov/refprop/10-PATCH/REFPRP91.XLA](https://trc.nist.gov/refprop/10-PATCH/REFPRP91.XLA)
 
-Last modified: May 11, 2019.
+Last modified: March 14, 2021.
 
 [Go to the source of this file](https://github.com/usnistgov/REFPROP-docs/blob/nist-pages/index.md)
 
