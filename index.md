@@ -824,6 +824,8 @@ There are several fluid files that Refprop accesses in order to run properly.&nb
 
 Before reading the items below, we highly advise you to either uninstall and reinstall the REFPROP program outside of the Windows system directories (such as on a different drive or in your Users directory) or to simply move the installed directory outside the Windows protected locations.  This will decrease many of the frustrations caused by not having control over saving and changing files.  If you move the directory, see the information below about changing the path and the RPprefix variables.
 
+Additional information not included below can be found at https://github.com/usnistgov/REFPROP-wrappers/tree/master/wrappers/Excel
+
 1.  Open the REFPROP.XLS file to see if the calculations work in that file.
 
 2.  Check the path statement to ensure that the directory where Refprop was installed is included in the path.  This can be found under Control Panel/System/Advanced System Settings/Environment Variables.  
