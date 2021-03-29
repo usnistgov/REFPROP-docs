@@ -871,11 +871,13 @@ https://trc.nist.gov/refprop/FAQ/REFPROP91macros.txt
 
 10.0 to 9.1 Back Conversions:  A new macro called RefpropBackConversionto91 is now available in case you wish to undo what happened when you ran the forward conversions.
 
+If you experience that the REFPROP Addin link in Excel breaks down when used on SharePoint/OneDrive or Dropbox after a short time, see https://github.com/usnistgov/REFPROP-wrappers/issues/360.  If you have experience with this and can us with further information, please post it on that github site at the bottom of issue #360.
+
 New files:  You can find the updated files at [https://github.com/usnistgov/REFPROP-wrappers/tree/master/wrappers/Excel](https://github.com/usnistgov/REFPROP-wrappers/tree/master/wrappers/Excel).
 
 9.1 Macros:  To continue using the commands from version 9.1 with the new 10.0 DLL, download the following xla file and include it as an Excel add-in: [https://trc.nist.gov/refprop/10-PATCH/REFPRP91.XLA](https://trc.nist.gov/refprop/10-PATCH/REFPRP91.XLA)
 
-Last modified: March 14, 2021.
+Last modified: March 29, 2021.
 
 [Go to the source of this file](https://github.com/usnistgov/REFPROP-docs/blob/nist-pages/index.md)
 
