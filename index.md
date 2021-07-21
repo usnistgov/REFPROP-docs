@@ -694,265 +694,265 @@ The following predefined mixtures are included in the ASHRAE 34 Standard and are
 
 Warning: if interaction parameters are estimated, you should be somewhat skeptical of the model results, and confirm model accuracy against experimental measurements.  A good place to start to figure out whether the model might be adequate for your use case, is the survey of measurements and models in  [https://pubs.acs.org/doi/abs/10.1021/acs.jced.1c00192](https://pubs.acs.org/doi/abs/10.1021/acs.jced.1c00192)
 
-R401A[22/152A/124]
+R401A [22/152A/124] (53.0/13.0/34.0 by mass)
 
-R401B[22/152A/124]
+R401B [22/152A/124] (61.0/11.0/28.0 by mass)
 
-R401C[22/152A/124]
+R401C [22/152A/124] (33.0/15.0/52.0 by mass)
 
-R402A[125/PROPANE/22]
+R402A [125/PROPANE/22] (60.0/2.0/38.0 by mass)
 
-R402B[125/PROPANE/22]
+R402B [125/PROPANE/22] (38.0/2.0/60.0 by mass)
 
-R403A[PROPANE/22/218] (warning: estimated parameters)
+R403A [PROPANE/22/218] (5.0/75.0/20.0 by mass) !!warning: estimated parameters!!
 
-R403B[PROPANE/22/218]
+R403B [PROPANE/22/218] (5.0/56.0/39.0 by mass)
 
-R404A[125/143A/134A]
+R404A [125/143A/134A] (44.0/52.0/4.0 by mass)
 
-R405A[22/152A/142B/C318] (warning: estimated parameters)
+R405A [22/152A/142B/C318] (45.0/7.0/5.5/42.5 by mass) !!warning: estimated parameters!!
 
-R406A[22/ISOBUTAN/142B] (warning: estimated parameters)
+R406A [22/ISOBUTAN/142B] (55.0/4.0/41.0 by mass) !!warning: estimated parameters!!
 
-R407A[32/125/134A]
+R407A [32/125/134A] (20.0/40.0/40.0 by mass)
 
-R407B[32/125/134A]
+R407B [32/125/134A] (10.0/70.0/20.0 by mass)
 
-R407C[32/125/134A]
+R407C [32/125/134A] (23.0/25.0/52.0 by mass)
 
-R407D[32/125/134A]
+R407D [32/125/134A] (15.0/15.0/70.0 by mass)
 
-R407E[32/125/134A]
+R407E [32/125/134A] (25.0/15.0/60.0 by mass)
 
-R407F[32/125/134A]
+R407F [32/125/134A] (30.0/30.0/40.0 by mass)
 
-R407G[32/125/134A]
+R407G [32/125/134A] (2.5/2.5/95.0 by mass)
 
-R407H[32/125/134A]
+R407H [32/125/134A] (32.5/15.0/52.5 by mass)
 
-R407I[32/125/134A]
+R407I [32/125/134A] (19.5/8.5/72.0 by mass)
 
-R408A[125/143A/22]
+R408A [125/143A/22] (7.0/46.0/47.0 by mass)
 
-R409A[22/124/142B]
+R409A [22/124/142B] (60.0/25.0/15.0 by mass)
 
-R409B[22/124/142B]
+R409B [22/124/142B] (65.0/25.0/10.0 by mass)
 
-R410A[32/125]
+R410A [32/125] (50.0/50.0 by mass)
 
-R410B[32/125]
+R410B [32/125] (45.0/55.0 by mass)
 
-R411A[PROPYLEN/22/152A]
+R411A [PROPYLEN/22/152A] (1.5/87.5/11.0 by mass)
 
-R411B[PROPYLEN/22/152A]
+R411B [PROPYLEN/22/152A] (3.0/94.0/3.0 by mass)
 
-R412A[22/218/142B] (warning: estimated parameters)
+R412A [22/218/142B] (70.0/5.0/25.0 by mass) !!warning: estimated parameters!!
 
-R413A[218/134A/ISOBUTAN]
+R413A [218/134A/ISOBUTAN] (9.0/88.0/3.0 by mass)
 
-R414A[22/124/ISOBUTAN/142B] (warning: estimated parameters)
+R414A [22/124/ISOBUTAN/142B] (51.0/28.5/4.0/16.5 by mass) !!warning: estimated parameters!!
 
-R414B[22/124/ISOBUTAN/142B]
+R414B [22/124/ISOBUTAN/142B] (50.0/39.0/1.5/9.5 by mass)
 
-R415A[22/152A]
+R415A [22/152A] (82.0/18.0 by mass)
 
-R415B[22/152A]
+R415B [22/152A] (25.0/75.0 by mass)
 
-R416A[134A/124/BUTANE] (warning: estimated parameters)
+R416A [134A/124/BUTANE] (59.0/39.5/1.5 by mass) !!warning: estimated parameters!!
 
-R417A[125/134A/BUTANE]
+R417A [125/134A/BUTANE] (46.6/50.0/3.4 by mass)
 
-R417B[125/134A/BUTANE]
+R417B [125/134A/BUTANE] (79.0/18.3/2.7 by mass)
 
-R417C[125/134A/BUTANE]
+R417C [125/134A/BUTANE] (19.5/78.8/1.7 by mass)
 
-R418A[PROPANE/22/152A]
+R418A [PROPANE/22/152A] (1.5/96.0/2.5 by mass)
 
-R419A[125/134A/DME]
+R419A [125/134A/DME] (77.0/19.0/4.0 by mass)
 
-R419B[125/134A/DME]
+R419B [125/134A/DME] (48.5/48.0/3.5 by mass)
 
-R420A[134A/142B]
+R420A [134A/142B] (88.0/12.0 by mass)
 
-R421A[125/134A]
+R421A [125/134A] (58.0/42.0 by mass)
 
-R421B[125/134A]
+R421B [125/134A] (85.0/15.0 by mass)
 
-R422A[125/134A/ISOBUTAN]
+R422A [125/134A/ISOBUTAN] (85.1/11.5/3.4 by mass)
 
-R422B[125/134A/ISOBUTAN]
+R422B [125/134A/ISOBUTAN] (55.0/42.0/3.0 by mass)
 
-R422C[125/134A/ISOBUTAN]
+R422C [125/134A/ISOBUTAN] (82.0/15.0/3.0 by mass)
 
-R422D[125/134A/ISOBUTAN]
+R422D [125/134A/ISOBUTAN] (65.1/31.5/3.4 by mass)
 
-R422E[125/134A/ISOBUTAN]
+R422E [125/134A/ISOBUTAN] (58.0/39.3/2.7 by mass)
 
-R423A[134A/227EA]
+R423A [134A/227EA] (52.5/47.5 by mass)
 
-R424A[125/134A/ISOBUTAN/BUTANE/IPENTANE]
+R424A [125/134A/ISOBUTAN/BUTANE/IPENTANE] (50.5/47.0/0.9/1.0/0.6 by mass)
 
-R425A[32/134A/227EA]
+R425A [32/134A/227EA] (18.5/69.5/12.0 by mass)
 
-R426A[125/134A/BUTANE/IPENTANE]
+R426A [125/134A/BUTANE/IPENTANE] (5.1/93.0/1.3/0.6 by mass)
 
-R427A[32/125/143A/134A]
+R427A [32/125/143A/134A] (15.0/25.0/10.0/50.0 by mass)
 
-R428A[125/143A/PROPANE/ISOBUTAN]
+R428A [125/143A/PROPANE/ISOBUTAN] (77.5/20.0/0.6/1.9 by mass)
 
-R429A[DME/152A/ISOBUTAN] (warning: estimated parameters)
+R429A [DME/152A/ISOBUTAN] (60.0/10.0/30.0 by mass) !!warning: estimated parameters!!
 
-R430A[152A/ISOBUTAN]
+R430A [152A/ISOBUTAN] (76.0/24.0 by mass)
 
-R431A[PROPANE/152A]
+R431A [PROPANE/152A] (71.0/29.0 by mass)
 
-R432A[PROPYLEN/DME]
+R432A [PROPYLEN/DME] (80.0/20.0 by mass)
 
-R433A[PROPYLEN/PROPANE]
+R433A [PROPYLEN/PROPANE] (30.0/70.0 by mass)
 
-R433B[PROPYLEN/PROPANE]
+R433B [PROPYLEN/PROPANE] (5.0/95.0 by mass)
 
-R433C[PROPYLEN/PROPANE]
+R433C [PROPYLEN/PROPANE] (25.0/75.0 by mass)
 
-R434A[125/143A/134A/ISOBUTAN]
+R434A [125/143A/134A/ISOBUTAN] (63.2/18.0/16.0/2.8 by mass)
 
-R435A[DME/152A] (warning: estimated parameters)
+R435A [DME/152A] (80.0/20.0 by mass) !!warning: estimated parameters!!
 
-R436A[PROPANE/ISOBUTAN]
+R436A [PROPANE/ISOBUTAN] (56.0/44.0 by mass)
 
-R436B[PROPANE/ISOBUTAN]
+R436B [PROPANE/ISOBUTAN] (52.0/48.0 by mass)
 
-R436C[PROPANE/ISOBUTAN]
+R436C [PROPANE/ISOBUTAN] (95.0/5.0 by mass)
 
-R437A[125/134A/BUTANE/PENTANE] (warning: estimated parameters)
+R437A [125/134A/BUTANE/PENTANE] (19.5/78.5/1.4/0.6 by mass) !!warning: estimated parameters!!
 
-R438A[32/125/134A/BUTANE/IPENTANE]
+R438A [32/125/134A/BUTANE/IPENTANE] (8.5/45.0/44.2/1.7/0.6 by mass)
 
-R439A[32/125/ISOBUTAN]
+R439A [32/125/ISOBUTAN] (50.0/47.0/3.0 by mass)
 
-R440A[PROPANE/134A/152A]
+R440A [PROPANE/134A/152A] (0.6/1.6/97.8 by mass)
 
-R441A[ETHANE/PROPANE/ISOBUTAN/BUTANE]
+R441A [ETHANE/PROPANE/ISOBUTAN/BUTANE] (3.1/54.8/6.0/36.1 by mass)
 
-R442A[32/125/134A/152A/227EA]
+R442A [32/125/134A/152A/227EA] (31.0/31.0/30.0/3.0/5.0 by mass)
 
-R443A[PROPYLEN/PROPANE/ISOBUTAN]
+R443A [PROPYLEN/PROPANE/ISOBUTAN] (55.0/40.0/5.0 by mass)
 
-R444A[32/152A/1234ZEE] (warning: estimated parameters)
+R444A [32/152A/1234ZEE] (12.0/5.0/83.0 by mass) !!warning: estimated parameters!!
 
-R444B[32/152A/1234ZEE]
+R444B [32/152A/1234ZEE] (41.5/10.0/48.5 by mass)
 
-R445A[CO2/134A/1234ZEE]
+R445A [CO2/134A/1234ZEE] (6.0/9.0/85.0 by mass)
 
-R446A[32/1234ZEE/BUTANE] (warning: estimated parameters)
+R446A [32/1234ZEE/BUTANE] (68.0/29.0/3.0 by mass) !!warning: estimated parameters!!
 
-R447A[32/125/1234ZEE]
+R447A [32/125/1234ZEE] (68.0/3.5/28.5 by mass)
 
-R447B[32/125/1234ZEE]
+R447B [32/125/1234ZEE] (68.0/8.0/24.0 by mass)
 
-R448A[32/125/1234YF/134A/1234ZEE]
+R448A [32/125/1234YF/134A/1234ZEE] (26.0/26.0/20.0/21.0/7.0 by mass)
 
-R449A[32/125/1234YF/134A]
+R449A [32/125/1234YF/134A] (24.3/24.7/25.3/25.7 by mass)
 
-R449B[32/125/1234YF/134A]
+R449B [32/125/1234YF/134A] (25.2/24.3/23.2/27.3 by mass)
 
-R449C[32/125/1234YF/134A]
+R449C [32/125/1234YF/134A] (20.0/20.0/31.0/29.0 by mass)
 
-R450A[134A/1234ZEE]
+R450A [134A/1234ZEE] (42.0/58.0 by mass)
 
-R451A[1234YF/134A]
+R451A [1234YF/134A] (89.8/10.2 by mass)
 
-R451B[1234YF/134A]
+R451B [1234YF/134A] (88.8/11.2 by mass)
 
-R452A[32/125/1234YF]
+R452A [32/125/1234YF] (11.0/59.0/30.0 by mass)
 
-R452B[32/125/1234YF]
+R452B [32/125/1234YF] (67.0/7.0/26.0 by mass)
 
-R452C[32/125/1234YF]
+R452C [32/125/1234YF] (12.5/61.0/26.5 by mass)
 
-R453A[32/125/134A/227EA/BUTANE/IPENTANE] (warning: estimated parameters)
+R453A [32/125/134A/227EA/BUTANE/IPENTANE] (20.0/20.0/53.8/5.0/0.6/0.6 by mass) !!warning: estimated parameters!!
 
-R454A[32/1234YF]
+R454A [32/1234YF] (35.0/65.0 by mass)
 
-R454B[32/1234YF]
+R454B [32/1234YF] (68.9/31.1 by mass)
 
-R454C[32/1234YF]
+R454C [32/1234YF] (21.5/78.5 by mass)
 
-R455A[CO2/32/1234YF]
+R455A [CO2/32/1234YF] (3.0/21.5/75.5 by mass)
 
-R456A[32/134A/1234ZEE]
+R456A [32/134A/1234ZEE] (6.0/45.0/49.0 by mass)
 
-R457A[32/1234YF/152A]
+R457A [32/1234YF/152A] (18.0/70.0/12.0 by mass)
 
-R458A[32/125/134A/227EA/236FA] (warning: estimated parameters)
+R458A [32/125/134A/227EA/236FA] (20.5/4.0/61.4/13.5/0.6 by mass) !!warning: estimated parameters!!
 
-R459A[32/1234YF/1234ZEE]
+R459A [32/1234YF/1234ZEE] (68.0/26.0/6.0 by mass)
 
-R459B[32/1234YF/1234ZEE]
+R459B [32/1234YF/1234ZEE] (21.0/69.0/10.0 by mass)
 
-R460A[32/125/134A/1234ZEE]
+R460A [32/125/134A/1234ZEE] (12.0/52.0/14.0/22.0 by mass)
 
-R460B[32/125/134A/1234ZEE]
+R460B [32/125/134A/1234ZEE] (28.0/25.0/20.0/27.0 by mass)
 
-R460C[32/125/134A/1234ZEE]
+R460C [32/125/134A/1234ZEE] (2.5/2.5/46.0/49.0 by mass)
 
-R461A[125/143A/134A/227EA/ISOBUTAN] (warning: estimated parameters)
+R461A [125/143A/134A/227EA/ISOBUTAN] (55.0/5.0/32.0/5.0/3.0 by mass) !!warning: estimated parameters!!
 
-R462A[32/125/143A/134A/BUTANE]
+R462A [32/125/143A/134A/BUTANE] (9.0/42.0/2.0/44.0/3.0 by mass)
 
-R463A[CO2/32/125/1234YF/134A]
+R463A [CO2/32/125/1234YF/134A] (6.0/36.0/30.0/14.0/14.0 by mass)
 
-R464A[32/125/1234ZEE/227EA] (warning: estimated parameters)
+R464A [32/125/1234ZEE/227EA] (27.0/27.0/40.0/6.0 by mass) !!warning: estimated parameters!!
 
-R465A[32/PROPANE/1234YF] (warning: estimated parameters)
+R465A [32/PROPANE/1234YF] (21.0/7.9/71.1 by mass) !!warning: estimated parameters!!
 
-R500[12/152A]
+R500 [12/152A] (73.8/26.2 by mass)
 
-R501[22/12]
+R501 [22/12] (75.0/25.0 by mass)
 
-R502[22/115]
+R502 [22/115] (48.8/51.2 by mass)
 
-R503[23/13]
+R503 [23/13] (40.1/59.9 by mass)
 
-R504[32/115]
+R504 [32/115] (48.2/51.8 by mass)
 
-R507A[125/143A]
+R507A [125/143A] (50.0/50.0 by mass)
 
-R508A[23/116]
+R508A [23/116] (39.0/61.0 by mass)
 
-R508B[23/116]
+R508B [23/116] (46.0/54.0 by mass)
 
-R509A[22/218]
+R509A [22/218] (44.0/56.0 by mass)
 
-R510A[DME/ISOBUTAN]
+R510A [DME/ISOBUTAN] (88.0/12.0 by mass)
 
-R511A[PROPANE/DME]
+R511A [PROPANE/DME] (95.0/5.0 by mass)
 
-R512A[134A/152A]
+R512A [134A/152A] (5.0/95.0 by mass)
 
-R513A[1234YF/134A]
+R513A [1234YF/134A] (56.0/44.0 by mass)
 
-R513B[1234YF/134A]
+R513B [1234YF/134A] (58.5/41.5 by mass)
 
-R515A[1234ZEE/227EA] (warning: estimated parameters)
+R515A [1234ZEE/227EA] (88.0/12.0 by mass) !!warning: estimated parameters!!
 
-R516A[1234YF/134A/152A]
+R516A [1234YF/134A/152A] (77.5/8.5/14.0 by mass)
 
-R469A[CO2/32/125]
+R469A [CO2/32/125] (35.0/32.5/32.5 by mass)
 
-R470A[CO2/32/125/134A/1234ZEE/227EA] (warning: estimated parameters)
+R470A [CO2/32/125/134A/1234ZEE/227EA] (10.0/17.0/19.0/7.0/44.0/3.0 by mass) !!warning: estimated parameters!!
 
-R470B[CO2/32/125/134A/1234ZEE/227EA]
+R470B [CO2/32/125/134A/1234ZEE/227EA] (10.0/11.5/11.5/3.0/57.0/7.0 by mass)
 
-R457B[32/1234YF/152A]
+R457B [32/1234YF/152A] (35.0/55.0/10.0 by mass)
 
-R472A[CO2/32/134A]
+R472A [CO2/32/134A] (69.0/12.0/19.0 by mass)
 
-R515B[1234ZEE/227EA] (warning: estimated parameters)
+R515B [1234ZEE/227EA] (91.1/8.9 by mass) !!warning: estimated parameters!!
 
-R466A[32/125/13I1] (warning: estimated parameters)
+R466A [32/125/13I1] (49.0/11.5/39.5 by mass) !!warning: estimated parameters!!
 
-R467A[32/125/134A/ISOBUTAN]
+R467A [32/125/134A/ISOBUTAN] (22.0/5.0/72.4/0.6 by mass)
 
 # Using the Program
 
