@@ -692,7 +692,7 @@ This is the list of pure fluids that are included in REFPROP 10 (a more comprehe
 
 The following predefined mixtures are included in the ASHRAE 34 Standard and are supported by REFPROP. In REFPROP 10, many of the predefined mixture files are already included, and additional ones can be generated with the script at https://github.com/usnistgov/REFPROP-issues/issues/358#issuecomment-872394368
 
-Warning: if interaction parameters are estimated, you should be somewhat skeptical of the model results, and confirm model accuracy against experimental measurements.  A good place to start, as of 2021, is the survey of measurements and models in https://pubs.acs.org/doi/abs/10.1021/acs.jced.1c00192
+Warning: if interaction parameters are estimated, you should be somewhat skeptical of the model results, and confirm model accuracy against experimental measurements.  A good place to start to figure out whether the model might be adequate for your use case, is the survey of measurements and models in https://pubs.acs.org/doi/abs/10.1021/acs.jced.1c00192
 
 R401A[22/152A/124]
 
