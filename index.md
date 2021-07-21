@@ -687,6 +687,272 @@ This is the list of pure fluids that are included in REFPROP 10 (a more comprehe
 </tr>
 </table>
 
+## List of predefined mixtures
+
+The following predefined mixtures are included in the ASHRAE 34 Standard and are supported by REFPROP. In REFPROP 10, many of the predefined mixture files are already included, and additional ones can be generated with the script at https://github.com/usnistgov/REFPROP-issues/issues/358#issuecomment-872394368
+
+Warning: if interaction parameters are estimated, you should be somewhat skeptical of the model results, and confirm model accuracy against experimental measurements.  A good place to start, as of 2021, is the survey of measurements and models in https://pubs.acs.org/doi/abs/10.1021/acs.jced.1c00192
+
+R401A[22/152A/124]
+
+R401B[22/152A/124]
+
+R401C[22/152A/124]
+
+R402A[125/PROPANE/22]
+
+R402B[125/PROPANE/22]
+
+R403A[PROPANE/22/218] (warning: estimated parameters)
+
+R403B[PROPANE/22/218]
+
+R404A[125/143A/134A]
+
+R405A[22/152A/142B/C318] (warning: estimated parameters)
+
+R406A[22/ISOBUTAN/142B] (warning: estimated parameters)
+
+R407A[32/125/134A]
+
+R407B[32/125/134A]
+
+R407C[32/125/134A]
+
+R407D[32/125/134A]
+
+R407E[32/125/134A]
+
+R407F[32/125/134A]
+
+R407G[32/125/134A]
+
+R407H[32/125/134A]
+
+R407I[32/125/134A]
+
+R408A[125/143A/22]
+
+R409A[22/124/142B]
+
+R409B[22/124/142B]
+
+R410A[32/125]
+
+R410B[32/125]
+
+R411A[PROPYLEN/22/152A]
+
+R411B[PROPYLEN/22/152A]
+
+R412A[22/218/142B] (warning: estimated parameters)
+
+R413A[218/134A/ISOBUTAN]
+
+R414A[22/124/ISOBUTAN/142B] (warning: estimated parameters)
+
+R414B[22/124/ISOBUTAN/142B]
+
+R415A[22/152A]
+
+R415B[22/152A]
+
+R416A[134A/124/BUTANE] (warning: estimated parameters)
+
+R417A[125/134A/BUTANE]
+
+R417B[125/134A/BUTANE]
+
+R417C[125/134A/BUTANE]
+
+R418A[PROPANE/22/152A]
+
+R419A[125/134A/DME]
+
+R419B[125/134A/DME]
+
+R420A[134A/142B]
+
+R421A[125/134A]
+
+R421B[125/134A]
+
+R422A[125/134A/ISOBUTAN]
+
+R422B[125/134A/ISOBUTAN]
+
+R422C[125/134A/ISOBUTAN]
+
+R422D[125/134A/ISOBUTAN]
+
+R422E[125/134A/ISOBUTAN]
+
+R423A[134A/227EA]
+
+R424A[125/134A/ISOBUTAN/BUTANE/IPENTANE]
+
+R425A[32/134A/227EA]
+
+R426A[125/134A/BUTANE/IPENTANE]
+
+R427A[32/125/143A/134A]
+
+R428A[125/143A/PROPANE/ISOBUTAN]
+
+R429A[DME/152A/ISOBUTAN] (warning: estimated parameters)
+
+R430A[152A/ISOBUTAN]
+
+R431A[PROPANE/152A]
+
+R432A[PROPYLEN/DME]
+
+R433A[PROPYLEN/PROPANE]
+
+R433B[PROPYLEN/PROPANE]
+
+R433C[PROPYLEN/PROPANE]
+
+R434A[125/143A/134A/ISOBUTAN]
+
+R435A[DME/152A] (warning: estimated parameters)
+
+R436A[PROPANE/ISOBUTAN]
+
+R436B[PROPANE/ISOBUTAN]
+
+R436C[PROPANE/ISOBUTAN]
+
+R437A[125/134A/BUTANE/PENTANE] (warning: estimated parameters)
+
+R438A[32/125/134A/BUTANE/IPENTANE]
+
+R439A[32/125/ISOBUTAN]
+
+R440A[PROPANE/134A/152A]
+
+R441A[ETHANE/PROPANE/ISOBUTAN/BUTANE]
+
+R442A[32/125/134A/152A/227EA]
+
+R443A[PROPYLEN/PROPANE/ISOBUTAN]
+
+R444A[32/152A/1234ZEE] (warning: estimated parameters)
+
+R444B[32/152A/1234ZEE]
+
+R445A[CO2/134A/1234ZEE]
+
+R446A[32/1234ZEE/BUTANE] (warning: estimated parameters)
+
+R447A[32/125/1234ZEE]
+
+R447B[32/125/1234ZEE]
+
+R448A[32/125/1234YF/134A/1234ZEE]
+
+R449A[32/125/1234YF/134A]
+
+R449B[32/125/1234YF/134A]
+
+R449C[32/125/1234YF/134A]
+
+R450A[134A/1234ZEE]
+
+R451A[1234YF/134A]
+
+R451B[1234YF/134A]
+
+R452A[32/125/1234YF]
+
+R452B[32/125/1234YF]
+
+R452C[32/125/1234YF]
+
+R453A[32/125/134A/227EA/BUTANE/IPENTANE] (warning: estimated parameters)
+
+R454A[32/1234YF]
+
+R454B[32/1234YF]
+
+R454C[32/1234YF]
+
+R455A[CO2/32/1234YF]
+
+R456A[32/134A/1234ZEE]
+
+R457A[32/1234YF/152A]
+
+R458A[32/125/134A/227EA/236FA] (warning: estimated parameters)
+
+R459A[32/1234YF/1234ZEE]
+
+R459B[32/1234YF/1234ZEE]
+
+R460A[32/125/134A/1234ZEE]
+
+R460B[32/125/134A/1234ZEE]
+
+R460C[32/125/134A/1234ZEE]
+
+R461A[125/143A/134A/227EA/ISOBUTAN] (warning: estimated parameters)
+
+R462A[32/125/143A/134A/BUTANE]
+
+R463A[CO2/32/125/1234YF/134A]
+
+R464A[32/125/1234ZEE/227EA] (warning: estimated parameters)
+
+R465A[32/PROPANE/1234YF] (warning: estimated parameters)
+
+R500[12/152A]
+
+R501[22/12]
+
+R502[22/115]
+
+R503[23/13]
+
+R504[32/115]
+
+R507A[125/143A]
+
+R508A[23/116]
+
+R508B[23/116]
+
+R509A[22/218]
+
+R510A[DME/ISOBUTAN]
+
+R511A[PROPANE/DME]
+
+R512A[134A/152A]
+
+R513A[1234YF/134A]
+
+R513B[1234YF/134A]
+
+R515A[1234ZEE/227EA] (warning: estimated parameters)
+
+R516A[1234YF/134A/152A]
+
+R469A[CO2/32/125]
+
+R470A[CO2/32/125/134A/1234ZEE/227EA] (warning: estimated parameters)
+
+R470B[CO2/32/125/134A/1234ZEE/227EA]
+
+R457B[32/1234YF/152A]
+
+R472A[CO2/32/134A]
+
+R515B[1234ZEE/227EA] (warning: estimated parameters)
+
+R466A[32/125/13I1] (warning: estimated parameters)
+
+R467A[32/125/134A/ISOBUTAN]
+
 # Using the Program
 
 ## Reference States (enthalpy and entropy differences)
