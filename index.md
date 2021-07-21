@@ -47,15 +47,16 @@ The following information gives answers to some of the most frequently asked que
 **Fluids**
 
 22. [List of fluids](#list-of-fluids)
-23. [GERG-2008 Equation of State for Natural Gas Mixtures](#gerg-2008-equation-of-state-for-natural-gas-mixtures)
-24. [HFO-1234yf, 1234ze(E), 1234ze(Z), 1233zd(E), and Refrigerant Mixtures](#hfo-1234yf-1234zee-1234zez-1233zde-and-refrigerant-mixtures)
-25. [Humid Air](#humid-air)
-26. [Mixture Models](#mixture-models)
-27. [Solids](#solids)
-28. [Transport Properties for Nitrogen, Oxygen, Argon, and Air](#transport-properties-for-nitrogen-oxygen-argon-and-air)
-29. [Transport Properties for Mixtures](#transport-properties-for-mixtures)
-30. [Transport Properties for Pseudo-pure Fluids; Adding Pure Fluids to a Mixture Setup](#transport-properties-for-pseudo-pure-fluids-adding-pure-fluids-to-a-mixture-setup)
-31. [Required Fluids for Distribution](#required-fluids-for-distribution)
+23. [List of predefined mixtures](#list-of-predefined-mixtures)
+24. [GERG-2008 Equation of State for Natural Gas Mixtures](#gerg-2008-equation-of-state-for-natural-gas-mixtures)
+25. [HFO-1234yf, 1234ze(E), 1234ze(Z), 1233zd(E), and Refrigerant Mixtures](#hfo-1234yf-1234zee-1234zez-1233zde-and-refrigerant-mixtures)
+26. [Humid Air](#humid-air)
+27. [Mixture Models](#mixture-models)
+28. [Solids](#solids)
+29. [Transport Properties for Nitrogen, Oxygen, Argon, and Air](#transport-properties-for-nitrogen-oxygen-argon-and-air)
+30. [Transport Properties for Mixtures](#transport-properties-for-mixtures)
+31. [Transport Properties for Pseudo-pure Fluids; Adding Pure Fluids to a Mixture Setup](#transport-properties-for-pseudo-pure-fluids-adding-pure-fluids-to-a-mixture-setup)
+32. [Required Fluids for Distribution](#required-fluids-for-distribution)
 
 **Excel**
 
