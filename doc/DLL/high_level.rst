@@ -1194,7 +1194,7 @@ Function Documentation
     The unit systems used in Refprop are as follows::
     
     
-                         DEFAULT     MOLAR SI    MASS SI          SI WITH C
+                         DEFAULT     MOLAR SI    MASS SI       SI WITH C
         iUnits --->      0           1           2             3
         Temperature      K           K           K             C
         Pressure         kPa         MPa         MPa           MPa
