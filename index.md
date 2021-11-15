@@ -85,6 +85,8 @@ In addition to this page, further answers can be found at GitHub: [REFPROP-issue
 
 There are three ways to purchase REFPROP:  For your use only, for company wide use, or for use in distribution in your code.  These are all explained at https://www.nist.gov/srd/refprop.  If you purchase the program for your use only, the copy you will receive can be installed on all machines that you use (not including servers where others can also access the program).  You do not need to purchase a copy for each machine you own.  There is no protection in the REFPROP installer or program, we trust that you will use the program and license appropriately.
 
+For those looking for the "Accessibility Conformance Report (ACR) based on VPAT 2.4" for REFPROP 10.0, it can be obtained at this link: [here](https://github.com/usnistgov/REFPROP-docs/raw/master/PAT2.4Rev508--February2020.NIST23REFPROP.pdf)
+
 ## Installation Problems
 
 ### Upgrading from 9.x
