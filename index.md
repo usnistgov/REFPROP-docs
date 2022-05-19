@@ -120,8 +120,10 @@ component COMDLG32.OCX or one of its dependencies not correctly registered:
 
 check to see if you have a firewall or antivirus software that can be turned off.&nbsp; Deactivating these will often allow successful installs, especially on Vista machines.&nbsp; If this fails or is not an option, then >download the corresponding file from the link below and save it in your ``Windows\System32`` directory on 32 bit machines or to your ``Windows\SysWOW64`` directory on 64 bit machines. 
 
-- [MSHFLXGD.OCX](https://trc.nist.gov/refprop/FAQ/mshflxgd.ocx)
-- [COMDLG32.OCX](https://trc.nist.gov/refprop/FAQ/COMDLG32.OCX)
+
+
+- [MSHFLXGD.OCX](https://nist-srd.s3.amazonaws.com/SRD23/general/MSHFLXGD.OCX)
+- [COMDLG32.OCX](https://nist-srd.s3.amazonaws.com/SRD23/general/COMDLG32.OCX)
 
 In some cases where you are not allowed to be the administrator on a machine, this message will appear because it cannot access the System32 directory. Try placing the file in your Windows directory to get the program to work.
 
