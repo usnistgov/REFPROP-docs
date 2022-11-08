@@ -12,7 +12,7 @@ Or in BibTeX form::
 
     @Misc{LEMMON-RP10,
       Title            = {{NIST Standard Reference Database 23: Reference Fluid Thermodynamic and Transport Properties-REFPROP, Version 10.0, National Institute of Standards and Technology}},
-      Author           = {E. W. Lemmon and Ian H. Bell and M. L. Huber and M. O. McLinden},
+      Author           = {E. W. Lemmon and I. H. Bell and M. L. Huber and M. O. McLinden},
       Year             = {2018},
       Doi              = {https://doi.org/10.18434/T4/1502528},
       Url              = {https://www.nist.gov/srd/refprop}
