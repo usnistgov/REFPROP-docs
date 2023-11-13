@@ -24,6 +24,7 @@ The following information gives answers to some of the most frequently asked que
 9. [Updates to Version 9.1](#updates-to-version-91)
 10. [Help File](#help-file)
 11. [List of Fluids](#list-of-fluids)
+12. [List of Predefined Mixtures](#list-of-predefined-mixtures)
 
 **Using the Program**
 
