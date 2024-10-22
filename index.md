@@ -25,6 +25,7 @@ The following information gives answers to some of the most frequently asked que
 10. [Help File](#help-file)
 11. [List of Fluids](#list-of-fluids)
 12. [List of Predefined Mixtures](#list-of-predefined-mixtures)
+13. [New mixture models for refrigerants 2022/2023](#new-refrigerant-models-2023)
 
 **Using the Program**
 
@@ -958,6 +959,17 @@ R515B [1234ZEE/227EA] (91.1/8.9 by mass) !!warning: estimated parameters!!
 R466A [32/125/13I1] (49.0/11.5/39.5 by mass) !!warning: estimated parameters!!
 
 R467A [32/125/134A/ISOBUTAN] (22.0/5.0/72.4/0.6 by mass)
+
+## New Refrigerant Models 2023
+
+A number of new mixture models have been developed in the last few years for refrigerants: 
+
+* [Mixture Model for Refrigerant Pairs R-32/1234yf, R-32/1234ze (E), R-1234ze (E)/227ea, R-1234yf/152a, and R-125/1234yf](https://doi.org/10.1063/5.0135368)
+* [Mixture Models for Refrigerants R-1234yf/134a, R-1234yf/1234ze(E), and R-134a/1234ze(E) and Interim Models for R-125/1234yf, R-1234ze(E)/227ea, and R-1234yf/152a](https://doi.org/10.1063/5.0086060)
+
+Integral to these new mixture models are a new reference EOS for [R-1234yf](https://doi.org/10.1007/s10765-022-03015-y)
+
+The necessary files to use these new models are provided in [a zipped archive](RefrigerantHMX_2024_10_22.zip). Make sure to read the included ``READ_ME_FIRST.txt`` file to properly understand how to use the files on your computer.
 
 # Using the Program
 
