@@ -969,7 +969,7 @@ A number of new mixture models have been developed in the last few years for ref
 
 Integral to these new mixture models are a new reference EOS for [R-1234yf](https://doi.org/10.1007/s10765-022-03015-y)
 
-The necessary files to use these new models are provided in [a zipped archive](RefrigerantHMX_2024_10_22.zip). Make sure to read the included ``READ_ME_FIRST.txt`` file to properly understand how to use the files on your computer.
+The necessary files to use these new models are provided in [a zipped archive](RefrigerantHMX_2024_11_13.zip). Make sure to read the included ``READ_ME_FIRST.txt`` file to properly understand how to use the files on your computer.
 
 # Using the Program
 
