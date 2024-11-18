@@ -971,6 +971,11 @@ Integral to these new mixture models are a new reference EOS for [R-1234yf](http
 
 The necessary files to use these new models are provided in [a zipped archive](RefrigerantHMX_2024_11_13.zip). Make sure to read the included ``READ_ME_FIRST.txt`` file to properly understand how to use the files on your computer.
 
+Changelog:
+
+* [revision 2024-10-22](RefrigerantHMX_2024_10_22.zip): initial version
+* [revision 2024-11-13](RefrigerantHMX_2024_11_13.zip): fixed line endings for the ``.FLD`` files [to load properly in the GUI](https://github.com/usnistgov/REFPROP-issues/issues/702)
+
 # Using the Program
 
 ## Reference States (enthalpy and entropy differences)
